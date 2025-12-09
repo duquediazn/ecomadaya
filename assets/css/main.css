@@ -1,0 +1,294 @@
+/* ========================================================= VARIABLES ========================================================= */
+:root {
+    /* TIPOGRAFÍA */
+    --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-headings: var(--font-base);
+    /* TAMAÑOS DE LETRA */
+    --fs-xs: 0.85rem;
+    --fs-sm: 1rem;
+    --fs-md: 1.15rem;
+    --fs-lg: 1.5rem;
+    --fs-xl: 2rem;
+    --fs-xxl: 2.5rem;
+    /* ESPACIADOS */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --max-width: 1200px;
+    /* COLORES CORPORATIVOS */
+    --color-primary: #6f457e;
+    /* morado */
+    --color-primary-hover: #5e3a6b;
+    --color-accent: #d0bd33;
+    /* amarillo hover */
+    --color-accent-hover: #b8a62d;
+    /* TEXTO */
+    --color-text: #1a1a1a;
+    --color-text-light: #f4f4f4;
+    /* FONDOS */
+    --color-bg: #ffffff;
+    --color-surface: #f7f7f7;
+    /* BORDES */
+    --color-border: #dddddd;
+    /* FOOTER */
+    --color-footer-bg: #4a4e54;
+}
+
+/* ========================================================= RESET + BASE ========================================================= */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-base);
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Enlaces */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+/* Accesibilidad: Skip link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    padding: 8px 16px;
+    background: #000;
+    color: #fff;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+/* ========================================================= LAYOUT GENERAL ========================================================= */
+main.site-main {
+    flex: 1;
+    /* Esto empuja el footer hacia abajo */
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-sm);
+}
+
+section {
+    margin: var(--space-xl) auto;
+}
+
+/* ========================================================= TIPOGRAFÍA ========================================================= */
+h1,
+h2,
+h3 {
+    font-family: var(--font-headings);
+    font-weight: 600;
+    color: var(--color-primary);
+    text-align: center;
+}
+
+h1 {
+    font-size: var(--fs-xxl);
+    margin-bottom: var(--space-md);
+}
+
+h2 {
+    font-size: var(--fs-xl);
+    margin: var(--space-lg) 0 var(--space-sm);
+}
+
+h3 {
+    font-size: var(--fs-lg);
+    margin: var(--space-md) 0 var(--space-xs);
+}
+
+p {
+    margin-bottom: var(--space-sm);
+}
+
+/* ========================================================= HEADER + NAVEGACIÓN ========================================================= */
+.site-header {
+    position: static;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 999;
+}
+
+.main-nav {
+    height: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo span,
+.logo img {
+    width: 220px;
+    height: auto;
+    font-weight: bold;
+    font-size: var(--fs-md);
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: var(--space-md);
+}
+
+.menu a {
+    padding: 4px 0;
+    font-size: var(--fs-sm);
+}
+
+.menu a.active {
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+/* ========================================================= BOTONES ========================================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 8px;
+    padding: 0.9rem 1.5rem;
+    font-size: var(--fs-md);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    border: none;
+}
+
+/* Estado normal */
+.btn--primary {
+    font-weight: 600;
+    background: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover amarillo */
+.btn--primary:hover,
+.btn--primary:focus {
+    background: var(--color-accent);
+    color: #000000;
+    transform: scale(1.1);
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.btn--primary svg {
+    fill: #ffffff;
+}
+
+.btn--primary:hover svg,
+.btn--primary:focus svg {
+    fill: #000000;
+}
+
+/* ========================================================= HERO ========================================================= */
+.hero {
+    text-align: center;
+    padding: var(--space-xl) var(--space-sm) var(--space-lg);
+}
+
+.hero__subtitle {
+    font-size: var(--fs-md);
+    margin-top: var(--space-sm);
+}
+
+.hero__tags {
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-top: var(--space-sm);
+}
+
+.hero__actions {
+    margin-top: var(--space-md);
+}
+
+.hero__image {
+    width: 100%;
+    margin-top: var(--space-lg);
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ========================================================= FOOTER ========================================================= */
+.site-footer {
+    background: var(--color-footer-bg);
+    color: var(--color-text-light);
+    padding: var(--space-xl) var(--space-md);
+    text-align: center;
+}
+
+.site-footer a {
+    color: var(--color-text-light);
+}
+
+.site-footer a:hover {
+    color: var(--color-accent);
+}
+
+.footer-menu {
+    list-style: none;
+    margin-top: var(--space-sm);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+/* ========================================================= RESPONSIVE ========================================================= */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+    }
+
+    .hero__image {
+        max-height: 260px;
+    }
+}
