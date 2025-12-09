@@ -1,0 +1,76 @@
+# ----------------------------------------
+# SISTEMA OPERATIVO
+# ----------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ----------------------------------------
+# EDITORES / ENTORNOS
+# ----------------------------------------
+
+# VS Code
+.vscode/
+
+# JetBrains (PHPStorm, WebStorm, etc.)
+.idea/
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# ----------------------------------------
+# ARCHIVOS TEMPORALES / LOGS
+# ----------------------------------------
+
+*.log
+*.tmp
+*.cache
+
+# Logs de PHP
+php_errors.log
+
+# Directorios de caché opcionales
+cache/
+tmp/
+sessions/
+
+# ----------------------------------------
+# DEPENDENCIAS EVENTUALES
+# ----------------------------------------
+
+# Composer
+vendor/
+
+# Node
+node_modules/
+npm-debug.log
+
+# ----------------------------------------
+# ARCHIVOS DE PRODUCCIÓN O SERVIDOR
+# ----------------------------------------
+
+# Archivos que puede generar PHP en hosting compartido
+.htaccess~
+*.bak
+*.swp
+
+# ----------------------------------------
+# ARCHIVOS SENSIBLES (si existieran)
+# ----------------------------------------
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
