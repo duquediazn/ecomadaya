@@ -103,13 +103,13 @@ section {
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto var(--space-xl);
-    padding: 0 var(--space-sm);    
+    padding: 0 var(--space-sm);
 }
 
 .section--narrow {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    /*align-items: center;*/
     max-width: 760px;
     text-align: justify;
 }
@@ -226,6 +226,7 @@ ul {
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     border: none;
+    align-self: center;
 }
 
 /* Estado normal */
@@ -308,7 +309,7 @@ ul {
     background: var(--color-surface);
     padding: var(--space-md);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     text-align: left;
 }
 
