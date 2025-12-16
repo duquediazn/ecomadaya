@@ -133,7 +133,8 @@ article {
 /* ========================================================= TIPOGRAFÍA ========================================================= */
 h1,
 h2,
-h3 {
+h3,
+h4 {
     font-family: var(--font-headings);
     font-weight: 600;
     color: var(--color-primary);
@@ -152,6 +153,11 @@ h2 {
 
 h3 {
     font-size: var(--fs-lg);
+    margin: var(--space-md) 0 var(--space-xs);
+}
+
+h4 {
+    font-size: var(--fs-md);
     margin: var(--space-md) 0 var(--space-xs);
 }
 
@@ -286,10 +292,6 @@ ul {
 
 /* ========================================================= RESEÑAS ========================================================= */
 
-/* =========================================================
-   REVIEWS / TESTIMONIOS
-   ========================================================= */
-
 .reviews {
     max-width: var(--max-width);
     margin: var(--space-xl) auto;
@@ -340,6 +342,52 @@ ul {
     margin-top: var(--space-lg);
 }
 
+/* ========================================================= SERVICIOS ========================================================= */
+.sample-photos {
+    text-align: center;
+}
+
+.picture-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: var(--space-lg);
+}
+
+.picture-container img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+
+}
+
+.picture-container img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.before-after-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.before-after-grid-col .picture-container img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.before-after__title {
+    font-size: var(--fs-sm);
+    font-weight: 500;
+}
+
 /* ========================================================= FOOTER ========================================================= */
 .site-footer {
     background: var(--color-primary-hover);
@@ -373,8 +421,7 @@ ul {
     margin-bottom: var(--space-md)
 }
 
-.site-footer>.row-section-site>.footer-col>h2,
-h3 {
+.footer-heading {
     color: var(--color-text-light);
     margin-top: var(--space-sm);
 }
@@ -465,10 +512,18 @@ h3 {
     .site-footer .row-section-site {
         grid-template-columns: 1fr;
     }
+
+    .picture-container img {
+        width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
     .reviews__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .before-after-grid {
         grid-template-columns: 1fr;
     }
 }
