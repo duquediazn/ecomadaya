@@ -1,7 +1,7 @@
 /* ========================================================= VARIABLES ========================================================= */
 :root {
     /* TIPOGRAFÍA */
-    --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-base: Lexend, sans-serif;
     --font-headings: var(--font-base);
     /* TAMAÑOS DE LETRA */
     --fs-xs: 0.85rem;
@@ -18,11 +18,11 @@
     --space-xl: 3rem;
     --max-width: 1200px;
     /* COLORES CORPORATIVOS */
-    --color-primary: #6f457e;
     /* morado */
+    --color-primary: #6f457e;
     --color-primary-hover: #5e3a6b;
+    /* amarillo */
     --color-accent: #d0bd33;
-    /* amarillo hover */
     --color-accent-hover: #b8a62d;
     /* TEXTO */
     --color-text: #1a1a1a;
@@ -30,6 +30,7 @@
     /* FONDOS */
     --color-bg: #ffffff;
     --color-surface: #f7f7f7;
+    --color-footer: #808080;
     /* BORDES */
     --color-border: #dddddd;
 }
@@ -58,6 +59,7 @@ body {
     font-size: var(--fs-sm);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    /*WebKit/Blink en MacOS*/
 }
 
 /* Enlaces */
@@ -92,25 +94,22 @@ a:focus {
 /* ========================================================= LAYOUT GENERAL ========================================================= */
 main.site-main {
     flex: 1;
-    /* Esto empuja el footer hacia abajo */
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: var(--space-xl) var(--space-sm);
+    padding: var(--space-xl) 0;
 }
 
 section {
     width: 100%;
-    max-width: var(--max-width);
     margin: 0 auto var(--space-xl);
     padding: 0 var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section--narrow {
-    display: flex;
-    flex-direction: column;
-    /*align-items: center;*/
     max-width: 760px;
     text-align: justify;
+    border-radius: 14px;
 }
 
 article {
@@ -167,6 +166,7 @@ p {
 
 ul {
     list-style-position: inside;
+    margin-bottom: var(--space-sm);
 }
 
 /* ========================================================= HEADER + NAVEGACIÓN ========================================================= */
@@ -285,6 +285,7 @@ ul {
 
 .hero__image {
     width: 100%;
+    max-width: var(--max-width);
     margin-top: var(--space-lg);
     object-fit: cover;
     border-radius: 12px;
@@ -357,9 +358,18 @@ ul {
     margin-bottom: var(--space-lg);
 }
 
+.picture-container figure {
+    max-width: 300px;
+}
+
+.picture-container figure figcaption {
+    font-size: var(--fs-sm);
+    font-style: italic;
+}
+
 .picture-container img {
     width: 300px;
-    height: auto;
+    height: 200px;
     object-fit: cover;
     border-radius: 12px;
 
@@ -452,18 +462,25 @@ ul {
     fill: #FF0069;
 }
 
+.row-section-legal {
+    padding: var(--space-sm);
+}
+
 .row-section-institutions {
+    max-width: fit-content;
     background-color: var(--color-bg);
-    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+    align-content: space-between;
     border-radius: 12px;
 }
 
 .row-section-institutions>img {
     width: 265px;
     height: auto;
+    margin: var(--space-sm);
 }
 
 .site-footer .legal-menu {

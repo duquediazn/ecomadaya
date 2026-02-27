@@ -7,21 +7,20 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <head>
     <meta charset="UTF-8">
-
     <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Título por defecto (luego si quieres se puede sobreescribir en cada página) -->
+    <!-- Título -->
     <title>Artesanía y Tapizados Madaya</title>
-
     <!-- Favicon -->
     <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
-
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/main.css">
-
     <!-- JS global -->
     <script src="/assets/js/main.js" defer></script>
+    <!-- Lexend font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>

@@ -56,7 +56,7 @@
 
     </section>
     
-    <section>
+    <section class="row-section-legal">
         <p>Copyright &copy; <?php echo date("Y"); ?> <a href="https://github.com/duquediazn">duquediazn</a>. Todos los derechos reservados.</p>
 
         <nav aria-label="Navegación legal">
