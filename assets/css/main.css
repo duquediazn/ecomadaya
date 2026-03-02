@@ -26,13 +26,10 @@
     --color-secondary-active: #7e7320;
     /* TEXTO */
     --color-text: #1a1a1a;
-    --color-text-light: #f4f4f4;
+    --color-text-light: #ffffff;
     /* FONDOS */
-    --color-bg: #ffffff;
     --color-surface: #f7f7f7;
     --color-footer: #5e5e5e;
-    /* BORDES */
-    --color-border: #dddddd;
 }
 
 /* ========================================================= RESET + BASE ========================================================= */
@@ -94,12 +91,14 @@ a:focus {
 main.site-main {
     flex: 1;
     padding: var(--space-xl) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 section {
     width: 100%;
-    margin: 0 auto var(--space-xl);
-    padding: 0 var(--space-sm);
+    padding: var(--space-md);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,7 +107,10 @@ section {
 .section--narrow {
     max-width: 760px;
     text-align: justify;
-    border-radius: 14px;
+    display: inherit;
+    flex-direction: column;
+    align-items: center;
+    border-top: 0.2rem solid var(--color-surface);
 }
 
 article {
@@ -231,6 +233,22 @@ ul {
     transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     border: none;
     align-self: center;
+    margin: var(--space-xs);
+}
+
+.btn-small {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    border: none;
+    align-self: center;
+    margin-bottom: var(--space-md);
 }
 
 /* Estado normal */
@@ -284,7 +302,8 @@ ul {
 /* ========================================================= HERO ========================================================= */
 .hero {
     text-align: center;
-    padding: var(--space-xl) var(--space-sm) var(--space-lg);
+    padding: var(--space-xl) var(--space-md);
+    /* width: 100%; */
 }
 
 .hero__subtitle {
@@ -312,17 +331,22 @@ ul {
 
 /* ========================================================= RESEÑAS ========================================================= */
 
-.reviews {
-    max-width: var(--max-width);
-    margin: var(--space-xl) auto;
-    padding: 0 var(--space-sm);
-    text-align: center;
+#reviews {
+    margin-top: var(--space-xl);
+    margin-bottom: 0;
+    padding: var(--space-sm);
+    background-color: var(--color-primary-active);
+}
+
+#reviews h2 {
+    color: #fff;
 }
 
 .reviews__grid {
+    max-width: var(--max-width);
     margin-top: var(--space-lg);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);
 }
 
@@ -332,6 +356,7 @@ ul {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     text-align: left;
+    color: var(--color-text);
 }
 
 .review__stars {
@@ -481,8 +506,18 @@ ul {
     fill: #FF0069;
 }
 
-.row-section-legal {
+#row-section-legal {
     padding: var(--space-sm);
+    background-color: var(--color-footer);
+}
+
+.site-footer .legal-menu {
+    list-style: none;
+    margin-top: var(--space-sm);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
 }
 
 .row-section-institutions {
@@ -502,14 +537,6 @@ ul {
     margin: var(--space-sm);
 }
 
-.site-footer .legal-menu {
-    list-style: none;
-    margin-top: var(--space-sm);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-sm);
-}
 
 
 

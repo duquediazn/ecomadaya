@@ -1,8 +1,12 @@
-<?php include 'includes/header.php'; ?>
+<?php
+$pageTitle = "Servicios de tapicería en Tenerife";
+$pageDescription = "";
+include 'includes/header.php';
+?>
 
-<section class="section--narrow">
+<section id="particulares" class="section--narrow">
     <h1>Servicios de Tapicería y Restauración</h1>
-    <h2>Tapicería y restauración</h2>
+    <h2>Tapicería y restauración para particulares</h2>
     <p>En <b>Madaya</b> recuperamos el estilo y la comodidad de tus muebles mediante técnicas artesanales y materiales de alta calidad.
 Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble</b> que necesite una nueva vida.</p>
     <h3>¿Qué podemos hacer por ti?</h3>
@@ -54,7 +58,7 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
     </a>
 </section>
 
-<section class="section--narrow">
+<section id="profesionales" class="section--narrow">
     <h2>Comercios y Organismos Públicos</h2>
     <p>Con <b>más de 40 años de experiencia</b>, colaboramos con todo tipo de negocios y entidades públicas:</p>
     <ul>
@@ -91,7 +95,7 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
 </section>
 
 
-<section class="section--narrow">
+<section id="fabricacion" class="section--narrow">
     <h2>Fabricación a Medida</h2>
     <p>Creamos muebles personalizados adaptados a tus necesidades y a tu espacio.</p>
     <h3>Ventajas</h3>

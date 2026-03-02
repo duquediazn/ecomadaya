@@ -33,7 +33,7 @@
             <ul>
                 <li>Email: madayaartesanal@gmail.com</li>
                 <li>Teléfono: 922 03 33 03</li>
-                <li>c/ Obispo Pérez Cáceres, 97, La Laguna</li>         
+                <li>c/ Obispo Pérez Cáceres, 97, La Laguna, Tenerife</li>         
             </ul>
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d56111.95146538817!2d-16.308823!3d28.479638000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc41ccf7465c1a57%3A0x4059bd340db92d8f!2sTapizados%20Madaya!5e0!3m2!1ses!2sus!4v1765401424268!5m2!1ses!2sus" width="400" height="225" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
@@ -41,13 +41,9 @@
             <h2 class="footer-heading">Horario</h2>
             <h3 class="footer-heading">Mañana:</h3>
             <ul>
-                <li>Lunes: 8:00 – 15:00h</li>
-                <li>Martes: 8:00 – 15:00h</li>
-                <li>Miércoles: 8:00 – 15:00h</li>
-                <li>Jueves: 8:00 – 15:00h</li>
-                <li>Viernes: 8:00 – 15:00h</li>
-                <li>Sábado: 9:00 – 12:00h </li>
-            </ul>
+                <li>Lunes a viernes de 8:00 a 15:00</li>
+                <li>Sábados de 9:00 a 12:00</li>
+             </ul>
             <h3 class="footer-heading">Tarde:</h3>
             <ul>
                 <li>*Bajo cita previa</li>
@@ -56,7 +52,7 @@
 
     </section>
     
-    <section class="row-section-legal">
+    <section id="row-section-legal">
         <p>Copyright &copy; <?php echo date("Y"); ?> <a href="https://github.com/duquediazn">duquediazn</a>. Todos los derechos reservados.</p>
 
         <nav aria-label="Navegación legal">
