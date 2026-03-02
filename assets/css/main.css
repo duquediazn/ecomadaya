@@ -20,17 +20,17 @@
     /* COLORES CORPORATIVOS */
     /* morado */
     --color-primary: #6f457e;
-    --color-primary-hover: #5e3a6b;
+    --color-primary-active: #492e52;
     /* amarillo */
-    --color-accent: #d0bd33;
-    --color-accent-hover: #b8a62d;
+    --color-secondary: #d0bd33;
+    --color-secondary-active: #7e7320;
     /* TEXTO */
     --color-text: #1a1a1a;
     --color-text-light: #f4f4f4;
     /* FONDOS */
     --color-bg: #ffffff;
     --color-surface: #f7f7f7;
-    --color-footer: #808080;
+    --color-footer: #5e5e5e;
     /* BORDES */
     --color-border: #dddddd;
 }
@@ -70,7 +70,6 @@ a {
 
 a:hover,
 a:focus {
-    color: var(--color-primary-hover);
     text-decoration: underline;
     font-weight: 600;
 }
@@ -238,28 +237,48 @@ ul {
 .btn--primary {
     font-weight: 600;
     background: var(--color-primary);
-    color: #ffffff;
+    color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Hover amarillo */
+.btn--secondary {
+    font-weight: 600;
+    background: var(--color-secondary);
+    color: #000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover */
 .btn--primary:hover,
 .btn--primary:focus {
-    background: var(--color-accent);
-    color: #000000;
     transform: scale(1.1);
+    color: #fff;
     transition-duration: 0.2s;
     transition-timing-function: ease-in-out;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
-.btn--primary svg {
-    fill: #ffffff;
+.btn--secondary:hover,
+.btn--secondary:focus {
+    transform: scale(1.1);
+    color: #000;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
-.btn--primary:hover svg,
-.btn--primary:focus svg {
-    fill: #000000;
+/* Active */
+.btn--primary:active {
+    background: var(--color-primary-active);
+}
+
+.btn--secondary:active {
+    background: var(--color-secondary-active);
+}
+
+
+.cta-buttons {
+    margin-top: var(--space-sm);
 }
 
 /* ========================================================= HERO ========================================================= */
@@ -400,7 +419,7 @@ ul {
 
 /* ========================================================= FOOTER ========================================================= */
 .site-footer {
-    background: var(--color-primary-hover);
+    background: var(--color-footer);
     color: var(--color-text-light);
     padding: var(--space-xl) var(--space-md);
     text-align: center;
@@ -415,7 +434,7 @@ ul {
 }
 
 .site-footer a:hover {
-    color: var(--color-accent-hover);
+    color: var(--color-secondary);
 }
 
 .site-footer .row-section-site {

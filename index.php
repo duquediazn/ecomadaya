@@ -2,21 +2,30 @@
 
 <section class="hero">
     <h1>Tapicería ecológica en Tenerife</h1>
-    <p class="hero__subtitle">Restauración y tapizado de muebles con materiales <b>sostenibles</b> y <b>de alta calidad</b>.</p>
+    <p class="hero__subtitle">Tapicería y restauración de muebles para particulares y empresas con materiales <b>sostenibles</b> y <b>de alta calidad</b>.</p>
     <p class="hero__tags">
-        Tejidos reciclados | Anti manchas | Protección higiénica avanzada
+        Tejidos reciclados | Fabricación a medida  | Tratamiento antimanchas | Protección antiácaros y antivírica 
     </p>
-    <a href="/servicios.php" class="btn btn--primary">
-        <svg xmlns="http://www.w3.org/2000/svg"
-            width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
-            <path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
-            <path d="M4 18v2" />
-            <path d="M20 18v2" />
-            <path d="M12 4v9" />
-        </svg>
-        Ver servicios</a>
+    <div class="cta-buttons">
+        <a href="/contacto.php" class="btn btn--primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0z"/>
+                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+            </svg>
+            Pedir presupuesto</a>
+        <a href="/servicios.php" class="btn btn--secondary">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
+                <path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
+                <path d="M4 18v2" />
+                <path d="M20 18v2" />
+                <path d="M12 4v9" />
+            </svg>
+            Ver servicios</a>
+    </div>
     <img class="hero__image" src="/assets/img/hero-1600.webp" alt="Diván/Chaise Longue tapizado de estilo clásico restaurado">
 </section>
 
