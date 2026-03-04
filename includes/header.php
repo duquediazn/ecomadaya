@@ -41,15 +41,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 "@type": "AdministrativeArea",
                 "name": "Tenerife"
             },
-            "openingHoursSpecification": [
-                {
+            "openingHoursSpecification": [{
                     "@type": "OpeningHoursSpecification",
                     "dayOfWeek": [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday"
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday"
                     ],
                     "opens": "08:00",
                     "closes": "15:00"
@@ -95,12 +94,19 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
     <header class="site-header">
+        <!-- Logo -->
+        <a href="/index.php" class="logo">
+            <img src="/assets/img/logo-300.png" alt="Madaya – Tapicería ecológica en Tenerife">
+        </a>
+        <!-- Icono hamburguesa -->
+        <input type="checkbox" class="menu-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="burger-icon" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+        </svg>
+        <!-- Menú de navegación -->
         <nav class="main-nav" aria-label="Navegación principal">
-            <a href="/index.php" class="logo">
-                <img src="/assets/img/logo-300.png" alt="Madaya – Tapicería ecológica en Tenerife">
-            </a>
-
-            <ul class="menu">
+            <ul>
                 <li><a href="/index.php" class="<?php echo $current_page === 'index.php' ? 'active' : '' ?>">Inicio</a></li>
                 <li><a href="/servicios.php" class="<?php echo $current_page === 'servicios.php' ? 'active' : '' ?>">Servicios</a></li>
                 <li><a href="/galeria.php" class="<?php echo $current_page === 'galeria.php' ? 'active' : '' ?>">Galería</a></li>
