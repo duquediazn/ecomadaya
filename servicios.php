@@ -4,11 +4,11 @@ $pageDescription = "";
 include 'includes/header.php';
 ?>
 
-<section id="particulares" class="section--narrow">
+<section id="hogar" class="section--narrow">
     <h1>Servicios de Tapicería y Restauración</h1>
-    <h2>Tapicería y restauración para particulares</h2>
+    <h2>Tapicería y restauración para el hogar</h2>
     <p>En <b>Madaya</b> recuperamos el estilo y la comodidad de tus muebles mediante técnicas artesanales y materiales de alta calidad.
-Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble</b> que necesite una nueva vida.</p>
+        Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble</b> que necesite una nueva vida.</p>
     <h3>¿Qué podemos hacer por ti?</h3>
     <ul>
         <li><b>Cambio de gomas y rellenos</b> para mayor confort.</li>
@@ -25,9 +25,9 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
         <a href=""><img src="/assets/img/servicios/sillas1.webp" alt="Sillas tapizadas en tela ecológica"></a>
     </div>
     <a href="/galeria.php" class="btn btn--primary">
-       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
         </svg>
         Ver más en galería
     </a>
@@ -50,9 +50,9 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
         </div>
     </div>
     <a href="/galeria.php" class="btn btn--primary">
-       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
         </svg>
         Ver más en galería
     </a>
@@ -66,8 +66,8 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
         <li>Productoras audiovisuales.</li>
         <li>Asociaciones y organismos públicos.</li>
     </ul>
-    <p> Entre nuestros clientes se encuentran el <b>Ayuntamiento de La Laguna</b> y el <b>Gobierno de Canarias</b>, 
-    que confían en nuestros acabados profesionales y en la personalización de cada proyecto.</p>
+    <p> Entre nuestros clientes se encuentran el <b>Ayuntamiento de La Laguna</b> y el <b>Gobierno de Canarias</b>,
+        que confían en nuestros acabados profesionales y en la personalización de cada proyecto.</p>
 </section>
 
 <section class="sample-photos">
@@ -81,14 +81,14 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
             <figcaption>Paneles acolchados fijados y asientos colocados en restaurente Aiko</figcaption>
         </figure>
         <figure>
-           <a href=""><img src="/assets/img/servicios/Campo_futbol_2 OADLL_1.webp" alt="Protectores en postes de campo de fútbol de OADLL"></a>
+            <a href=""><img src="/assets/img/servicios/Campo_futbol_2 OADLL_1.webp" alt="Protectores en postes de campo de fútbol de OADLL"></a>
             <figcaption>Protectores en postes de campo de fútbol, OADLL.</figcaption>
         </figure>
     </div>
     <a href="/galeria.php" class="btn btn--primary">
-       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
         </svg>
         Ver más en galería
     </a>
@@ -118,9 +118,9 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
         </figure>
     </div>
     <a href="/galeria.php" class="btn btn--primary">
-       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
         </svg>
         Ver más en galería
     </a>

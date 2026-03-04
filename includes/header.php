@@ -107,8 +107,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <!-- Menú de navegación -->
         <nav class="main-nav" aria-label="Navegación principal">
             <ul>
-                <li><a href="/index.php" class="<?php echo $current_page === 'index.php' ? 'active' : '' ?>">Inicio</a></li>
-                <li><a href="/servicios.php" class="<?php echo $current_page === 'servicios.php' ? 'active' : '' ?>">Servicios</a></li>
+                <li><a href="/index.php" class="<?php echo $current_page === 'index.php' ? 'active' : '' ?>">Inicio</a> </li>
+                <li class="dropdown">
+                    <a href="/servicios.php" class="<?php echo $current_page === 'servicios.php' ? 'active' : '' ?>">Servicios</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/servicios.php#hogar">Tapicería para el hogar</a></li>
+                        <li><a href="/servicios.php#profesionales">Tapicería para profesionales</a></li>
+                        <li><a href="/servicios.php#fabricacion">Fabricación a medida</a></li>
+                    </ul>
+                </li>
                 <li><a href="/galeria.php" class="<?php echo $current_page === 'galeria.php' ? 'active' : '' ?>">Galería</a></li>
                 <li><a href="/quienes-somos.php" class="<?php echo $current_page === 'quienes-somos.php' ? 'active' : '' ?>">Quiénes somos</a></li>
                 <li><a href="/faq.php" class="<?php echo $current_page === 'faq.php' ? 'active' : '' ?>">FAQ</a></li>
