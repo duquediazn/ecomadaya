@@ -20,9 +20,9 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
 <section class="sample-photos">
     <h4>Tapicería general</h4>
     <div class="picture-container">
-        <a href=""><img src="/assets/img/servicios/sofa1.webp" alt=""></a>
-        <a href=""><img src="/assets/img/servicios/butacas1.webp" alt=""></a>
-        <a href=""><img src="/assets/img/servicios/sillas1.webp" alt=""></a>
+        <a href=""><img src="/assets/img/servicios/sofa1.webp" alt="Sofá tapizado en taller"></a>
+        <a href=""><img src="/assets/img/servicios/butacas1.webp" alt="Conjunto de butacas restauradas"></a>
+        <a href=""><img src="/assets/img/servicios/sillas1.webp" alt="Sillas tapizadas en tela ecológica"></a>
     </div>
     <a href="/galeria.php" class="btn btn--primary">
        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
@@ -37,15 +37,15 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
         <div class="before-after-grid-col">
             <p class="before-after__title">Antes</p>
             <div class="picture-container">
-                <a href=""><img src="/assets/img/servicios/butaca-antes1.webp" alt=""></a>
-                <a href=""><img src="/assets/img/servicios/butaca-antes2.webp" alt=""></a>
+                <a href=""><img src="/assets/img/servicios/butaca-antes1.webp" alt="Butaca clásica antes de la restauración"></a>
+                <a href=""><img src="/assets/img/servicios/butaca-antes2.webp" alt="Detalle de la butaca antigua con tela desgastada"></a>
             </div>
         </div>
         <div class="before-after-grid-col">
             <p class="before-after__title">Después</p>
             <div class="picture-container">
-                <a href=""><img src="/assets/img/servicios/butaca-despues1.webp" alt=""></a>
-                <a href=""><img src="/assets/img/servicios/butaca-despues2.webp" alt=""></a>
+                <a href=""><img src="/assets/img/servicios/butaca-despues1.webp" alt="Butaca restaurada tras tapizado"></a>
+                <a href=""><img src="/assets/img/servicios/butaca-despues2.webp" alt="Detalle de superficie de butaca renovada"></a>
             </div>
         </div>
     </div>
@@ -73,15 +73,15 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
 <section class="sample-photos">
     <div class="picture-container">
         <figure>
-            <a href=""><img src="/assets/img/servicios/Aiko1.webp" alt=""></a>
+            <a href=""><img src="/assets/img/servicios/Aiko1.webp" alt="Paneles de pared acolchados y asientos para restaurante Aiko"></a>
             <figcaption>Paneles de pared acolchados y asientos para restaurante Aiko.</figcaption>
         </figure>
         <figure>
-            <a href=""><img src="/assets/img/servicios/Aiko2.webp" alt=""></a>
+            <a href=""><img src="/assets/img/servicios/Aiko2.webp" alt="Vista de los paneles acolchados instalados y asientos del restaurante Aiko"></a>
             <figcaption>Paneles acolchados fijados y asientos colocados en restaurente Aiko</figcaption>
         </figure>
         <figure>
-           <a href=""><img src="/assets/img/servicios/Campo_futbol_2 OADLL_1.webp" alt=""></a>
+           <a href=""><img src="/assets/img/servicios/Campo_futbol_2 OADLL_1.webp" alt="Protectores en postes de campo de fútbol de OADLL"></a>
             <figcaption>Protectores en postes de campo de fútbol, OADLL.</figcaption>
         </figure>
     </div>
@@ -109,11 +109,11 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
 <section class="sample-photos">
     <div class="picture-container">
         <figure>
-            <a href=""><img src="/assets/img/servicios/Cabecero_blanco.webp" alt=""></a>
+            <a href=""><img src="/assets/img/servicios/Cabecero_blanco.webp" alt="Cabecero tapizado en tela aquaclean blanco fabricado a medida"></a>
             <figcaption>Cabecero tapizado en tela aquaclean, fabricado a medida.</figcaption>
         </figure>
         <figure>
-            <a href=""><img src="/assets/img/servicios/Colchon-camper3.webp" alt=""></a>
+            <a href=""><img src="/assets/img/servicios/Colchon-camper3.webp" alt="Colchón plegable con forro para furgoneta camperizada"></a>
             <figcaption>Colchón plegable con forro para furgoneta camperizada.</figcaption>
         </figure>
     </div>
