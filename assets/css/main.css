@@ -321,9 +321,19 @@ ul {
     margin-top: var(--space-md);
 }
 
-.hero__image {
+#hero-image-desktop {
+    max-width: 760px;
     width: 100%;
-    max-width: var(--max-width);
+}
+
+#hero-image-mobile {
+    max-width: 460px;
+    width: 100%;
+    display: none;
+}
+
+.hero__image {
+    height: auto;
     margin-top: var(--space-lg);
     object-fit: cover;
     border-radius: 12px;
@@ -558,8 +568,12 @@ ul {
         gap: var(--space-sm);
     }
 
-    .hero__image {
-        max-height: 260px;
+    #hero-image-desktop {
+        display: none;
+    }
+
+    #hero-image-mobile {
+        display: block;
     }
 
     .section--two-cols {

@@ -20,9 +20,9 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
 <section class="sample-photos">
     <h4>Tapicería general</h4>
     <div class="picture-container">
-        <a href=""><img src="/assets/img/sofa1.webp" alt=""></a>
-        <a href=""><img src="/assets/img/butacas1.webp" alt=""></a>
-        <a href=""><img src="/assets/img/sillas1.webp" alt=""></a>
+        <a href=""><img src="/assets/img/servicios/sofa1.webp" alt=""></a>
+        <a href=""><img src="/assets/img/servicios/butacas1.webp" alt=""></a>
+        <a href=""><img src="/assets/img/servicios/sillas1.webp" alt=""></a>
     </div>
     <a href="/galeria.php" class="btn btn--primary">
        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
@@ -37,15 +37,15 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
         <div class="before-after-grid-col">
             <p class="before-after__title">Antes</p>
             <div class="picture-container">
-                <a href=""><img src="/assets/img/butaca-antes1.webp" alt=""></a>
-                <a href=""><img src="/assets/img/butaca-antes2.webp" alt=""></a>
+                <a href=""><img src="/assets/img/servicios/butaca-antes1.webp" alt=""></a>
+                <a href=""><img src="/assets/img/servicios/butaca-antes2.webp" alt=""></a>
             </div>
         </div>
         <div class="before-after-grid-col">
             <p class="before-after__title">Después</p>
             <div class="picture-container">
-                <a href=""><img src="/assets/img/butaca-despues1.webp" alt=""></a>
-                <a href=""><img src="/assets/img/butaca-despues2.webp" alt=""></a>
+                <a href=""><img src="/assets/img/servicios/butaca-despues1.webp" alt=""></a>
+                <a href=""><img src="/assets/img/servicios/butaca-despues2.webp" alt=""></a>
             </div>
         </div>
     </div>
@@ -73,15 +73,15 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
 <section class="sample-photos">
     <div class="picture-container">
         <figure>
-            <a href=""><img src="/assets/img/Aiko1.webp" alt=""></a>
+            <a href=""><img src="/assets/img/servicios/Aiko1.webp" alt=""></a>
             <figcaption>Paneles de pared acolchados y asientos para restaurante Aiko.</figcaption>
         </figure>
         <figure>
-            <a href=""><img src="/assets/img/Aiko2.webp" alt=""></a>
+            <a href=""><img src="/assets/img/servicios/Aiko2.webp" alt=""></a>
             <figcaption>Paneles acolchados fijados y asientos colocados en restaurente Aiko</figcaption>
         </figure>
         <figure>
-           <a href=""><img src="/assets/img/Campo_futbol_2 OADLL_1.webp" alt=""></a>
+           <a href=""><img src="/assets/img/servicios/Campo_futbol_2 OADLL_1.webp" alt=""></a>
             <figcaption>Protectores en postes de campo de fútbol, OADLL.</figcaption>
         </figure>
     </div>
@@ -109,11 +109,11 @@ Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble
 <section class="sample-photos">
     <div class="picture-container">
         <figure>
-            <a href=""><img src="/assets/img/Cabecero_blanco.webp" alt=""></a>
+            <a href=""><img src="/assets/img/servicios/Cabecero_blanco.webp" alt=""></a>
             <figcaption>Cabecero tapizado en tela aquaclean, fabricado a medida.</figcaption>
         </figure>
         <figure>
-            <a href=""><img src="/assets/img/Colchon-camper3.webp" alt=""></a>
+            <a href=""><img src="/assets/img/servicios/Colchon-camper3.webp" alt=""></a>
             <figcaption>Colchón plegable con forro para furgoneta camperizada.</figcaption>
         </figure>
     </div>

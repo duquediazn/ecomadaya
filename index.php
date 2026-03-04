@@ -30,7 +30,8 @@ include 'includes/header.php';
             </svg>
             Ver servicios</a>
     </div>
-    <img class="hero__image" src="/assets/img/hero-1600.webp" alt="Diván/Chaise Longue tapizado de estilo clásico restaurado">
+    <img id="hero-image-desktop" class="hero__image" src="/assets/img/hero/hero-760.webp" alt="Diván/Chaise Longue tapizado de estilo clásico restaurado">
+    <img hidden id="hero-image-mobile" class="hero__image"src="/assets/img/hero/hero-460.webp" alt="Diván/Chaise Longue tapizado de estilo clásico restaurado">
 </section>
 
 <section class="section--narrow">
