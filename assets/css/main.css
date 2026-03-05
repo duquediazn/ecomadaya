@@ -185,15 +185,15 @@ ul {
 
 .main-nav {
     height: 100%;
-    padding: var(--space-sm);
 }
+
 .logo img {
     height: 60px;
     font-weight: bold;
     font-size: var(--fs-md);
 }
 
-.main-nav ul {
+.main-nav>ul {
     list-style: none;
     background-color: var(--color-bg);
 }
@@ -201,11 +201,11 @@ ul {
 
 .main-nav ul li {
     display: inline-block;
-    margin-left: var(--space-sm);
+    padding: var(--space-xs);
 }
 
 .main-nav ul a {
-    padding: 4px 0;
+    padding: var(--space-xs) 0;
     font-size: var(--fs-sm);
 }
 
@@ -243,6 +243,11 @@ ul {
     transform: scale(1.1);
 }
 
+/* Rotar icono cuando esté activo */
+.menu-toggle:checked~.burger-icon {
+    transform: rotate(90deg);
+}
+
 /* ========================================================= MENÚ DESPLEGABLE ========================================================= */
 .dropdown {
     display: relative;
@@ -255,9 +260,9 @@ ul {
     z-index: 1;
 }
 
-.dropdown-menu li {
+.dropdown-menu>li {
     display: block;
-    padding: var(--space-xs);
+    transition: background-color 0.3s ease-in-out;
 }
 
 .dropdown-menu li:hover {
@@ -268,9 +273,7 @@ ul {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: var(--color-bg);
 }
-
 
 /* ========================================================= BOTONES ========================================================= */
 .btn {
@@ -597,6 +600,8 @@ ul {
 
 /* ========================================================= RESPONSIVE ========================================================= */
 @media (max-width: 900px) {
+
+    /* Mostrar el header y ocultar la navegación principal */
     .site-header {
         display: block;
     }
@@ -605,6 +610,7 @@ ul {
         display: none;
     }
 
+    /* Mostrar el menú hamburguesa */
     .menu-toggle,
     .burger-icon {
         display: block
@@ -614,15 +620,14 @@ ul {
         background-color: var(--color-surface);
     }
 
-    .main-nav ul li {
+    .main-nav>ul>li {
         display: block;
-        margin-bottom: var(--space-xs);
     }
 
     /* Al hacer click sobre el check input (burger icon) "main-nav" se mostrará */
     .menu-toggle:checked~.main-nav {
         display: block;
-        margin-top: 2rem;
+        margin-top: 1rem;
         position: relative;
     }
 
@@ -630,6 +635,12 @@ ul {
         position: static;
         box-shadow: none;
     }
+
+    /* Al hacer hover sobre un item del dropdown, el fondo cambiará a color de superficie */
+    .dropdown-menu li:hover {
+        background-color: var(--color-bg);
+    }
+
 
     .reviews__grid {
         grid-template-columns: 1fr 1fr;
