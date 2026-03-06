@@ -222,6 +222,7 @@ ul {
     align-items: center;
     justify-content: space-around;
     padding: var(--space-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .main-nav {
@@ -645,6 +646,7 @@ ul {
 
     .main-nav>ul>li {
         display: block;
+        background-color: var(--color-surface);
     }
 
     /* Al hacer click sobre el check input (burger icon) "main-nav" se mostrará */
