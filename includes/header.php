@@ -107,19 +107,22 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <!-- Menú de navegación -->
         <nav class="main-nav" aria-label="Navegación principal">
             <ul>
-                <li><a href="/index.php" class="<?php echo $current_page === 'index.php' ? 'active' : '' ?>">Inicio</a> </li>
+                <li><a href="/index.php" class="primary-link <?php echo $current_page === 'index.php' ? 'active' : '' ?>">Inicio</a> </li>
                 <li class="dropdown">
-                    <a href="/servicios.php" class="<?php echo $current_page === 'servicios.php' ? 'active' : '' ?>">Servicios</a>
+                    <a href="/servicios.php" class="primary-link <?php echo $current_page === 'servicios.php' ? 'active' : '' ?>">Servicios</a>
                     <ul class="dropdown-menu">
-                        <li><a href="/servicios.php#hogar">Tapicería para el hogar</a></li>
-                        <li><a href="/servicios.php#profesionales">Tapicería para profesionales</a></li>
-                        <li><a href="/servicios.php#fabricacion">Fabricación a medida</a></li>
+                        <li><a class="primary-link" href="/servicios.php#hogar">Tapicería para el hogar</a></li>
+                        <li><a class="primary-link" href="/servicios.php#profesionales">Tapicería para profesionales</a></li>
+                        <li><a class="primary-link" href="/servicios.php#fabricacion">Fabricación a medida</a></li>
+                        <li><a class="primary-link" href="/servicios.php#catalogos">Catálogos de tejidos</a></li>
+                        <li><a class="primary-link" href="/servicios.php#reviews">Reseñas de clientes</a></li>
+                        <li><a class="primary-link" href="/servicios.php#contacto-faq">Contacto y FAQ</a></li>
                     </ul>
                 </li>
-                <li><a href="/galeria.php" class="<?php echo $current_page === 'galeria.php' ? 'active' : '' ?>">Galería</a></li>
-                <li><a href="/quienes-somos.php" class="<?php echo $current_page === 'quienes-somos.php' ? 'active' : '' ?>">Quiénes somos</a></li>
-                <li><a href="/faq.php" class="<?php echo $current_page === 'faq.php' ? 'active' : '' ?>">FAQ</a></li>
-                <li><a href="/contacto.php" class="<?php echo $current_page === 'contacto.php' ? 'active' : '' ?>">Contacto</a></li>
+                <li><a href="/galeria.php" class="primary-link <?php echo $current_page === 'galeria.php' ? 'active' : '' ?>">Galería</a></li>
+                <li><a href="/quienes-somos.php" class="primary-link <?php echo $current_page === 'quienes-somos.php' ? 'active' : '' ?>">Quiénes somos</a></li>
+                <li><a href="/faq.php" class="primary-link <?php echo $current_page === 'faq.php' ? 'active' : '' ?>">FAQ</a></li>
+                <li><a href="/contacto.php" class="primary-link <?php echo $current_page === 'contacto.php' ? 'active' : '' ?>">Contacto</a></li>
             </ul>
         </nav>
     </header>

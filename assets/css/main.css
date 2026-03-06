@@ -17,6 +17,7 @@
     --space-lg: 2rem;
     --space-xl: 3rem;
     --max-width: 1200px;
+    --narrow-width: 760px;
     /* COLORES CORPORATIVOS */
     /* morado */
     --color-primary: #6f457e;
@@ -62,15 +63,33 @@ body {
 }
 
 /* Enlaces */
-a {
+a.primary-link {
     color: var(--color-primary);
     text-decoration: none;
+}
+
+a.secondary-link {
+    color: var(--color-secondary);
+}
+
+a.light-link {
+    color: var(--color-text-light);
+}
+
+a.dark-link {
+    color: var(--color-text);
 }
 
 a:hover,
 a:focus {
     text-decoration: underline;
     font-weight: 600;
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Accesibilidad: Skip link */
@@ -91,6 +110,7 @@ a:focus {
 
 /* ========================================================= LAYOUT GENERAL ========================================================= */
 main.site-main {
+    width: 100%;
     flex: 1;
     padding: var(--space-xl) 0;
     display: flex;
@@ -100,19 +120,32 @@ main.site-main {
 
 section {
     width: 100%;
-    padding: var(--space-md);
+    padding: var(--space-lg) var(--space-md);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .section--narrow {
-    max-width: 760px;
+    max-width: var(--narrow-width);
     text-align: justify;
     display: inherit;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     border-top: 0.2rem solid var(--color-surface);
+}
+
+.section--narrow:first-of-type {
+    border-top: none;
+}
+
+.narrow-container {
+    max-width: var(--narrow-width);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 article {
@@ -141,6 +174,7 @@ h4 {
     font-weight: 600;
     color: var(--color-primary);
     text-align: center;
+    text-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
 }
 
 h1 {
@@ -165,11 +199,18 @@ h4 {
 
 p {
     margin-bottom: var(--space-sm);
+    text-align: justify;
 }
 
 ul {
     list-style-position: inside;
     margin-bottom: var(--space-sm);
+}
+
+.bg-primary h2,
+.bg-primary h3,
+.bg-primary h4 {
+    color: var(--color-text-light);
 }
 
 /* ========================================================= HEADER + NAVEGACIÓN ========================================================= */
@@ -202,6 +243,7 @@ ul {
 .main-nav ul li {
     display: inline-block;
     padding: var(--space-xs);
+    background-color: var(--color-bg);
 }
 
 .main-nav ul a {
@@ -265,7 +307,7 @@ ul {
     transition: background-color 0.3s ease-in-out;
 }
 
-.dropdown-menu li:hover {
+.main-nav .dropdown-menu li:hover {
     background-color: var(--color-surface);
 }
 
@@ -310,14 +352,14 @@ ul {
 .btn--primary {
     font-weight: 600;
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-bg);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn--secondary {
     font-weight: 600;
     background: var(--color-secondary);
-    color: #000;
+    color: var(--color-text);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -325,14 +367,14 @@ ul {
 .btn--primary:hover,
 .btn--primary:focus {
     transform: scale(1.1);
-    color: #fff;
+    color: var(--color-bg);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
 .btn--secondary:hover,
 .btn--secondary:focus {
     transform: scale(1.1);
-    color: #000;
+    color: var(--color-text);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
@@ -348,6 +390,7 @@ ul {
 
 .cta-buttons {
     margin-top: var(--space-sm);
+    text-align: center;
 }
 
 /* ========================================================= HERO ========================================================= */
@@ -393,14 +436,12 @@ ul {
 /* ========================================================= RESEÑAS ========================================================= */
 
 #reviews {
+    width: 100%;
     margin-top: var(--space-xl);
-    margin-bottom: 0;
-    padding: var(--space-sm);
-    background-color: var(--color-primary-active);
 }
 
 #reviews h2 {
-    color: #fff;
+    color: var(--color-text-light);
 }
 
 .reviews__grid {
@@ -450,61 +491,42 @@ ul {
 
 /* ========================================================= SERVICIOS ========================================================= */
 .sample-photos {
-    text-align: center;
-}
-
-.picture-container {
+    width: 90vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     gap: 2rem;
     margin-bottom: var(--space-lg);
 }
 
-.picture-container figure {
+.sample-photos figure {
+    max-width: fit-content;
+}
+
+.sample-photos figure figcaption {
+    font-size: var(--fs-sm);
+    font-style: italic;
+    text-align: center;
     max-width: 300px;
 }
 
-.picture-container figure figcaption {
-    font-size: var(--fs-sm);
-    font-style: italic;
-}
-
-.picture-container img {
+.sample-photos img {
     width: 300px;
     height: 200px;
     object-fit: cover;
     border-radius: 12px;
-
+    transition: transform 0.3s ease-in-out;
 }
 
-.picture-container img:hover {
+.sample-photos img:hover {
     transform: scale(1.1);
-    transition: transform 0.3s;
-    transition-timing-function: ease-in-out;
-}
-
-.before-after-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.before-after-grid-col .picture-container img {
-    width: 200px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-.before-after__title {
-    font-size: var(--fs-sm);
-    font-weight: 500;
 }
 
 /* ========================================================= FOOTER ========================================================= */
 .site-footer {
+    width: 100%;
     background: var(--color-footer);
     color: var(--color-text-light);
     padding: var(--space-xl) var(--space-md);
@@ -512,6 +534,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
 }
 
@@ -671,7 +694,7 @@ ul {
         grid-template-columns: 1fr;
     }
 
-    .picture-container img {
+    .sample-photos img {
         width: 100%;
     }
 }
@@ -683,5 +706,9 @@ ul {
 
     .before-after-grid {
         grid-template-columns: 1fr;
+    }
+
+    iframe {
+        width: 100%;
     }
 }
