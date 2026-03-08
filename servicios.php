@@ -7,14 +7,14 @@ include 'includes/header.php';
 <section id="hogar" class="section--narrow">
     <h1>Servicios de Tapicería y Restauración</h1>
     <h2>Tapicería y restauración para el hogar</h2>
-    <p>En <b>Madaya</b> recuperamos el estilo y la comodidad de tus muebles mediante técnicas artesanales y materiales de alta calidad.
-        Tapizamos y restauramos <b>sofás, sillas, butacas, cabeceros y cualquier mueble</b> que necesite una nueva vida.</p>
+    <p>En <strong>Madaya</strong> recuperamos el estilo y la comodidad de tus muebles mediante técnicas artesanales y materiales de alta calidad.
+        Tapizamos y restauramos <strong>sofás, sillas, butacas, cabeceros y cualquier mueble</strong> que necesite una nueva vida.</p>
     <h3>¿Qué podemos hacer por ti?</h3>
     <ul>
-        <li><b>Cambio de gomas y rellenos</b> para mayor confort.</li>
-        <li><b>Reparación y tratamiento de madera</b> para garantizar resistencia y durabilidad.</li>
+        <li><strong>Cambio de gomas y rellenos</strong> para mayor confort.</li>
+        <li><strong>Reparación y tratamiento de madera</strong> para garantizar resistencia y durabilidad.</li>
     </ul>
-    <p>Tras nuestro trabajo, tu mueble lucirá <b>como nuevo</b>, respetando su diseño original y mejorando su funcionalidad.</p>
+    <p>Tras nuestro trabajo, tu mueble lucirá <strong>como nuevo</strong>, respetando su diseño original y mejorando su funcionalidad.</p>
 
     <h3>Tapicería general</h3>
     <div class="sample-photos" aria-label="Galería de tapicería para el hogar">
@@ -79,7 +79,7 @@ include 'includes/header.php';
         <li>Productoras audiovisuales.</li>
         <li>Asociaciones y organismos públicos.</li>
     </ul>
-    <p> Entre nuestros clientes se encuentran el <b>Ayuntamiento de La Laguna</b> y el <b>Gobierno de Canarias</b>,
+    <p> Entre nuestros clientes se encuentran el <strong>Ayuntamiento de La Laguna</strong> y el <strong>Gobierno de Canarias</strong>,
         que confían en nuestros acabados profesionales y en la personalización de cada proyecto.</p>
 
     <div class="sample-photos" aria-label="Galería de trabajos para profesionales y organismos públicos">
@@ -152,14 +152,39 @@ include 'includes/header.php';
         <p>Disponemos de una amplia variedad de tejidos para adaptarnos a todos los gustos, estilos y presupuestos.</p>
 
         <h3>Tejidos ecológicos y sostenibles</h3>
-        <p>Trabajamos con proveedores que apuestan por la innovación verde:</p>
-        <ul>
-            <li>Tecnologías como <b>stain free</b> y <b><a class="secondary-link" href="https://www.aquaclean.com/es/que-es-aquaclean/" target="_blank" rel="noopener noreferrer">aquaclean</a></b>, que facilitan la limpieza.</li>
-            <li>Certificaciones internacionales como <a class="secondary-link" href="https://www.aitex.es/certificado-oeko-tex-standard-100/" target="_blank" rel="noopener noreferrer">Oeko-tex standard 100</a>, <a class="secondary-link" href="https://www.v-label.com/es/" target="_blank" rel="noopener noreferrer">V-label</a>, 
-                <a class="secondary-link" href="https://www.controlunion.com/certification-program/grs-global-recycled-standard/" target="_blank" rel="noopener noreferrer">GRS</a> y <a class="secondary-link" href="https://www.aquaclean.com/es-es/safe-front" target="_blank" rel="noopener noreferrer">Safe Front®</a>, entre otras.</li>
-        </ul>
+        <p>Trabajamos con proveedores que apuestan por la innovación verde con tecnologías de limpieza como <strong>stain free</strong> y 
+        <strong><a class="secondary-link" href="https://www.aquaclean.com/es/que-es-aquaclean/" target="_blank" rel="noopener noreferrer">aquaclean</a></strong>, 
+        o certificaciones internacioles como:</p>
+            <ul>
+                <li><strong><a class="secondary-link" href="https://www.aitex.es/certificado-oeko-tex-standard-100/" rel="noopener noreferrer" target="_blank"  >OEKO-TEX® Standard 100</a></strong> – Sin sustancias nocivas.</li>
+                <li><strong><a class="secondary-link" href="https://www.aquaclean.com/es/safe-front/safe-front-en-todas-partes/" rel="noopener noreferrer" target="_blank">SAFE FRONT®</a></strong> – Protección contra virus, bacterias y alérgenos.</li>
+                <li><strong><a class="secondary-link" href="https://www.v-label.com/es/" rel="noopener noreferrer" target="_blank">V-LABEL</a></strong> – Certificación de tejidos veganos.</li>
+                <li><strong><a class="secondary-link" href="https://www.controlunion.com/certification-program/grs-global-recycled-standard/" rel="noopener noreferrer" target="_blank">GRS (Global Recycled Standard)</a></strong> – Materiales reciclados con garantía.</li>
+                <li><strong><a class="secondary-link" href="https://www.imo.org/" rel="noopener noreferrer" target="_blank">IMO</a></strong> – Seguridad ignífuga certificada.</li>
+            </ul>
+            
+        <div class="cert-grid">
+            <a href="https://www.aitex.es/certificado-oeko-tex-standard-100/" title="Abrir sitio oficial Aitex - certificado Oeko Tex Standard 100" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/servicios/STANDARD_100C.webp" alt="Logo del certificado textil OEKO-TEX STANDARD 100" loading="lazy" height="100px" width="151px">
+            </a>
+            <a href="https://www.aquaclean.com/es/safe-front/safe-front-en-todas-partes/" title="Abrir sitio oficial aquaclean - Safe Front" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/servicios/safefront.webp" alt="Logo del certificado SAFE FRONT HYGIENE PROTECTOR" loading="lazy" height="100px" width="100px">
+            </a>
+            <a href="https://www.v-label.com/es/" title="Abrir sitio oficial V-Label" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/servicios/v-label.webp" alt="Logo de V-LABEL EUROPEAN VEGETARIAN UNION" loading="lazy" height="100px" width="100px">
+            </a>
+            <a href="https://www.controlunion.com/certification-program/grs-global-recycled-standard/" title="Abrir sitio oficial certificado GRS" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/servicios/GRS.webp" alt="Logo de GRS (Global Recycled Standard)" loading="lazy" height="100px" width="199px">
+            </a>
+            <a href="https://www.aquaclean.com/es/aquaclean-group/medioambiente/" title="Abrir sitio oficial aquaclean" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/servicios/pfcfree.webp" alt="Logo PFC FREE" loading="lazy" height="100px" width="100px">
+            </a>
+            <a href="https://www.imo.org/" title="Abrir sitio oficial IMO" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/img/servicios/imo.webp" alt="Logo de IMO, certificación de seguridad contra incendios." loading="lazy" height="100px" width="68px">
+            </a>
+        </div>
 
-        <p>Puedes consultar los catálogos oficiales o visualizar cómo quedaría tu mueble tapizado con el <b>simulador de sofás</b>:</p>
+        <p>Puedes consultar los catálogos oficiales o visualizar cómo quedaría tu mueble tapizado con el <strong>simulador de sofás</strong>:</p>
         <div class="cta-buttons">
             <a href="https://www.aquaclean.com/es-es/elige-tu-tela" class="btn btn--secondary dark-link" aria-label="Abrir colección aquaclean en nueva pestaña" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -183,7 +208,7 @@ include 'includes/header.php';
 
         <h3>Tejidos convencionales</h3>
         <p>También ofrecemos tejidos clásicos, sin tantas certificaciones, ideales para estilos tradicionales o presupuestos ajustados. 
-            Puedes explorar nuestros catálogos en el <a class="secondary-link" href="https://maps.app.goo.gl/JrKcn4j2A7xQ6T3N9" target="_blank">taller</a>, o si lo prefieres, podemos <b> visitarte a domicilio</b> para ayudarte a elegir <b>sin compromiso</b>.</p>
+            Puedes explorar nuestros catálogos en el <a class="secondary-link" href="https://maps.app.goo.gl/JrKcn4j2A7xQ6T3N9" target="_blank">taller</a>, o si lo prefieres, podemos <strong> visitarte a domicilio</strong> para ayudarte a elegir <strong>sin compromiso</strong>.</p>
     </div>
 
 </section> 
@@ -271,7 +296,7 @@ include 'includes/header.php';
 
 <section id="contacto-faq" class="section--narrow">
     <h2>¿Quieres asesoramiento o un presupuesto?</h2>
-    <p>Si deseas tapizar un mueble, restaurarlo o fabricar uno a medida, <b>contáctanos.</b></p>
+    <p>Si deseas tapizar un mueble, restaurarlo o fabricar uno a medida, <strong>contáctanos.</strong></p>
     <p>Estaremos encantadas de ayudarte.</p>
     <a href="/contacto.php" class="btn btn--primary light-link" aria-label="Ver contacto">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">

@@ -148,20 +148,20 @@ section {
     align-items: center;
 }
 
-article {
-    margin-bottom: var(--space-lg);
-}
-
-.aside--cert-grid {
+.cert-grid {
     max-width: 760px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-items: center;
     gap: var(--space-lg);
+    padding: var(--space-lg);
+    margin: var(--space-md);
+    background-color: var(--color-bg);
+    border-radius: 14px;
 }
 
-.aside--cert-grid a {
+.cert-grid a {
     text-decoration: none;
 }
 
