@@ -66,10 +66,10 @@
     </section>
 
     <section class="row-section-institutions">
-        <img src="/assets/img/footer/union-europea-265.webp" alt="Financiado por la Unión Europea">
-        <img src="/assets/img/footer/PRTR-265.webp" alt="Plan de recuperación, transformación y resiliencia">
-        <img src="/assets/img/footer/SCE-265.webp" alt="Gobierno de Canarias - Servicio Canario de Empleo">
-        <img src="/assets/img/footer/SEPE-265.webp" alt="Gobierno de España - Ministerio de Trabajo y Economía - SEPE">
+        <img src="/assets/img/footer/union-europea.webp" alt="Financiado por la Unión Europea">
+        <img src="/assets/img/footer/PRTR.webp" alt="Plan de recuperación, transformación y resiliencia">
+        <img src="/assets/img/footer/SCE.webp" alt="Gobierno de Canarias - Servicio Canario de Empleo">
+        <img src="/assets/img/footer/SEPE.webp" alt="Gobierno de España - Ministerio de Trabajo y Economía - SEPE">
     </section>
    
 </footer>

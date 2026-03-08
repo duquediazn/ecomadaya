@@ -19,20 +19,20 @@ include 'includes/header.php';
     <h3>Tapicería general</h3>
     <div class="sample-photos" aria-label="Galería de tapicería para el hogar">
         <figure>
-            <a href="/assets/img/servicios/sofa1.webp" target="_blank">
-                <img src="/assets/img/servicios/sofa1.webp" alt="Sofá tapizado en taller" loading="lazy" decoding="async">
+            <a href="/assets/img/servicios/sofa1-large.webp" target="_blank">
+                <img src="/assets/img/servicios/sofa1-small.webp" alt="Sofá tapizado en taller" loading="lazy" decoding="async">
             </a>
             <figcaption>Sofá tapizado en taller</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/servicios/butacas1.webp" target="_blank">
-                <img src="/assets/img/servicios/butacas1.webp" alt="Conjunto de butacas restauradas" loading="lazy" decoding="async">
+            <a href="/assets/img/servicios/butacas1-large.webp" target="_blank">
+                <img src="/assets/img/servicios/butacas1-small.webp" alt="Conjunto de butacas restauradas" loading="lazy" decoding="async">
             </a>
             <figcaption>Conjunto de butacas restauradas</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/servicios/sillas1.webp" target="_blank">
-                <img src="/assets/img/servicios/sillas1.webp" alt="Sillas tapizadas en tela ecológica" loading="lazy" decoding="async">
+            <a href="/assets/img/servicios/sillas1-large.webp" target="_blank">
+                <img src="/assets/img/servicios/sillas1-small.webp" alt="Sillas tapizadas en tela ecológica" loading="lazy" decoding="async">
             </a>
             <figcaption>Sillas tapizadas en tela ecológica</figcaption>
         </figure>
@@ -49,13 +49,13 @@ include 'includes/header.php';
     <p>Restauración y tapizado de pequeña butaca clásica, antes y después.</p>
     <div class="sample-photos" aria-label="Galería de restauración y tapizado para el hogar">
         <figure>
-            <a href="/assets/img/servicios/butaca-antes.webp" target="_blank">
+            <a href="/assets/img/servicios/butaca-antes-large.webp" target="_blank">
                 <img src="/assets/img/servicios/butaca-antes-small.webp" alt="Butaca clásica antes de la restauración" loading="lazy" decoding="async">
             </a>
             <figcaption>Butaca clásica antes de la restauración</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/servicios/butaca-despues.webp" target="_blank">
+            <a href="/assets/img/servicios/butaca-despues-large.webp" target="_blank">
                 <img src="/assets/img/servicios/butaca-despues-small.webp" alt="Butaca restaurada tras tapizado" loading="lazy" decoding="async">
             </a>
             <figcaption>Butaca restaurada tras tapizado</figcaption>
@@ -84,20 +84,20 @@ include 'includes/header.php';
 
     <div class="sample-photos" aria-label="Galería de trabajos para profesionales y organismos públicos">
         <figure>
-            <a href="/assets/img/servicios/Aiko1.webp" target="_blank">
-                <img src="/assets/img/servicios/Aiko1.webp" alt="Paneles de pared acolchados y asientos para restaurante Aiko" loading="lazy" decoding="async">
+            <a href="/assets/img/servicios/Aiko1-large.webp" target="_blank">
+                <img src="/assets/img/servicios/Aiko1-small.webp" alt="Paneles de pared acolchados y asientos para restaurante Aiko" loading="lazy" decoding="async">
             </a>
             <figcaption>Paneles de pared acolchados y asientos para restaurante Aiko.</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/servicios/Aiko2.webp" target="_blank">
-                <img src="/assets/img/servicios/Aiko2.webp" alt="Vista de los paneles acolchados instalados y asientos del restaurante Aiko" loading="lazy" decoding="async">
+            <a href="/assets/img/servicios/Aiko2-large.webp" target="_blank">
+                <img src="/assets/img/servicios/Aiko2-small.webp" alt="Vista de los paneles acolchados instalados y asientos del restaurante Aiko" loading="lazy" decoding="async">
             </a>
             <figcaption>Paneles acolchados fijados y asientos colocados en restaurente Aiko</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/servicios/Campo_futbol_2 OADLL_1.webp" target="_blank">
-                <img src="/assets/img/servicios/Campo_futbol_2 OADLL_1.webp" alt="Protectores en postes de campo de fútbol de OADLL" loading="lazy" decoding="async">
+            <a href="/assets/img/servicios/Campo_futbol_2 OADLL_1-large.webp" target="_blank">
+                <img src="/assets/img/servicios/Campo_futbol_2 OADLL_1-small.webp" alt="Protectores en postes de campo de fútbol de OADLL" loading="lazy" decoding="async">
             </a>
             <figcaption>Protectores en postes de campo de fútbol, OADLL.</figcaption>
         </figure>
@@ -125,14 +125,14 @@ include 'includes/header.php';
 
     <div class="sample-photos" aria-label="Galería de muebles fabricados a medida">
         <figure>
-            <a href="/assets/img/servicios/Cabecero_blanco.webp" target="_blank">
-                <img src="/assets/img/servicios/Cabecero_blanco.webp" alt="Cabecero tapizado en tela aquaclean blanco fabricado a medida" loading="lazy" decoding="async">
+            <a href="/assets/img/servicios/Cabecero_blanco-large.webp" target="_blank">
+                <img src="/assets/img/servicios/Cabecero_blanco-small.webp" alt="Cabecero tapizado en tela aquaclean blanco fabricado a medida" loading="lazy" decoding="async">
             </a>
             <figcaption>Cabecero tapizado en tela aquaclean, fabricado a medida.</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/servicios/Colchon-camper3.webp" target="_blank">
-                <img src="/assets/img/servicios/Colchon-camper3.webp" alt="Colchón plegable con forro para furgoneta camperizada fabricado a medida" loading="lazy" decoding="async">
+            <a href="/assets/img/servicios/Colchon-camper3-large.webp" target="_blank">
+                <img src="/assets/img/servicios/Colchon-camper3-small.webp" alt="Colchón plegable con forro para furgoneta camperizada fabricado a medida" loading="lazy" decoding="async">
             </a>
             <figcaption>Colchón plegable con forro para furgoneta camperizada.</figcaption>
         </figure>
@@ -165,22 +165,22 @@ include 'includes/header.php';
             
         <div class="cert-grid">
             <a href="https://www.aitex.es/certificado-oeko-tex-standard-100/" title="Abrir sitio oficial Aitex - certificado Oeko Tex Standard 100" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/STANDARD_100C.webp" alt="Logo del certificado textil OEKO-TEX STANDARD 100" loading="lazy" height="100px" width="151px">
+                <img src="/assets/img/servicios/STANDARD_100C-small.webp" alt="Logo del certificado textil OEKO-TEX STANDARD 100" loading="lazy" height="100px" width="151px">
             </a>
             <a href="https://www.aquaclean.com/es/safe-front/safe-front-en-todas-partes/" title="Abrir sitio oficial aquaclean - Safe Front" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/safefront.webp" alt="Logo del certificado SAFE FRONT HYGIENE PROTECTOR" loading="lazy" height="100px" width="100px">
+                <img src="/assets/img/servicios/safefront-small.webp" alt="Logo del certificado SAFE FRONT HYGIENE PROTECTOR" loading="lazy" height="100px" width="100px">
             </a>
             <a href="https://www.v-label.com/es/" title="Abrir sitio oficial V-Label" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/v-label.webp" alt="Logo de V-LABEL EUROPEAN VEGETARIAN UNION" loading="lazy" height="100px" width="100px">
+                <img src="/assets/img/servicios/v-label-small.webp" alt="Logo de V-LABEL EUROPEAN VEGETARIAN UNION" loading="lazy" height="100px" width="100px">
             </a>
             <a href="https://www.controlunion.com/certification-program/grs-global-recycled-standard/" title="Abrir sitio oficial certificado GRS" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/GRS.webp" alt="Logo de GRS (Global Recycled Standard)" loading="lazy" height="100px" width="199px">
+                <img src="/assets/img/servicios/GRS-small.webp" alt="Logo de GRS (Global Recycled Standard)" loading="lazy" height="100px" width="199px">
             </a>
             <a href="https://www.aquaclean.com/es/aquaclean-group/medioambiente/" title="Abrir sitio oficial aquaclean" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/pfcfree.webp" alt="Logo PFC FREE" loading="lazy" height="100px" width="100px">
+                <img src="/assets/img/servicios/pfcfree-small.webp" alt="Logo PFC FREE" loading="lazy" height="100px" width="100px">
             </a>
             <a href="https://www.imo.org/" title="Abrir sitio oficial IMO" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/imo.webp" alt="Logo de IMO, certificación de seguridad contra incendios." loading="lazy" height="100px" width="68px">
+                <img src="/assets/img/servicios/imo-small.webp" alt="Logo de IMO, certificación de seguridad contra incendios." loading="lazy" height="100px" width="68px">
             </a>
         </div>
 
