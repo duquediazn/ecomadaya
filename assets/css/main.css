@@ -787,14 +787,9 @@ ul {
         display: block;
     }
 
-    .section--two-cols {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .aside--cert-grid {
+    .cert-grid {
         grid-template-columns: 1fr 1fr;
-        gap: var(--space-sm);
+        gap: var(--space-xs);
     }
 
     .site-footer .row-section-site {
@@ -811,11 +806,14 @@ ul {
         grid-template-columns: 1fr;
     }
 
-    .before-after-grid {
-        grid-template-columns: 1fr;
-    }
-
     iframe {
         width: 100%;
+    }
+}
+
+
+@media (max-width: 460px) {
+    .cert-grid {
+        grid-template-columns: 1fr;
     }
 }
