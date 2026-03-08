@@ -17,7 +17,7 @@ include 'includes/header.php';
     <p>Tras nuestro trabajo, tu mueble lucirá <strong>como nuevo</strong>, respetando su diseño original y mejorando su funcionalidad.</p>
 
     <h3>Tapicería general</h3>
-    <div class="sample-photos" aria-label="Galería de tapicería para el hogar">
+    <div class="gallery" aria-label="Galería de tapicería para el hogar">
         <figure>
             <a href="/assets/img/servicios/sofa1-large.webp" target="_blank">
                 <img src="/assets/img/servicios/sofa1-small.webp" alt="Sofá tapizado en taller" loading="lazy" decoding="async">
@@ -47,7 +47,7 @@ include 'includes/header.php';
 
     <h3>Restauración</h3>
     <p>Restauración y tapizado de pequeña butaca clásica, antes y después.</p>
-    <div class="sample-photos" aria-label="Galería de restauración y tapizado para el hogar">
+    <div class="gallery" aria-label="Galería de restauración y tapizado para el hogar">
         <figure>
             <a href="/assets/img/servicios/butaca-antes-large.webp" target="_blank">
                 <img src="/assets/img/servicios/butaca-antes-small.webp" alt="Butaca clásica antes de la restauración" loading="lazy" decoding="async">
@@ -82,7 +82,7 @@ include 'includes/header.php';
     <p> Entre nuestros clientes se encuentran el <strong>Ayuntamiento de La Laguna</strong> y el <strong>Gobierno de Canarias</strong>,
         que confían en nuestros acabados profesionales y en la personalización de cada proyecto.</p>
 
-    <div class="sample-photos" aria-label="Galería de trabajos para profesionales y organismos públicos">
+    <div class="gallery" aria-label="Galería de trabajos para profesionales y organismos públicos">
         <figure>
             <a href="/assets/img/servicios/Aiko1-large.webp" target="_blank">
                 <img src="/assets/img/servicios/Aiko1-small.webp" alt="Paneles de pared acolchados y asientos para restaurante Aiko" loading="lazy" decoding="async">
@@ -123,7 +123,7 @@ include 'includes/header.php';
     </ul>
     <p>Transformamos tus ideas en piezas únicas hechas a medida, combinando funcionalidad, sostenibilidad y diseño.</p>
 
-    <div class="sample-photos" aria-label="Galería de muebles fabricados a medida">
+    <div class="gallery" aria-label="Galería de muebles fabricados a medida">
         <figure>
             <a href="/assets/img/servicios/Cabecero_blanco-large.webp" target="_blank">
                 <img src="/assets/img/servicios/Cabecero_blanco-small.webp" alt="Cabecero tapizado en tela aquaclean blanco fabricado a medida" loading="lazy" decoding="async">
@@ -165,22 +165,22 @@ include 'includes/header.php';
             
         <div class="cert-grid">
             <a href="https://www.aitex.es/certificado-oeko-tex-standard-100/" title="Abrir sitio oficial Aitex - certificado Oeko Tex Standard 100" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/STANDARD_100C-small.webp" alt="Logo del certificado textil OEKO-TEX STANDARD 100" loading="lazy" height="100px" width="151px">
+                <img src="/assets/img/servicios/STANDARD_100C.webp" alt="Logo del certificado textil OEKO-TEX STANDARD 100" loading="lazy" height="100px" width="151px">
             </a>
             <a href="https://www.aquaclean.com/es/safe-front/safe-front-en-todas-partes/" title="Abrir sitio oficial aquaclean - Safe Front" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/safefront-small.webp" alt="Logo del certificado SAFE FRONT HYGIENE PROTECTOR" loading="lazy" height="100px" width="100px">
+                <img src="/assets/img/servicios/safefront.webp" alt="Logo del certificado SAFE FRONT HYGIENE PROTECTOR" loading="lazy" height="100px" width="100px">
             </a>
             <a href="https://www.v-label.com/es/" title="Abrir sitio oficial V-Label" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/v-label-small.webp" alt="Logo de V-LABEL EUROPEAN VEGETARIAN UNION" loading="lazy" height="100px" width="100px">
+                <img src="/assets/img/servicios/v-label.webp" alt="Logo de V-LABEL EUROPEAN VEGETARIAN UNION" loading="lazy" height="100px" width="100px">
             </a>
             <a href="https://www.controlunion.com/certification-program/grs-global-recycled-standard/" title="Abrir sitio oficial certificado GRS" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/GRS-small.webp" alt="Logo de GRS (Global Recycled Standard)" loading="lazy" height="100px" width="199px">
+                <img src="/assets/img/servicios/GRS.webp" alt="Logo de GRS (Global Recycled Standard)" loading="lazy" height="100px" width="199px">
             </a>
             <a href="https://www.aquaclean.com/es/aquaclean-group/medioambiente/" title="Abrir sitio oficial aquaclean" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/pfcfree-small.webp" alt="Logo PFC FREE" loading="lazy" height="100px" width="100px">
+                <img src="/assets/img/servicios/pfcfree.webp" alt="Logo PFC FREE" loading="lazy" height="100px" width="100px">
             </a>
             <a href="https://www.imo.org/" title="Abrir sitio oficial IMO" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/img/servicios/imo-small.webp" alt="Logo de IMO, certificación de seguridad contra incendios." loading="lazy" height="100px" width="68px">
+                <img src="/assets/img/servicios/imo.webp" alt="Logo de IMO, certificación de seguridad contra incendios." loading="lazy" height="100px" width="68px">
             </a>
         </div>
 

@@ -60,5 +60,4 @@ El diseño debe estar centrado en accesbilidad, pero debe también resultar suav
 Los estilos principales se encuentran en main.css (aún pendiente de revisiones y nuevas adiciones)
 
 ## 9. Estado actual del proyecto
-Están hechos los parciales header.php y footer.php, así como la página index.php y servicios.php. La página index.php está terminada a falta de auditorías de rendimiento. La página servicios.php aún está en construcción.
-
+Están hechos los parciales header.php y footer.php, así como la página index.php y servicios.php.
