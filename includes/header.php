@@ -129,7 +129,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </ul>
                 </li>
                 <li><a href="/quienes-somos.php" class="primary-link <?php echo $current_page === 'quienes-somos.php' ? 'active' : '' ?>">Quiénes somos</a></li>
-                <li><a href="/faq.php" class="primary-link <?php echo $current_page === 'faq.php' ? 'active' : '' ?>">FAQ</a></li>
+                <li><a href="/preguntas-frecuentes.php" class="primary-link <?php echo $current_page === 'preguntas-frecuentes.php' ? 'active' : '' ?>">FAQ</a></li>
                 <li><a href="/contacto.php" class="primary-link <?php echo $current_page === 'contacto.php' ? 'active' : '' ?>">Contacto</a></li>
             </ul>
         </nav>

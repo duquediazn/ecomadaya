@@ -2,6 +2,50 @@
 $pageTitle = "Galería de trabajos realizados";
 $pageDescription = "Galería de imágenes de los trabajos realizados por Tapizados Madaya en Tenerife. Descubre la calidad y el detalle de nuestros servicios de tapicería y restauración de muebles a través de esta selección de proyectos finalizados.";
 include 'includes/header.php';
+
+$basePath = __DIR__ . '/assets/img/galeria/hogar/';
+$dirSmall = $basePath . 'small';
+$dirLarge = $basePath . 'large';
+$publicBasePath = '/assets/img/galeria/hogar';
+$publicSmallPath = $publicBasePath . '/small';
+$publicLargePath = $publicBasePath . '/large';
+
+$allowedExt = ['jpg', 'jpeg', 'png', 'webp'];
+
+/**
+ * @return string[] Lista de nombres de imagen ya filtrada y ordenada (más reciente primero)
+ */
+function galleryImagesList(string $dir, array $allowedExtensions): array {
+    if (!is_dir($dir) || !is_readable($dir)) {
+        error_log("Error: No se pudo acceder al directorio de imágenes en $dir");
+        return [];
+    }
+
+    $scannedFiles = scandir($dir);
+    if ($scannedFiles === false) {
+        error_log("Error: scandir() no pudo leer el directorio $dir");
+        return [];
+    }
+
+    $fileNames = array_filter($scannedFiles, function ($file) use ($dir, $allowedExtensions) {
+        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        return in_array($ext, $allowedExtensions, true) && is_file($dir . '/' . $file);
+    });
+
+    usort($fileNames, function ($a, $b) use ($dir) {
+        $mtimeA = filemtime($dir . '/' . $a);
+        $mtimeB = filemtime($dir . '/' . $b);
+
+        // Si no se puede obtener la fecha, se considera el archivo como más antiguo.
+        $mtimeA = ($mtimeA === false) ? 0 : $mtimeA;
+        $mtimeB = ($mtimeB === false) ? 0 : $mtimeB;
+
+        return $mtimeB <=> $mtimeA;
+    });
+
+    return array_values($fileNames);
+}
+$filesSmall = galleryImagesList($dirSmall, $allowedExt);
 ?>
 
 <section id="galeria-hogar" class="section--narrow">
@@ -12,7 +56,35 @@ include 'includes/header.php';
     <p>En esta galería encontrarás una amplia selección de algunos de nuestros más recientes trabajos de tapicería para el hogar.</p>
     <p>Haz click sobre las imágenes para verlas en más detalle.</p>
     <div class="gallery" aria-label="Galería de imágenes de trabajos realizados para particulares">
+    <?php
+        $renderedImages = 0;
+        foreach ($filesSmall as $fileName) {
+            $largeName = preg_replace('/_small(\.[a-z0-9]+)$/i', '_large$1', $fileName);
+            if ($largeName === null || $largeName === $fileName) {
+                error_log("Aviso galeria.php: no se pudo mapear archivo small a large para '$fileName'");
+                continue;
+            }
 
+            if (!is_file($dirLarge . '/' . $largeName)) {
+                error_log("Aviso galeria.php: falta archivo large para '$fileName' (esperado: '$largeName')");
+                continue;
+            }
+
+            $smallUrl = htmlspecialchars($publicSmallPath . '/' . $fileName, ENT_QUOTES, 'UTF-8');
+            $largeUrl = htmlspecialchars($publicLargePath . '/' . $largeName, ENT_QUOTES, 'UTF-8');
+            $altText = htmlspecialchars('Trabajo de tapicería', ENT_QUOTES, 'UTF-8');
+
+            $renderedImages++;
+            echo '<figure>
+                    <a href="' . $largeUrl . '"><img src="' . $smallUrl . '" alt="' . $altText . '" loading="lazy" decoding="async"></a>
+                    <figcaption>' . $altText . '</figcaption>
+                </figure>';
+        }
+
+        if ($renderedImages === 0) {
+            echo '<p>No hay imágenes disponibles en este momento.</p>';
+        }
+    ?>
     </div>
 </section>
 
@@ -23,12 +95,14 @@ include 'includes/header.php';
     <div class="gallery" aria-label="Galería de imágenes de restauración de tresillo de madera clásico">
         <figure>
             <a href="/assets/img/galeria/restauracion/large/Restauracion_madera_y_tapizado_cuero_antes_large.webp">
-                <img src="/assets/img/galeria/restauracion/small/Restauracion_madera_y_tapizado_cuero_antes_small.webp" alt="Tresillo de madera clásico antes de la restauración"></a>
+                <img src="/assets/img/galeria/restauracion/small/Restauracion_madera_y_tapizado_cuero_antes_small.webp" 
+                alt="Tresillo de madera clásico antes de la restauración" loading="lazy" decoding="async"></a>
             <figcaption>Tresillo de madera clásico antes de la restauración</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/restauracion/large/Restauracion_madera_y_tapizado_cuero_despues_large.webp">
-                <img src="/assets/img/galeria/restauracion/small/Restauracion_madera_y_tapizado_cuero_despues_small.webp" alt="Tresillo de madera clásico después de la restauración"></a>
+                <img src="/assets/img/galeria/restauracion/small/Restauracion_madera_y_tapizado_cuero_despues_small.webp" 
+                alt="Tresillo de madera clásico después de la restauración" loading="lazy" decoding="async"></a>
             <figcaption>Tresillo de madera clásico después de la restauración</figcaption>
         </figure>
     </div>
@@ -36,12 +110,14 @@ include 'includes/header.php';
     <div class="gallery" aria-label="Galería de imágenes de restauración de sillas de cuero.">
         <figure>
             <a href="/assets/img/galeria/restauracion/large/Restauracion_piel_antes_large.webp">
-                <img src="/assets/img/galeria/restauracion/small/Restauracion_piel_antes_small.webp" alt="Sillas de cuero antes de la restauración"></a>
+                <img src="/assets/img/galeria/restauracion/small/Restauracion_piel_antes_small.webp" 
+                alt="Sillas de cuero antes de la restauración" loading="lazy" decoding="async"></a>
             <figcaption>Sillas de cuero antes de la restauración</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/restauracion/large/Restauracion_piel_despues_large.webp">
-                <img src="/assets/img/galeria/restauracion/small/Restauracion_piel_despues_small.webp" alt="Sillas de cuero después de la restauración"></a>
+                <img src="/assets/img/galeria/restauracion/small/Restauracion_piel_despues_small.webp" 
+                alt="Sillas de cuero después de la restauración" loading="lazy" decoding="async"></a>
             <figcaption>Sillas de cuero después de la restauración</figcaption>
         </figure>
     </div>
@@ -49,12 +125,14 @@ include 'includes/header.php';
         <div class="gallery" aria-label="Galería de imágenes de restauración de sillas de madera.">
         <figure>
             <a href="/assets/img/galeria/restauracion/large/Restauracion_y_tapizado_de_sillas_antes_large.webp">
-                <img src="/assets/img/galeria/restauracion/small/Restauracion_y_tapizado_de_sillas_antes_small.webp" alt="Sillas de madera antes de la restauración"></a>
+                <img src="/assets/img/galeria/restauracion/small/Restauracion_y_tapizado_de_sillas_antes_small.webp" 
+                alt="Sillas de madera antes de la restauración" loading="lazy" decoding="async"></a>
             <figcaption>Sillas de madera antes de la restauración</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/restauracion/large/Restauracion_y_tapizado_de_sillas_despues_large.webp">
-                <img src="/assets/img/galeria/restauracion/small/Restauracion_y_tapizado_de_sillas_despues_small.webp" alt="Sillas de madera después de la restauración"></a>
+                <img src="/assets/img/galeria/restauracion/small/Restauracion_y_tapizado_de_sillas_despues_small.webp" 
+                alt="Sillas de madera después de la restauración" loading="lazy" decoding="async"></a>
             <figcaption>Sillas de madera después de la restauración</figcaption>
         </figure>
     </div>
@@ -62,12 +140,14 @@ include 'includes/header.php';
     <div class="gallery" aria-label="Galería de otros muebles clásicos restaurados.">
         <figure>
             <a href="/assets/img/galeria/restauracion/large/Restauracion_muebles_de_mas_de_120_anos_large.webp">
-                <img src="/assets/img/galeria/restauracion/small/Restauracion_muebles_de_mas_de_120_anos_small.webp" alt="Muebles de más de 120 años completamente restaurados."></a>
+                <img src="/assets/img/galeria/restauracion/small/Restauracion_muebles_de_mas_de_120_anos_small.webp"
+                alt="Muebles de más de 120 años completamente restaurados." loading="lazy" decoding="async"></a>
             <figcaption>Muebles de más de 120 años completamente restaurados</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/restauracion/large/Tocador_y_mesa_de_noche_large.webp">
-                <img src="/assets/img/galeria/restauracion/small/Tocador_y_mesa_de_noche_small.webp" alt="Tocador y mesa de noche restauradas."></a>
+                <img src="/assets/img/galeria/restauracion/small/Tocador_y_mesa_de_noche_small.webp" 
+                alt="Tocador y mesa de noche restauradas." loading="lazy" decoding="async"></a>
             <figcaption>Tocador y mesa de noche restauradas</figcaption>
         </figure>
     </div>
@@ -80,47 +160,56 @@ include 'includes/header.php';
     <div class="gallery" aria-label="Galería de imágenes de trabajos realizados para comercios y organismos públicos">
         <figure>
             <a href="/assets/img/galeria/profesionales/large/Clinica_2_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/Clinica_2_small.webp" alt="Sillas en sala de espera para clínica en Santa Cruz."></a>
+                <img src="/assets/img/galeria/profesionales/small/Clinica_2_small.webp" 
+                alt="Sillas en sala de espera para clínica en Santa Cruz." loading="lazy" decoding="async"></a>
             <figcaption>Sillas en sala de espera para clínica en Santa Cruz.</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/profesionales/large/Campo_fulbol_2_OADLL_2_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/Campo_fulbol_2_OADLL_2_small.webp" alt="Protectores para campo de fútbol."></a>
+                <img src="/assets/img/galeria/profesionales/small/Campo_fulbol_2_OADLL_2_small.webp" 
+                alt="Protectores para campo de fútbol." loading="lazy" decoding="async"></a>
             <figcaption>Protectores para campo de fútbol</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/profesionales/large/Cancha_baloncesto_Bajamar_2_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/Cancha_baloncesto_Bajamar_2_small.webp" alt="Protectores para cancha de baloncesto."></a>
+                <img src="/assets/img/galeria/profesionales/small/Cancha_baloncesto_Bajamar_2_small.webp" 
+                alt="Protectores para cancha de baloncesto." loading="lazy" decoding="async"></a>
             <figcaption>Protectores para cancha de baloncesto</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/profesionales/large/Edificio_multiples_2_Gobierno_de_Canarias_1_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/Edificio_multiples_2_Gobierno_de_Canarias_1_small.webp" alt="Tapizado de sillas para Edificio Usos Múltiples 2, Gobierno de Canarias."></a>
+                <img src="/assets/img/galeria/profesionales/small/Edificio_multiples_2_Gobierno_de_Canarias_1_small.webp" 
+                alt="Tapizado de sillas para Edificio Usos Múltiples 2, Gobierno de Canarias." loading="lazy" decoding="async"></a>
             <figcaption>Tapizado de sillas para Edificio Usos Múltiples 2, Gobierno de Canarias.</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/profesionales/large/Clinica_3_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/Clinica_3_small.webp" alt="Asientos en sala de espera para clínica en Santa Cruz."></a>
+                <img src="/assets/img/galeria/profesionales/small/Clinica_3_small.webp" 
+                alt="Asientos en sala de espera para clínica en Santa Cruz." loading="lazy" decoding="async"></a>
             <figcaption>Asientos en sala de espera para clínica en Santa Cruz.</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/profesionales/large/Exconvento_Santo_Domingo_Ayuntamiento_de_La_Laguna_2_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/Exconvento_Santo_Domingo_Ayuntamiento_de_La_Laguna_2_small.webp" alt="Sillas tapizadas para sala del Exconvento de Santo Domingo"></a>
+                <img src="/assets/img/galeria/profesionales/small/Exconvento_Santo_Domingo_Ayuntamiento_de_La_Laguna_2_small.webp" 
+                alt="Sillas tapizadas para sala del Exconvento de Santo Domingo" loading="lazy" decoding="async"></a>
             <figcaption>Sillas tapizadas para sala del Exconvento de Santo Domingo</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/profesionales/large/La_taperia_3_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/La_taperia_3_small.webp" alt="Tapizado para mesas en La Tapería, Puerto de la Cruz."></a>
+                <img src="/assets/img/galeria/profesionales/small/La_taperia_3_small.webp" 
+                alt="Tapizado para mesas en La Tapería, Puerto de la Cruz." loading="lazy" decoding="async"></a>
             <figcaption>Tapizado para mesas en La Tapería, Puerto de la Cruz.</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/profesionales/large/Museo_de_la_Ciencia_y_el_Cosmos_OA_Museos_y_Centros_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/Museo_de_la_Ciencia_y_el_Cosmos_OA_Museos_y_Centros_small.webp" alt="Tapizado de módulos para el Museo de la Ciencia y el Cosmos, La Laguna."></a>
+                <img src="/assets/img/galeria/profesionales/small/Museo_de_la_Ciencia_y_el_Cosmos_OA_Museos_y_Centros_small.webp" 
+                alt="Tapizado de módulos para el Museo de la Ciencia y el Cosmos, La Laguna." loading="lazy" decoding="async"></a>
             <figcaption>Tapizado de módulos para el Museo de la Ciencia y el Cosmos, La Laguna.</figcaption>
         </figure>
         <figure>
             <a href="/assets/img/galeria/profesionales/large/Palmetlita_1_large.webp">
-                <img src="/assets/img/galeria/profesionales/small/Palmetlita_1_small.webp" alt="Tapizado de módulos de asientos para cafetería Palmelita, La Laguna."></a>
+                <img src="/assets/img/galeria/profesionales/small/Palmetlita_1_small.webp" 
+                alt="Tapizado de módulos de asientos para cafetería Palmelita, La Laguna." loading="lazy" decoding="async"></a>
             <figcaption>Tapizado de módulos de asientos para cafetería Palmelita, La Laguna.</figcaption>
         </figure>
     </div>
@@ -133,45 +222,54 @@ include 'includes/header.php';
     <h3>Proceso de fabricación de asientos para club social</h3>
     <div class="gallery" aria-label="Galería de imágenes de trabajos de fabricación a medida para particulares y empresas">
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Club_social_1_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_1_small.webp" alt="Proceso de fabricación de asientos para club social - Estructura de madera"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Club_social_1_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_1_small.webp" 
+            alt="Proceso de fabricación de asientos para club social - Estructura de madera" loading="lazy" decoding="async"></a>
             <figcaption>Proceso de fabricación de asientos para club social - Estructura de madera</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Club_social_2_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_2_small.webp" alt="Proceso de fabricación de asientos para club social - Gomas"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Club_social_2_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_2_small.webp" 
+            alt="Proceso de fabricación de asientos para club social - Gomas" loading="lazy" decoding="async"></a>
             <figcaption>Proceso de fabricación de asientos para club social - Gomas</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Club_social_3_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_3_small.webp" alt="Proceso de fabricación de asientos para club social - Tapizado frontal"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Club_social_3_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_3_small.webp" 
+            alt="Proceso de fabricación de asientos para club social - Tapizado frontal" loading="lazy" decoding="async"></a>
             <figcaption>Proceso de fabricación de asientos para club social - Tapizado frontal</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Club_social_4_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_4_small.webp" alt="Proceso de fabricación de asientos para club social - Tapizado trasero"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Club_social_4_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_4_small.webp" 
+            alt="Proceso de fabricación de asientos para club social - Tapizado trasero" loading="lazy" decoding="async "></a>
             <figcaption>Proceso de fabricación de asientos para club social - Tapizado trasero</figcaption>
         </figure>
     </div>
     <h3>Colchón plegable para furgo camperizada</h3>
     <div class="gallery" aria-label="Galería de imágenes de trabajos de fabricación a medida para particulares y profesionales">
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Colchon_camper_1_large.webp"><img src="/assets/img/galeria/fabricacion/small/Colchon_camper_1_small.webp" alt="Colchón plegable para furgo camperizada - Colchón plegado"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Colchon_camper_1_large.webp"><img src="/assets/img/galeria/fabricacion/small/Colchon_camper_1_small.webp" 
+            alt="Colchón plegable para furgo camperizada - Colchón plegado" loading="lazy" decoding="async"></a>
             <figcaption>Colchón plegable para furgo camperizada - Detalle mecanismo</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Colchon_camper_2_large.webp"><img src="/assets/img/galeria/fabricacion/small/Colchon_camper_2_small.webp" alt="Colchón plegable para furgo camperizada - Colchón desplegado"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Colchon_camper_2_large.webp"><img src="/assets/img/galeria/fabricacion/small/Colchon_camper_2_small.webp" 
+            alt="Colchón plegable para furgo camperizada - Colchón desplegado" loading="lazy" decoding="async"></a>
             <figcaption>Colchón plegable para furgo camperizada - Colchón desplegado</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Colchon_camper_3_large.webp"><img src="/assets/img/galeria/fabricacion/small/Colchon_camper_3_small.webp" alt="Colchón plegable para furgo camperizada - Detalle mecanismo"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Colchon_camper_3_large.webp"><img src="/assets/img/galeria/fabricacion/small/Colchon_camper_3_small.webp" 
+            alt="Colchón plegable para furgo camperizada - Detalle mecanismo" loading="lazy" decoding="async"></a>
             <figcaption>Colchón plegable para furgo camperizada - Colchón plegado</figcaption>
         </figure>
     </div>
     <h3>Modificación de tresillo a sofá de dos plazas</h3>
     <div class="gallery" aria-label="Galería de imágenes de trabajos de fabricación a medida para particulares y profesionales">
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Modificacion_tres_plazas_a_dos_plazas_1_large.webp"><img src="/assets/img/galeria/fabricacion/small/Modificacion_tres_plazas_a_dos_plazas_1_small.webp" alt="Modificación de tresillo - antes sofá de tres plazas"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Modificacion_tres_plazas_a_dos_plazas_1_large.webp"><img src="/assets/img/galeria/fabricacion/small/Modificacion_tres_plazas_a_dos_plazas_1_small.webp" 
+            alt="Modificación de tresillo - antes sofá de tres plazas" loading="lazy" decoding="async"></a>
             <figcaption>Antes era un sofá de tres plazas</figcaption>
         </figure>
         <figure>
-            <a href="/assets/img/galeria/fabricacion/large/Modificacion_tres_plazas_a_dos_plazas_2_large.webp"><img src="/assets/img/galeria/fabricacion/small/Modificacion_tres_plazas_a_dos_plazas_2_small.webp" alt="Modificación de tresillo - después sofá de dos plazas"></a>
+            <a href="/assets/img/galeria/fabricacion/large/Modificacion_tres_plazas_a_dos_plazas_2_large.webp"><img src="/assets/img/galeria/fabricacion/small/Modificacion_tres_plazas_a_dos_plazas_2_small.webp" 
+            alt="Modificación de tresillo - después sofá de dos plazas" loading="lazy" decoding="async"></a>
             <figcaption>Después pasó a ser un sofá de dos plazas</figcaption>
         </figure>
     </div>
