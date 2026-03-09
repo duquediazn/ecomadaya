@@ -9,43 +9,14 @@ $dirLarge = $basePath . 'large';
 $publicBasePath = '/assets/img/galeria/hogar';
 $publicSmallPath = $publicBasePath . '/small';
 $publicLargePath = $publicBasePath . '/large';
+$descriptionsPath = $basePath . 'descripciones.json';
 
 $allowedExt = ['jpg', 'jpeg', 'png', 'webp'];
 
-/**
- * @return string[] Lista de nombres de imagen ya filtrada y ordenada (más reciente primero)
- */
-function galleryImagesList(string $dir, array $allowedExtensions): array {
-    if (!is_dir($dir) || !is_readable($dir)) {
-        error_log("Error: No se pudo acceder al directorio de imágenes en $dir");
-        return [];
-    }
+require_once __DIR__ . '/includes/gallery-service.php';
 
-    $scannedFiles = scandir($dir);
-    if ($scannedFiles === false) {
-        error_log("Error: scandir() no pudo leer el directorio $dir");
-        return [];
-    }
-
-    $fileNames = array_filter($scannedFiles, function ($file) use ($dir, $allowedExtensions) {
-        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-        return in_array($ext, $allowedExtensions, true) && is_file($dir . '/' . $file);
-    });
-
-    usort($fileNames, function ($a, $b) use ($dir) {
-        $mtimeA = filemtime($dir . '/' . $a);
-        $mtimeB = filemtime($dir . '/' . $b);
-
-        // Si no se puede obtener la fecha, se considera el archivo como más antiguo.
-        $mtimeA = ($mtimeA === false) ? 0 : $mtimeA;
-        $mtimeB = ($mtimeB === false) ? 0 : $mtimeB;
-
-        return $mtimeB <=> $mtimeA;
-    });
-
-    return array_values($fileNames);
-}
-$filesSmall = galleryImagesList($dirSmall, $allowedExt);
+$galleryData = buildGalleryItems($dirSmall, $dirLarge, $allowedExt, $descriptionsPath);
+$validGalleryItems = $galleryData['items'];
 ?>
 
 <section id="galeria-hogar" class="section--narrow">
@@ -57,32 +28,20 @@ $filesSmall = galleryImagesList($dirSmall, $allowedExt);
     <p>Haz click sobre las imágenes para verlas en más detalle.</p>
     <div class="gallery" aria-label="Galería de imágenes de trabajos realizados para particulares">
     <?php
-        $renderedImages = 0;
-        foreach ($filesSmall as $fileName) {
-            $largeName = preg_replace('/_small(\.[a-z0-9]+)$/i', '_large$1', $fileName);
-            if ($largeName === null || $largeName === $fileName) {
-                error_log("Aviso galeria.php: no se pudo mapear archivo small a large para '$fileName'");
-                continue;
-            }
+        foreach ($validGalleryItems as $item) {
+            $smallUrl = htmlspecialchars($publicSmallPath . '/' . $item['small'], ENT_QUOTES, 'UTF-8');
+            $largeUrl = htmlspecialchars($publicLargePath . '/' . $item['large'], ENT_QUOTES, 'UTF-8');
+            $description = (string) $item['description'];
+            $altText = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
 
-            if (!is_file($dirLarge . '/' . $largeName)) {
-                error_log("Aviso galeria.php: falta archivo large para '$fileName' (esperado: '$largeName')");
-                continue;
-            }
-
-            $smallUrl = htmlspecialchars($publicSmallPath . '/' . $fileName, ENT_QUOTES, 'UTF-8');
-            $largeUrl = htmlspecialchars($publicLargePath . '/' . $largeName, ENT_QUOTES, 'UTF-8');
-            $altText = htmlspecialchars('Trabajo de tapicería', ENT_QUOTES, 'UTF-8');
-
-            $renderedImages++;
             echo '<figure>
                     <a href="' . $largeUrl . '"><img src="' . $smallUrl . '" alt="' . $altText . '" loading="lazy" decoding="async"></a>
                     <figcaption>' . $altText . '</figcaption>
                 </figure>';
         }
 
-        if ($renderedImages === 0) {
-            echo '<p>No hay imágenes disponibles en este momento.</p>';
+        if (count($validGalleryItems) === 0) {
+            echo '<p>No hay imágenes disponibles en este momento. Si quieres ver más trabajos, puedes escribirnos desde <a href="/contacto.php">contacto</a>.</p>';
         }
     ?>
     </div>
@@ -238,7 +197,7 @@ $filesSmall = galleryImagesList($dirSmall, $allowedExt);
         </figure>
         <figure>
             <a href="/assets/img/galeria/fabricacion/large/Club_social_4_large.webp"><img src="/assets/img/galeria/fabricacion/small/Club_social_4_small.webp" 
-            alt="Proceso de fabricación de asientos para club social - Tapizado trasero" loading="lazy" decoding="async "></a>
+            alt="Proceso de fabricación de asientos para club social - Tapizado trasero" loading="lazy" decoding="async"></a>
             <figcaption>Proceso de fabricación de asientos para club social - Tapizado trasero</figcaption>
         </figure>
     </div>

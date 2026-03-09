@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/bootstrap.php'; 
 // Detecta la página actual para marcar el menú activo
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>

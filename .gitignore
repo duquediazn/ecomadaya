@@ -74,3 +74,11 @@ npm-debug.log
 .env
 .env.local
 .env.*.local
+
+
+# ----------------------------------------
+# OTROS ARCHIVOS QUE NO DEBERÍAN SUBIRSE
+# ----------------------------------------
+
+# Scripts python de renombrado o limpieza
+*.py
