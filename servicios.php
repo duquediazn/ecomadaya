@@ -37,7 +37,7 @@ include 'includes/header.php';
             <figcaption>Sillas tapizadas en tela ecológica</figcaption>
         </figure>
     </div>
-    <a href="/galeria.php" class="btn-small btn--primary" aria-label="Ver más fotos de tapicería para el hogar">
+    <a href="/galeria.php#galeria-hogar" class="btn-small btn--primary" aria-label="Ver más fotos de tapicería para el hogar">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
             <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
             <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
@@ -61,7 +61,7 @@ include 'includes/header.php';
             <figcaption>Butaca restaurada tras tapizado</figcaption>
         </figure>
     </div>
-    <a href="/galeria.php" class="btn-small btn--primary" aria-label="Ver más fotos de restauración para el hogar">
+    <a href="/galeria.php#galeria-restauracion" class="btn-small btn--primary" aria-label="Ver más fotos de restauración para el hogar">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
             <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
             <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
@@ -102,7 +102,7 @@ include 'includes/header.php';
             <figcaption>Protectores en postes de campo de fútbol, OADLL.</figcaption>
         </figure>
     </div>
-    <a href="/galeria.php" class="btn-small btn--primary" aria-label="Ver más fotos de trabajos para profesionales y organismos públicos">
+    <a href="/galeria.php#galeria-profesionales" class="btn-small btn--primary" aria-label="Ver más fotos de trabajos para profesionales y organismos públicos">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
             <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
             <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
@@ -137,7 +137,7 @@ include 'includes/header.php';
             <figcaption>Colchón plegable con forro para furgoneta camperizada.</figcaption>
         </figure>
     </div>
-    <a href="/galeria.php" class="btn-small btn--primary" aria-label="Ver más fotos de muebles fabricados a medida">
+    <a href="/galeria.php#galeria-fabricacion" class="btn-small btn--primary" aria-label="Ver más fotos de muebles fabricados a medida">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
             <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
             <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />

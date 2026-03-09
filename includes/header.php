@@ -119,7 +119,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <li><a class="primary-link" href="/servicios.php#contacto-faq">Contacto y FAQ</a></li>
                     </ul>
                 </li>
-                <li><a href="/galeria.php" class="primary-link <?php echo $current_page === 'galeria.php' ? 'active' : '' ?>">Galería</a></li>
+                <li class="dropdown">
+                    <a href="/galeria.php" class="primary-link <?php echo $current_page === 'galeria.php' ? 'active' : '' ?>">Galería</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="primary-link" href="/galeria.php#galeria-hogar">Fotos de tapicería para el hogar</a></li>
+                        <li><a class="primary-link" href="/galeria.php#galeria-restauracion">Fotos de trabajos de restauración</a></li>
+                        <li><a class="primary-link" href="/galeria.php#galeria-profesionales">Fotos de tapicería para profesionales</a></li>
+                        <li><a class="primary-link" href="/galeria.php#galeria-fabricacion">Fotos de fabricación a medida</a></li>
+                    </ul>
+                </li>
                 <li><a href="/quienes-somos.php" class="primary-link <?php echo $current_page === 'quienes-somos.php' ? 'active' : '' ?>">Quiénes somos</a></li>
                 <li><a href="/faq.php" class="primary-link <?php echo $current_page === 'faq.php' ? 'active' : '' ?>">FAQ</a></li>
                 <li><a href="/contacto.php" class="primary-link <?php echo $current_page === 'contacto.php' ? 'active' : '' ?>">Contacto</a></li>
