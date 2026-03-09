@@ -504,6 +504,9 @@ ul {
 
 .gallery figure {
     max-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .gallery figure figcaption {
