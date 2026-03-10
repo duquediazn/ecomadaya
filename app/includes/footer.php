@@ -3,7 +3,7 @@
 <footer class="site-footer">
     <section class="row-section-site">
         <div class="footer-col">
-            <h2 class="footer-heading">Navegación</h2>
+            <h2 class="footer__heading">Navegación</h2>
             <ul>
                 <li><a href="/index.php">Inicio</a></li>
                 <li><a href="/servicios.php">Servicios</a></li>
@@ -12,7 +12,7 @@
                 <li><a href="/quienes-somos.php">Quiénes somos</a></li>
                 <li><a href="/preguntas-frecuentes.php">Preguntas frecuentes (FAQ)</a></li>           
             </ul>
-            <h2 class="footer-heading">Redes sociales</h2>
+            <h2 class="footer__heading">Redes sociales</h2>
             <div class="social-links">
                 <a href="https://www.facebook.com/MadayaArtesanal/" target="_blank">
                     <svg class="facebook-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor">
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="footer-col">
-            <h2 class="footer-heading">Contacto</h2>
+            <h2 class="footer__heading">Contacto</h2>
             <ul>
                 <li>Email: madayaartesanal@gmail.com</li>
                 <li>Teléfono: 922 03 33 03</li>
@@ -38,13 +38,13 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d56111.95146538817!2d-16.308823!3d28.479638000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc41ccf7465c1a57%3A0x4059bd340db92d8f!2sTapizados%20Madaya!5e0!3m2!1ses!2sus!4v1765401424268!5m2!1ses!2sus" width="400" height="225" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="footer-col">
-            <h2 class="footer-heading">Horario</h2>
-            <h3 class="footer-heading">Mañana:</h3>
+            <h2 class="footer__heading">Horario</h2>
+            <h3 class="footer__heading">Mañana:</h3>
             <ul>
                 <li>Lunes a viernes de 8:00 a 15:00</li>
                 <li>Sábados de 9:00 a 12:00</li>
              </ul>
-            <h3 class="footer-heading">Tarde:</h3>
+            <h3 class="footer__heading">Tarde:</h3>
             <ul>
                 <li>*Bajo cita previa</li>
             </ul>

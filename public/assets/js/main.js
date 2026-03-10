@@ -1,10 +1,301 @@
-/* Lightbox para imágenes de las galerías de servicios.
-   - Abre la imagen en un overlay.
-   - Permite navegación entre las imágenes de la misma galería.
-   - Cierra con X, Esc, o clic fuera de la imagen.
-*/
-
 (function () {
+    /**
+     * @typedef {Object} GalleryItem
+     * @property {string} smallUrl URL de miniatura.
+     * @property {string} largeUrl URL de imagen ampliada.
+     * @property {string} description Texto descriptivo de la imagen.
+     */
+
+    /**
+     * @typedef {Object} LoadMoreLabels
+     * @property {string} defaultText
+     * @property {string} noMoreItemsText
+     * @property {string} loadingText
+     * @property {string} loadingStatusText
+     * @property {string} loadErrorText
+     */
+
+    /**
+     * @typedef {Object} LoadMoreContext
+     * @property {HTMLElement} control
+     * @property {HTMLElement} gallery
+     * @property {HTMLElement|null} status
+     * @property {number} batchSize
+     * @property {number} total
+     * @property {string} endpoint
+     * @property {number} loadedCount
+     * @property {number} nextOffset
+     * @property {boolean} isLoading
+     * @property {boolean} hasLoadError
+     * @property {LoadMoreLabels} labels
+     */
+
+    /**
+     * Convierte un valor a entero y usa un fallback cuando no es valido.
+     * @param {string} value
+     * @param {number} defaultValue
+     * @returns {number}
+     */
+    const parseIntOrDefault = (value, defaultValue) => {
+        const parsed = Number.parseInt(value, 10);
+        return Number.isInteger(parsed) ? parsed : defaultValue;
+    };
+
+    /**
+     * Crea el nodo <figure> para una imagen nueva de la galeria.
+     * @param {GalleryItem} item
+     * @returns {HTMLElement}
+     */
+    const buildGalleryFigure = (item) => {
+        const figure = document.createElement('figure');
+        const link = document.createElement('a');
+        const image = document.createElement('img');
+        const caption = document.createElement('figcaption');
+        const description = item.description || 'Trabajo de tapiceria';
+
+        link.href = item.largeUrl;
+        image.src = item.smallUrl;
+        image.alt = description;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        caption.textContent = description;
+
+        link.appendChild(image);
+        figure.appendChild(link);
+        figure.appendChild(caption);
+
+        return figure;
+    };
+
+    /**
+     * Recoge configuracion y estado inicial para la carga progresiva.
+     * @returns {LoadMoreContext|null}
+     */
+    const buildLoadMoreContext = () => {
+        const control = document.querySelector('[data-gallery-load-more]');
+        const gallery = document.getElementById('galeria-hogar-grid');
+
+        if (!(control instanceof HTMLElement) || !(gallery instanceof HTMLElement)) {
+            return null;
+        }
+
+        const batchSize = parseIntOrDefault(control.dataset.batchSize || '10', 10);
+        const total = parseIntOrDefault(control.dataset.total || '0', 0);
+        const endpoint = control.dataset.endpoint || '';
+
+        if (batchSize <= 0 || endpoint === '') {
+            return null;
+        }
+
+        return {
+            control,
+            gallery,
+            status: document.getElementById('galeria-hogar-status'),
+            batchSize,
+            total,
+            endpoint,
+            loadedCount: gallery.querySelectorAll('figure').length,
+            nextOffset: parseIntOrDefault(control.dataset.offset || String(gallery.querySelectorAll('figure').length), gallery.querySelectorAll('figure').length),
+            isLoading: false,
+            hasLoadError: false,
+            labels: {
+                defaultText: control.textContent?.trim() || 'Cargar más',
+                noMoreItemsText: 'No hay más imágenes',
+                loadingText: 'Cargando...',
+                loadingStatusText: 'Cargando más imágenes...',
+                loadErrorText: 'No se pudieron cargar más imágenes. Inténtalo de nuevo.',
+            },
+        };
+    };
+
+    /**
+     * Actualiza el enlace fallback para modo sin JS o error de red.
+     * @param {LoadMoreContext} ctx
+     * @returns {void}
+     */
+    const updateFallbackHref = (ctx) => {
+        if (!(ctx.control instanceof HTMLAnchorElement) || ctx.total <= 0) {
+            return;
+        }
+
+        const nextVisibleCount = Math.min(ctx.loadedCount + ctx.batchSize, ctx.total);
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('hogar_limit', String(nextVisibleCount));
+        currentUrl.hash = 'galeria-hogar';
+        ctx.control.href = `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`;
+    };
+
+    /**
+     * Sincroniza el mensaje de estado anunciado por aria-live.
+     * @param {LoadMoreContext} ctx
+     * @returns {void}
+     */
+    const updateLoadMoreStatus = (ctx) => {
+        if (!(ctx.status instanceof HTMLElement)) {
+            return;
+        }
+
+        if (ctx.hasLoadError) {
+            ctx.status.textContent = ctx.labels.loadErrorText;
+            return;
+        }
+
+        if (ctx.isLoading) {
+            ctx.status.textContent = ctx.labels.loadingStatusText;
+            return;
+        }
+
+        if (ctx.total > 0) {
+            ctx.status.textContent = `Mostrando ${ctx.loadedCount} de ${ctx.total} imágenes.`;
+            return;
+        }
+
+        ctx.status.textContent = `Mostrando ${ctx.loadedCount} imágenes.`;
+    };
+
+    /**
+     * Actualiza disponibilidad y etiqueta del control Cargar mas.
+     * @param {LoadMoreContext} ctx
+     * @returns {void}
+     */
+    const updateLoadMoreControl = (ctx) => {
+        const hasMoreItems = ctx.total > 0 ? ctx.loadedCount < ctx.total : true;
+        const isDisabled = !hasMoreItems || ctx.isLoading;
+
+        ctx.control.hidden = false;
+        ctx.control.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
+
+        if (ctx.isLoading) {
+            ctx.control.textContent = ctx.labels.loadingText;
+        } else if (!hasMoreItems) {
+            ctx.control.textContent = ctx.labels.noMoreItemsText;
+        } else {
+            ctx.control.textContent = ctx.labels.defaultText;
+        }
+
+        updateFallbackHref(ctx);
+    };
+
+    /**
+     * Inserta en DOM el lote recibido y mueve foco al primer elemento nuevo.
+     * @param {LoadMoreContext} ctx
+     * @param {GalleryItem[]} items
+     * @returns {void}
+     */
+    const appendBatchItems = (ctx, items) => {
+        const startIndex = ctx.loadedCount;
+
+        items.forEach((item) => {
+            ctx.gallery.appendChild(buildGalleryFigure(item));
+        });
+
+        ctx.loadedCount += items.length;
+
+        // Mantenemos el foco en el primer elemento nuevo para teclado/lector de pantalla.
+        const firstNewLink = ctx.gallery.querySelectorAll('figure a')[startIndex];
+        if (firstNewLink instanceof HTMLElement) {
+            firstNewLink.focus();
+        }
+    };
+
+    /**
+     * Pide al endpoint el siguiente bloque de imagenes.
+     * @param {LoadMoreContext} ctx
+     * @returns {Promise<{items: GalleryItem[], nextOffset: number}>}
+     */
+    const requestNextBatch = async (ctx) => {
+        const query = new URLSearchParams({
+            offset: String(ctx.nextOffset),
+            limit: String(ctx.batchSize),
+        });
+        const response = await fetch(`${ctx.endpoint}?${query.toString()}`);
+
+        if (!response.ok) {
+            throw new Error('No se pudo cargar el siguiente bloque de imagenes.');
+        }
+
+        const data = await response.json();
+        const items = Array.isArray(data.items) ? data.items : [];
+        const resolvedNextOffset = parseIntOrDefault(String(data.nextOffset ?? ctx.loadedCount), ctx.loadedCount);
+
+        return { items, nextOffset: resolvedNextOffset };
+    };
+
+    /**
+     * Ejecuta el flujo completo de carga incremental.
+     * @param {LoadMoreContext} ctx
+     * @returns {Promise<void>}
+     */
+    const loadNextBatch = async (ctx) => {
+        if (ctx.isLoading) {
+            return;
+        }
+
+        ctx.isLoading = true;
+        ctx.hasLoadError = false;
+        updateLoadMoreControl(ctx);
+        updateLoadMoreStatus(ctx);
+
+        try {
+            const { items, nextOffset } = await requestNextBatch(ctx);
+            appendBatchItems(ctx, items);
+            ctx.nextOffset = nextOffset;
+
+            if (items.length === 0 && ctx.total > 0 && ctx.loadedCount < ctx.total) {
+                ctx.loadedCount = ctx.total;
+            }
+        } catch (error) {
+            ctx.hasLoadError = true;
+            if (ctx.control instanceof HTMLAnchorElement && ctx.control.href) {
+                window.location.href = ctx.control.href;
+                return;
+            }
+        } finally {
+            ctx.isLoading = false;
+            updateLoadMoreControl(ctx);
+            updateLoadMoreStatus(ctx);
+        }
+    };
+
+    /**
+     * Controlador de click sobre el enlace/boton de carga.
+     * @param {MouseEvent} event
+     * @param {LoadMoreContext} ctx
+     * @returns {void}
+     */
+    const handleLoadMoreClick = (event, ctx) => {
+        event.preventDefault();
+
+        const isDisabled = ctx.control.getAttribute('aria-disabled') === 'true';
+        if (ctx.isLoading || isDisabled) {
+            return;
+        }
+
+        loadNextBatch(ctx);
+    };
+
+    /**
+     * Inicializa la funcionalidad de carga progresiva de galeria hogar.
+     * @returns {void}
+     */
+    const initLoadMoreGallery = () => {
+        const loadMoreCtx = buildLoadMoreContext();
+        if (!loadMoreCtx) {
+            return;
+        }
+
+        loadMoreCtx.control.addEventListener('click', (event) => {
+            handleLoadMoreClick(event, loadMoreCtx);
+        });
+
+        updateLoadMoreControl(loadMoreCtx);
+        updateLoadMoreStatus(loadMoreCtx);
+    };
+
+    /**
+    * Crea el visor lightbox y devuelve su API publica.
+     * @returns {{ open: (galleryItems: Array<{href: string, alt: string, caption: string}>, index?: number) => void }}
+     */
     const createLightbox = () => {
         let items = [];
         let currentIndex = 0;
@@ -58,7 +349,7 @@
             root.hidden = false;
             root.classList.add('lightbox--open');
 
-            // Focus management
+            // El foco salta al botón de cierre para que el diálogo sea navegable por teclado.
             closeBtn.focus();
             document.addEventListener('keydown', handleKeydown);
         };
@@ -121,7 +412,41 @@
         return { open };
     };
 
-    const init = () => {
+    /**
+     * Devuelve enlaces visibles dentro de una galeria.
+     * @param {Element} gallery
+     * @returns {HTMLAnchorElement[]}
+     */
+    const getVisibleGalleryLinks = (gallery) => {
+        return /** @type {HTMLAnchorElement[]} */ (Array.from(gallery.querySelectorAll('a')).filter((link) => {
+            return !link.closest('[hidden]');
+        }));
+    };
+
+    /**
+     * Convierte enlaces de una galeria en elementos navegables por el lightbox.
+     * @param {HTMLAnchorElement[]} links
+     * @returns {Array<{href: string, alt: string, caption: string}>}
+     */
+    const mapLinksToLightboxItems = (links) => {
+        return links.map((link) => {
+            const figure = link.closest('figure');
+            const caption = figure?.querySelector('figcaption')?.textContent?.trim() || '';
+            const img = link.querySelector('img');
+
+            return {
+                href: link.href,
+                alt: img?.alt?.trim() || '',
+                caption,
+            };
+        });
+    };
+
+    /**
+     * Enlaza todas las galerias de la pagina con el lightbox.
+     * @returns {void}
+     */
+    const initLightboxForGalleries = () => {
         const lightbox = createLightbox();
 
         document.querySelectorAll('.gallery').forEach((gallery) => {
@@ -129,25 +454,23 @@
                 const link = event.target.closest('a');
                 if (!link || !gallery.contains(link)) return;
 
-                const figures = Array.from(gallery.querySelectorAll('a'));
-                const items = figures.map((a) => {
-                    const figure = a.closest('figure');
-                    const caption = figure?.querySelector('figcaption')?.textContent?.trim() || '';
-                    const img = a.querySelector('img');
-                    return {
-                        href: a.href,
-                        alt: img?.alt?.trim() || '',
-                        caption,
-                    };
-                });
-
-                const index = figures.indexOf(link);
+                const visibleLinks = getVisibleGalleryLinks(gallery);
+                const index = visibleLinks.indexOf(link);
                 if (index === -1) return;
 
                 event.preventDefault();
-                lightbox.open(items, index);
+                lightbox.open(mapLinksToLightboxItems(visibleLinks), index);
             });
         });
+    };
+
+    /**
+     * Punto de entrada al cargar el DOM.
+     * @returns {void}
+     */
+    const init = () => {
+        initLoadMoreGallery();
+        initLightboxForGalleries();
     };
 
     document.addEventListener('DOMContentLoaded', init);
