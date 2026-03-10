@@ -53,10 +53,18 @@
     </section>
     
     <section id="row-section-legal">
-        <p>Copyright &copy; <?php echo date("Y"); ?> <a href="https://github.com/duquediazn">duquediazn</a>. Todos los derechos reservados.</p>
+        <p>
+            Copyright &copy; <?php echo date("Y"); ?>
+            <a href="https://github.com/duquediazn" target="_blank" rel="noopener noreferrer">duquediazn</a>.
+        </p>
+        <p class="license-summary">
+            Código fuente bajo licencia GNU GPL-3.0-or-later.
+            Marca, logotipo e imágenes del negocio se mantienen como activos propietarios.
+        </p>
 
         <nav aria-label="Navegación legal">
             <ul class="legal-menu">
+                <li><a href="/LICENSE">Licencia de software (GPL)</a></li>
                 <li><a href="/aviso-legal.php">Aviso legal</a></li>
                 <li><a href="/politica-privacidad.php">Política de privacidad</a></li>
                 <li><a href="/politica-cookies.php">Política de cookies</a></li>

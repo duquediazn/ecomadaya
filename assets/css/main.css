@@ -704,6 +704,13 @@ ul {
     background-color: var(--color-footer);
 }
 
+.license-summary {
+    max-width: var(--narrow-width);
+    margin: 0 auto var(--space-sm);
+    font-size: var(--fs-xs);
+    text-align: center;
+}
+
 .site-footer .legal-menu {
     list-style: none;
     margin-top: var(--space-sm);
