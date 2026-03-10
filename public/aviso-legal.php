@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "Aviso legal | Madaya";
 $pageDescription = "Aviso legal de Madaya: identificacion del titular, condiciones de uso, propiedad intelectual y responsabilidad.";
-include 'includes/header.php';
+include __DIR__ . '/../app/includes/header.php';
 ?>
 
 <section class="section--narrow">
@@ -178,4 +178,4 @@ include 'includes/header.php';
 	</p>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/../app/includes/footer.php'; ?>

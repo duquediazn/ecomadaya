@@ -13,6 +13,8 @@ Documentacion en modo plantilla. El contenido definitivo se completara al cierre
 - `accesibilidad.md`
 - `seo.md`
 - `despliegue-y-entornos.md`
+- `deploy-arsys-runbook.md`
+- `deploy-manifest.md`
 - `contenido.md`
 - `mantenimiento.md`
 - `testing-manual.md`
@@ -20,6 +22,7 @@ Documentacion en modo plantilla. El contenido definitivo se completara al cierre
 - `incidencias-comunes.md`
 - `css-mapa-renombrado.md`
 - `migracion-arsys-wordpress.md`
+- `galeria-servicio.md`
 - `adr/README.md`
 
 ## Regla de mantenimiento

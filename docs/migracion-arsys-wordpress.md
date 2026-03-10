@@ -8,6 +8,11 @@
 
 Definir una migracion segura para sustituir WordPress por el nuevo sitio, minimizando riesgo tecnico y perdida SEO.
 
+## Documento operativo asociado
+
+- Runbook detallado: `docs/deploy-arsys-runbook.md`
+- Alcance de subida/no subida: `docs/deploy-manifest.md`
+
 ## Recomendacion de estrategia
 
 Para tu caso (sin staging contratado), la estrategia mas segura es:

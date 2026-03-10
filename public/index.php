@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "Tapicería ecológica de muebles en Tenerife";
 $pageDescription = "Tapicería ecológica en Tenerife. Restauración y tapizado de muebles para particulares y empresas. Tejidos sostenibles, antimanchas y fabricación a medida. Solicita presupuesto sin compromiso.";
-include 'includes/header.php';
+include __DIR__ . '/../app/includes/header.php';
 ?>
 
 <section class="hero">
@@ -169,4 +169,4 @@ include 'includes/header.php';
 </section>
 
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/../app/includes/footer.php'; ?>

@@ -21,19 +21,33 @@ Completar con explicacion breve de cada ruta relevante.
 
 ```text
 /
-  index.php
-  servicios.php
-  galeria.php
-  contacto.php
-  quienes-somos.php
-  ...
-  includes/
-  assets/
+  public/                       # Raiz publica en hosting (DocumentRoot)
+    index.php
+    servicios.php
+    galeria.php
+    contacto.php
+    quienes-somos.php
+    ...
+    assets/
+    robots.txt
+    sitemap.xml
+    .htaccess
+  app/
+    includes/                   # Codigo PHP compartido fuera de publico
+      bootstrap.php
+      header.php
+      footer.php
+      gallery-service.php
+  docs/
+  LICENSE
+  NOTICE
 ```
 
 ## Flujo de renderizado
 
-Documentar como se componen plantillas y parciales (header/footer/includes), y como se cargan estilos y scripts.
+Las paginas publicas en `public/*.php` cargan parciales compartidos desde `app/includes` mediante rutas de sistema (`__DIR__`), manteniendo estos ficheros fuera de la carpeta expuesta por Apache.
+
+Los recursos estaticos se sirven desde `public/assets` usando rutas web absolutas (`/assets/...`).
 
 ## Decisiones tecnicas importantes
 

@@ -16,6 +16,12 @@
 - Servidor web (Apache/Nginx): Apache (deducido por uso actual de `.htaccess` en WordPress)
 - Extensiones PHP necesarias: PENDIENTE
 
+## Estructura de despliegue
+
+- DocumentRoot publico esperado en Arsys: `public/` (o carpeta equivalente `public_html`).
+- Solo deben quedar expuestos los archivos de `public/`.
+- `app/` y `docs/` deben permanecer fuera de la carpeta publica.
+
 ## Contexto de migracion
 
 - El sitio sustituira a una web existente en WordPress.
@@ -25,7 +31,7 @@
 
 1. Preparar release (branch/tag): PENDIENTE
 2. Ejecutar checklist tecnico: PENDIENTE
-3. Subir artefactos o sincronizar archivos: PENDIENTE
+3. Subir estructura respetando separacion `public/` (publico) vs `app/` (interno)
 4. Verificar salud de pagina principal y rutas clave
 
 ## Checklist post-despliegue

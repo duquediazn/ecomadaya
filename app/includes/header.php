@@ -97,7 +97,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <header class="site-header">
         <!-- Logo -->
         <a href="/index.php" class="logo">
-            <img src="/assets/img/logo-300.png" alt="Madaya – Tapicería ecológica en Tenerife">
+            <img src="/assets/img/brand/logo-300.png" alt="Madaya – Tapicería ecológica en Tenerife">
         </a>
         <!-- Icono hamburguesa -->
         <input type="checkbox" class="menu-toggle">
