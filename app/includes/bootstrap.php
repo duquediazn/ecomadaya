@@ -15,14 +15,20 @@ if (!defined('APP_ENV')) {
 
     // Si no se ha definido, detecta automáticamente el entorno basándose en el host.
     if ($appEnv === '') {
-        $host = $_SERVER['HTTP_HOST'] ?? ($_SERVER['SERVER_NAME'] ?? '');
-        $host = strtolower(trim((string) $host));
+        $rawHost = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'];
+        $rawHost = trim((string) $rawHost);
 
-        if ($host === '' || $host === 'localhost' || $host === '127.0.0.1' || $host === '::1' || str_ends_with($host, '.local') || str_ends_with($host, '.test')) {
-            $appEnv = 'development';
-        } else {
-            $appEnv = 'production';
-        }
+        $parts = parse_url('http://' . $rawHost);
+        $hostname = strtolower((string) ($parts['host'] ?? ''));
+        
+        $isLocal = $hostname === '' 
+            || $hostname === 'localhost' 
+            || $hostname === '127.0.0.1' 
+            || $hostname === '::1'  
+            || str_ends_with($hostname, '.local') 
+            || str_ends_with($hostname, '.test');
+        
+        $appEnv = $isLocal ? 'development': 'production';
     }
 
     define('APP_ENV', $appEnv);
