@@ -30,6 +30,8 @@
      * @property {LoadMoreLabels} labels
      */
 
+    /** CARGA PROGRESIVA DE GALERIA **/
+
     /**
      * Convierte un valor a entero y usa un fallback cuando no es valido.
      * @param {string} value
@@ -292,6 +294,8 @@
         updateLoadMoreStatus(loadMoreCtx);
     };
 
+    /** LIGHTBOX **/
+
     /**
     * Crea el visor lightbox y devuelve su API publica.
      * @returns {{ open: (galleryItems: Array<{href: string, alt: string, caption: string}>, index?: number) => void }}
@@ -463,6 +467,8 @@
             });
         });
     };
+
+    /** PUNTO DE ENTRADA **/
 
     /**
      * Punto de entrada al cargar el DOM.
