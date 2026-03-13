@@ -700,6 +700,12 @@ ul {
     align-items: center;
     gap: var(--space-xs);
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
 }
 
 .contact-card__icon {
@@ -811,6 +817,12 @@ ul {
     color: var(--color-text-light);
 }
 
+.site-footer a:focus-visible {
+    outline: 3px solid var(--color-secondary);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
 .site-footer a:hover {
     color: var(--color-secondary);
 }
@@ -838,6 +850,10 @@ ul {
     margin-bottom: var(--space-sm);
 }
 
+.footer-contact {
+    font-style: normal;
+}
+
 .site-footer>.row-section-site>.footer-col>.social-links {
     display: flex;
     flex-wrap: wrap;
@@ -845,10 +861,18 @@ ul {
     gap: var(--space-sm);
 }
 
+.site-footer>.row-section-site>.footer-col>.social-links a {
+    border-radius: 8px;
+}
+
 .site-footer>.row-section-site>.footer-col>.social-links svg:hover {
     transform: scale(1.2);
     transition-duration: 0.2s;
     transition-timing-function: ease-in-out;
+}
+
+.site-footer>.row-section-site>.footer-col>.social-links a:focus-visible svg {
+    transform: scale(1.2);
 }
 
 .facebook-icon:hover {

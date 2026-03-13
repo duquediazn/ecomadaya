@@ -52,3 +52,12 @@ Definir criterios de accesibilidad aplicables al proyecto para cumplir buenas pr
 - `iframe` de mapa con atributo `title`
 - Iconos decorativos en tarjetas marcados con `aria-hidden="true"`
 - Seccion de estado dinamico de apertura/cierre legible por lector de pantalla
+
+## Estado actual `footer.php`
+
+- Email y telefono convertidos en enlaces reales (`mailto:` y `tel:`)
+- Enlaces a redes sociales con `aria-label` y `rel="noopener noreferrer"`
+- Iconos de redes tratados como decorativos (`aria-hidden="true"`)
+- `iframe` del mapa con atributo `title`
+- Horarios con marcado `time`
+- Indicadores de foco visibles en enlaces del footer
