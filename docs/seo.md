@@ -26,6 +26,42 @@ Documentar para cada pagina:
 - Intencion de busqueda
 - Enlazado interno
 
+### `contacto.php`
+
+- Titulo SEO: Contacto | Tapizados Madaya - Taller en La Laguna, Tenerife
+- Meta description: orientada a intencion transaccional local (contactar/pedir presupuesto)
+- H1 principal: Contacta con Tapizados Madaya
+- Intencion de busqueda: contacto local + conversion (llamada/WhatsApp/email)
+- Enlazado interno: CTA a `preguntas-frecuentes.php` + enlace a reseñas en Google
+- Canonical: `https://ecomadaya.es/contacto/`
+
+### `index.php`
+
+- Titulo SEO: Tapicería ecológica de muebles en Tenerife
+- Meta description: orientada a descubrimiento de servicios + solicitud de presupuesto
+- H1 principal: Tapicería ecológica en Tenerife
+- Intencion de busqueda: servicio principal local + branding
+- Enlazado interno: CTA a `contacto.php` y `servicios.php`
+- Canonical: `https://ecomadaya.es/`
+
+### `servicios.php`
+
+- Titulo SEO: Servicios de tapicería en Tenerife
+- Meta description: orientada a portfolio de servicios (hogar, profesionales, fabricacion)
+- H1 principal: Servicios de Tapicería y Restauración
+- Intencion de busqueda: comparacion y evaluacion de servicios
+- Enlazado interno: CTA a `galeria.php`, `contacto.php` y secciones internas
+- Canonical: `https://ecomadaya.es/servicios/`
+
+### `galeria.php`
+
+- Titulo SEO: Galería de trabajos realizados
+- Meta description: orientada a evidencia visual de trabajos finalizados en Tenerife
+- H1 principal: Galería de Trabajos Realizados
+- Intencion de busqueda: validacion visual antes de contacto
+- Enlazado interno: CTA de carga progresiva + navegacion hacia servicios/contacto
+- Canonical: `https://ecomadaya.es/galeria/`
+
 ## Datos estructurados
 
 - Uso de schema.org: PENDIENTE

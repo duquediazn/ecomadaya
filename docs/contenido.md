@@ -35,7 +35,8 @@ Definir estilo editorial y proceso de contenido para mantener coherencia de marc
 
 ## Estado de contenido por pagina
 
-- `index.php`: PENDIENTE
-- `servicios.php`: PENDIENTE
-- `galeria.php`: PENDIENTE
+- `index.php`: ACTUALIZADO (consistencia SEO tecnica: canonical por pagina)
+- `servicios.php`: ACTUALIZADO (consistencia SEO tecnica: canonical por pagina)
+- `galeria.php`: ACTUALIZADO (consistencia SEO tecnica: canonical por pagina)
+- `contacto.php`: ACTUALIZADO (estructura de conversion + copy local orientado a presupuesto)
 - Resto: PENDIENTE

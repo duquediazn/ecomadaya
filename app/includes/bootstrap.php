@@ -37,3 +37,37 @@ if (!defined('APP_ENV')) {
 // En desarrollo $env:APP_ENV="development"; php -S localhost:8000
 // En producción, APP_ENV=production en el entorno de hosting. 
 // Si es Apache, establecer en el .htaccess: SetEnv APP_ENV production
+
+
+// Define constantes de configuración reutilizables en las plantillas.
+if (!defined('MADAYA_SITE_URL')) {
+    define('MADAYA_SITE_URL', APP_ENV === 'production' ? 'https://ecomadaya.es' : 'http://localhost:8000');
+}
+
+if (!defined('MADAYA_PHONE_E164')) {
+    define('MADAYA_PHONE_E164', '+34922033303');
+}
+
+if (!defined('MADAYA_PHONE_DISPLAY')) {
+    define('MADAYA_PHONE_DISPLAY', '922 03 33 03');
+}
+
+if (!defined('MADAYA_EMAIL')) {
+    define('MADAYA_EMAIL', 'madayaartesanal@gmail.com');
+}
+
+if (!defined('MADAYA_MAPS_URL')) {
+    define('MADAYA_MAPS_URL', 'https://maps.app.goo.gl/xzP563w1RDe3MWdK9');
+}
+
+if (!defined('MADAYA_GOOGLE_REVIEWS_URL')) {
+    define('MADAYA_GOOGLE_REVIEWS_URL', 'https://maps.app.goo.gl/XCqtZLrG558Dqzb76');
+}
+
+if (!defined('MADAYA_REVIEW_RATING')) {
+    define('MADAYA_REVIEW_RATING', '4.1');
+}
+
+if (!defined('MADAYA_REVIEW_COUNT')) {
+    define('MADAYA_REVIEW_COUNT', '34');
+}

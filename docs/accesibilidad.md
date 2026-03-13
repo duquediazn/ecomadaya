@@ -43,3 +43,12 @@ Definir criterios de accesibilidad aplicables al proyecto para cumplir buenas pr
 - Hallazgo:
 - Severidad:
 - Estado:
+
+## Estado actual `contacto.php`
+
+- Estructura semantica por secciones con jerarquia de headings valida (1 `h1`)
+- Tarjetas de contacto con acciones reales (`tel:`, `mailto:`, `https://wa.me/`)
+- Uso de `address`, `time` y `dl` para direccion y horario
+- `iframe` de mapa con atributo `title`
+- Iconos decorativos en tarjetas marcados con `aria-hidden="true"`
+- Seccion de estado dinamico de apertura/cierre legible por lector de pantalla

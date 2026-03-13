@@ -8,6 +8,8 @@
  */
 $pageTitle = "Galería de trabajos realizados";
 $pageDescription = "Galería de imágenes de los trabajos realizados por Tapizados Madaya en Tenerife. Descubre la calidad y el detalle de nuestros servicios de tapicería y restauración de muebles a través de esta selección de proyectos finalizados.";
+require_once __DIR__ . '/../app/includes/bootstrap.php';
+$canonicalUrl = MADAYA_SITE_URL . '/galeria/';
 include __DIR__ . '/../app/includes/header.php';
 
 // Rutas físicas (servidor) y públicas (URL) de la galería de hogar.

@@ -1,6 +1,8 @@
 <?php
 $pageTitle = "Tapicería ecológica de muebles en Tenerife";
 $pageDescription = "Tapicería ecológica en Tenerife. Restauración y tapizado de muebles para particulares y empresas. Tejidos sostenibles, antimanchas y fabricación a medida. Solicita presupuesto sin compromiso.";
+require_once __DIR__ . '/../app/includes/bootstrap.php';
+$canonicalUrl = MADAYA_SITE_URL . '/';
 include __DIR__ . '/../app/includes/header.php';
 ?>
 

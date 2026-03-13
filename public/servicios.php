@@ -1,6 +1,8 @@
 <?php
 $pageTitle = "Servicios de tapicería en Tenerife";
 $pageDescription = "Descubre los servicios de tapicería y restauración de muebles que ofrecemos en Tapizados Madaya, Tenerife. Desde tapizado para el hogar hasta proyectos para profesionales y fabricación a medida.";
+require_once __DIR__ . '/../app/includes/bootstrap.php';
+$canonicalUrl = MADAYA_SITE_URL . '/servicios/';
 include __DIR__ . '/../app/includes/header.php';
 ?>
 

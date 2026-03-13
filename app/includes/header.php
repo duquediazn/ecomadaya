@@ -14,15 +14,18 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <title><?php echo $pageTitle ?? 'Madaya' ?></title>
     <!-- Meta description -->
     <meta name="description" content="<?php echo $pageDescription ?? '' ?>">
+    <?php if (!empty($canonicalUrl)): ?>
+    <link rel="canonical" href="<?php echo $canonicalUrl; ?>">
+    <?php endif; ?>
     <!-- LocalBusiness Schema -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "FurnitureRepair",
-            "@id": "http://localhost:8000/#madaya",
+            "@id": "https://ecomadaya.es/#madaya",
             "name": "Tapizados Madaya",
-            "image": "http://localhost:8000/assets/img/hero-1600.webp",
-            "url": "http://localhost:8000/",
+            "image": "https://ecomadaya.es/assets/img/hero-1600.webp",
+            "url": "https://ecomadaya.es/",
             "telephone": "+34922033303",
             "priceRange": "€€",
             "address": {
@@ -75,9 +78,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Open Graph -->
     <meta property="og:title" content="Tapicería ecológica en Tenerife">
     <meta property="og:description" content="Restauración y tapizado de muebles para particulares y empresas en Tenerife. Presupuesto sin compromiso.">
-    <meta property="og:image" content="http://localhost:8000/assets/img/hero-1600.webp">
+    <meta property="og:image" content="<?php echo MADAYA_SITE_URL; ?>/assets/img/hero-1600.webp">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:8000">
+    <meta property="og:url" content="<?php echo MADAYA_SITE_URL; ?>">
     <!-- Favicon -->
     <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
     <!-- CSS -->
@@ -100,7 +103,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <img src="/assets/img/brand/logo-300.png" alt="Madaya – Tapicería ecológica en Tenerife">
         </a>
         <!-- Icono hamburguesa -->
-        <input type="checkbox" class="menu-toggle">
+        <input type="checkbox" class="menu-toggle" aria-label="Abrir menu de navegacion">
         <svg xmlns="http://www.w3.org/2000/svg" class="burger-icon" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
@@ -129,9 +132,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <li><a class="primary-link" href="/galeria.php#galeria-fabricacion">Fotos de fabricación a medida</a></li>
                     </ul>
                 </li>
+                <li><a href="/contacto.php" class="primary-link <?php echo $current_page === 'contacto.php' ? 'active' : '' ?>">Contacto</a></li>
                 <li><a href="/quienes-somos.php" class="primary-link <?php echo $current_page === 'quienes-somos.php' ? 'active' : '' ?>">Quiénes somos</a></li>
                 <li><a href="/preguntas-frecuentes.php" class="primary-link <?php echo $current_page === 'preguntas-frecuentes.php' ? 'active' : '' ?>">FAQ</a></li>
-                <li><a href="/contacto.php" class="primary-link <?php echo $current_page === 'contacto.php' ? 'active' : '' ?>">Contacto</a></li>
             </ul>
         </nav>
     </header>
