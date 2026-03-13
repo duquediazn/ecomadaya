@@ -13,12 +13,14 @@ declare(strict_types=1);
  * - Este endpoint reutiliza la misma lógica de generación de galería
  *   que la versión renderizada en PHP (gallery-service.php).
  */
+
+// Configura la cabecera para indicar que se devuelve JSON.
 header('Content-Type: application/json; charset=UTF-8');
 
 // Sanitización básica de paginación para evitar offsets/limits inválidos.
 $offset = filter_input(INPUT_GET, 'offset', FILTER_VALIDATE_INT);
 $limit = filter_input(INPUT_GET, 'limit', FILTER_VALIDATE_INT);
-
+// Se aplican valores por defecto y límites razonables.
 $offset = is_int($offset) ? max(0, $offset) : 0;
 $limit = is_int($limit) ? max(1, min($limit, 50)) : 10;
 
@@ -68,4 +70,14 @@ echo json_encode([
     'limit' => $limit,
     'nextOffset' => $offset + count($items),
     'total' => $total,
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); 
+
+/*
+JSON_UNESCAPED_UNICODE
+No escapa caracteres Unicode.
+Ejemplo: "tapicería" se queda "tapicería" (en vez de "tapicer\u00eda").
+
+JSON_UNESCAPED_SLASHES
+No escapa barras /.
+Ejemplo: "/assets/img/a.webp" se queda así (en vez de "\/assets\/img\/a.webp").
+*/

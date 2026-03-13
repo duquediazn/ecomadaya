@@ -4,7 +4,7 @@
  *
  * Estrategia híbrida:
  * - Sin JS: el parámetro `hogar_limit` aumenta el número de imágenes visibles.
- * - Con JS: el enlace "Cargar más" se mejora con peticiones asíncronas al endpoint.
+ * - Con JS: el enlace "Cargar más" se mejora con peticiones asíncronas al endpoint galeria-hogar.php.
  */
 $pageTitle = "Galería de trabajos realizados";
 $pageDescription = "Galería de imágenes de los trabajos realizados por Tapizados Madaya en Tenerife. Descubre la calidad y el detalle de nuestros servicios de tapicería y restauración de muebles a través de esta selección de proyectos finalizados.";
@@ -19,8 +19,10 @@ $publicSmallPath = $publicBasePath . '/small';
 $publicLargePath = $publicBasePath . '/large';
 $descriptionsPath = $basePath . 'descripciones.json';
 
+// Extensiones de imagen permitidas para la galería.
 $allowedExt = ['jpg', 'jpeg', 'png', 'webp'];
 
+// Se incluyen funciones auxiliares para la galería, como la carga de descripciones y la construcción de items.
 require_once __DIR__ . '/../app/includes/gallery-service.php';
 
 // Se construyen y validan items a partir de archivos y descripciones.
@@ -33,6 +35,7 @@ $defaultBatchSize = 10;
 $maxVisibleItems = 35;
 $requestedLimit = filter_input(INPUT_GET, 'hogar_limit', FILTER_VALIDATE_INT);
 
+// Si el parámetro no es válido o es menor que el tamaño de lote, se muestra el lote inicial.
 if (!is_int($requestedLimit) || $requestedLimit < $defaultBatchSize) {
     $requestedLimit = $defaultBatchSize;
 }

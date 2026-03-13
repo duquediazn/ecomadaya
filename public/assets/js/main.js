@@ -297,7 +297,7 @@
     /** LIGHTBOX **/
 
     /**
-    * Crea el visor lightbox y devuelve su API publica.
+    * Crea el visor lightbox y devuelve una función para abrirlo con un conjunto de imágenes.
      * @returns {{ open: (galleryItems: Array<{href: string, alt: string, caption: string}>, index?: number) => void }}
      */
     const createLightbox = () => {
@@ -312,7 +312,7 @@
         root.setAttribute('aria-label', 'Visor de imágenes');
         root.hidden = true;
 
-        root.innerHTML = `
+        root.innerHTML = `  
       <div class="lightbox__backdrop" data-lightbox-close></div>
       <div class="lightbox__content" role="document">
         <button class="lightbox__close" type="button" aria-label="Cerrar imagen">×</button>
@@ -324,7 +324,6 @@
         <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Imagen siguiente">›</button>
       </div>
     `;
-
         document.body.appendChild(root);
 
         const imageEl = root.querySelector('.lightbox__image');
@@ -333,6 +332,7 @@
         const prevBtn = root.querySelector('.lightbox__nav--prev');
         const nextBtn = root.querySelector('.lightbox__nav--next');
 
+        // Actualiza la imagen, el texto alternativo, la leyenda y el estado de los controles de navegación.
         const updateUI = () => {
             const item = items[currentIndex];
             if (!item) return;
@@ -343,6 +343,7 @@
             nextBtn.disabled = currentIndex === items.length - 1;
         };
 
+        // Abre el lightbox con un conjunto de elementos y un índice inicial.
         const open = (galleryItems, index = 0) => {
             if (!galleryItems || !galleryItems.length) return;
             items = galleryItems;
@@ -358,6 +359,7 @@
             document.addEventListener('keydown', handleKeydown);
         };
 
+        // Cierra el lightbox y restaura el foco al elemento que lo abrió.
         const close = () => {
             root.hidden = true;
             root.classList.remove('lightbox--open');
@@ -367,6 +369,7 @@
             }
         };
 
+        // Navega a la imagen anterior.
         const prev = () => {
             if (currentIndex > 0) {
                 currentIndex -= 1;
@@ -374,6 +377,7 @@
             }
         };
 
+        // Navega a la imagen siguiente.
         const next = () => {
             if (currentIndex < items.length - 1) {
                 currentIndex += 1;
@@ -381,6 +385,7 @@
             }
         };
 
+        // Maneja eventos de teclado para navegación y cierre.
         const handleKeydown = (event) => {
             if (root.hidden) return;
             switch (event.key) {
@@ -401,9 +406,23 @@
             }
         };
 
+        // Cierra al hacer click fuera de la fotografia o en los controles de cierre.
         const handleClick = (event) => {
             const target = event.target;
+
+            // Clic en backdrop o boton de cierre.
             if (target.matches('[data-lightbox-close]') || target.closest('.lightbox__close')) {
+                close();
+                return;
+            }
+
+            // Mantiene la navegacion operativa sin cerrar el lightbox.
+            if (target.closest('.lightbox__nav')) {
+                return;
+            }
+
+            // Si el clic no cae sobre la imagen, se interpreta como "fuera" y se cierra.
+            if (!target.closest('.lightbox__image')) {
                 close();
             }
         };
@@ -422,7 +441,7 @@
      * @returns {HTMLAnchorElement[]}
      */
     const getVisibleGalleryLinks = (gallery) => {
-        return /** @type {HTMLAnchorElement[]} */ (Array.from(gallery.querySelectorAll('a')).filter((link) => {
+        return (Array.from(gallery.querySelectorAll('a')).filter((link) => {
             return !link.closest('[hidden]');
         }));
     };

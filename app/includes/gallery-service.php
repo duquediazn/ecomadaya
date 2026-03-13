@@ -79,7 +79,7 @@ function loadImageDescriptions(string $jsonPath): array {
 
     $decoded = json_decode($jsonContent, true);
     if (!is_array($decoded)) {
-        logIfDevelopment("Aviso gallery-service.php: JSON de descripciones invalido en $jsonPath");
+        logIfDevelopment("Aviso gallery-service.php: JSON de descripciones inválido en $jsonPath");
         return [];
     }
 
