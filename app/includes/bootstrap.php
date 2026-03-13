@@ -71,3 +71,15 @@ if (!defined('MADAYA_REVIEW_RATING')) {
 if (!defined('MADAYA_REVIEW_COUNT')) {
     define('MADAYA_REVIEW_COUNT', '34');
 }
+
+// Determinar si el taller está abierto ahora para mostrar un badge de estado.
+$tz = new DateTimeZone('Atlantic/Canary');
+$now = new DateTime('now', $tz);
+$day = (int) $now->format('N');
+$minutes = ((int) $now->format('G') * 60) + (int) $now->format('i');
+$isOpenNow =
+	(($day >= 1 && $day <= 5) && ($minutes >= 480 && $minutes < 900))
+	|| ($day === 6 && ($minutes >= 540 && $minutes < 720));
+
+$openBadgeClass = $isOpenNow ? 'contact-status contact-status--open' : 'contact-status contact-status--closed';
+$openBadgeText = $isOpenNow ? 'Abierto ahora' : 'Ahora cerrado';

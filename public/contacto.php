@@ -1,29 +1,19 @@
 <?php
 $pageTitle = "Contacto | Tapizados Madaya - Taller en La Laguna, Tenerife";
-$pageDescription = "Contacta con Tapizados Madaya en La Laguna, Tenerife. Taller de tapiceria y restauracion de muebles con mas de 40 años de experiencia. 
+$pageDescription = "Contacta con Tapizados Madaya en La Laguna, Tenerife. Taller de tapiceria y restauración de muebles con mas de 40 años de experiencia. 
 Presupuesto sin compromiso por WhatsApp, teléfono o email.";
 
 // Esta pagina usa constantes de contacto antes de incluir el header.
 require_once __DIR__ . '/../app/includes/bootstrap.php';
 $canonicalUrl = MADAYA_SITE_URL . '/contacto/';
 
+// Generar URLs de WhatsApp con mensajes predefinidos para presupuesto y cita previa.
 $whatsAppBaseUrl = "https://wa.me/" . preg_replace('/\D+/', '', MADAYA_PHONE_E164);
-$whatsAppBudgetMessage = rawurlencode("Hola, me gustaria pedir presupuesto para tapiceria/restauracion.");
-$whatsAppAppointmentMessage = rawurlencode("Hola, me gustaria concertar una cita.");
+$whatsAppBudgetMessage = rawurlencode("Hola, me gustaría pedir presupuesto para tapicería/restauración.");
+$whatsAppAppointmentMessage = rawurlencode("Hola, me gustaría concertar una cita.");
 
 $whatsAppBudgetUrl = $whatsAppBaseUrl . "?text=" . $whatsAppBudgetMessage;
 $whatsAppAppointmentUrl = $whatsAppBaseUrl . "?text=" . $whatsAppAppointmentMessage;
-
-$tz = new DateTimeZone('Atlantic/Canary');
-$now = new DateTime('now', $tz);
-$day = (int) $now->format('N');
-$minutes = ((int) $now->format('G') * 60) + (int) $now->format('i');
-$isOpenNow =
-	(($day >= 1 && $day <= 5) && ($minutes >= 480 && $minutes < 900))
-	|| ($day === 6 && ($minutes >= 540 && $minutes < 720));
-
-$openBadgeClass = $isOpenNow ? 'contact-status contact-status--open' : 'contact-status contact-status--closed';
-$openBadgeText = $isOpenNow ? 'Abierto ahora' : 'Ahora cerrado';
 
 include __DIR__ . '/../app/includes/header.php';
 ?>
