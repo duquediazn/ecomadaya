@@ -30,7 +30,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             "priceRange": "€€",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Calle Obispo Pérez Cácerez, 97",
+                "streetAddress": "Calle Obispo Pérez Cáceres, 97",
                 "addressLocality": "La Laguna",
                 "addressRegion": "Santa Cruz de Tenerife",
                 "postalCode": "38205",
@@ -103,13 +103,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <img src="/assets/img/brand/logo-300.png" alt="Madaya – Tapicería ecológica en Tenerife">
         </a>
         <!-- Icono hamburguesa -->
-        <input type="checkbox" class="menu-toggle" aria-label="Abrir menu de navegacion">
-        <svg xmlns="http://www.w3.org/2000/svg" class="burger-icon" viewBox="0 0 16 16">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir menu de navegacion" aria-controls="main-navigation" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" class="burger-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
             <path fill-rule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
         </svg>
         <!-- Menú de navegación -->
-        <nav class="main-nav" aria-label="Navegación principal">
+        <nav id="main-navigation" class="main-nav" aria-label="Navegación principal">
             <ul>
                 <li><a href="/index.php" class="primary-link <?php echo $current_page === 'index.php' ? 'active' : '' ?>">Inicio</a> </li>
                 <li class="dropdown">

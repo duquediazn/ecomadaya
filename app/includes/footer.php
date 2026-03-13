@@ -48,6 +48,7 @@
             <ul>
                 <li>Bajo cita previa</li>
             </ul>
+	        <p class="contact-intro__status"><span class="<?php echo $openBadgeClass; ?>"><?php echo $openBadgeText; ?></span></p>
         </div>
 
     </section>

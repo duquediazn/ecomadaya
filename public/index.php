@@ -150,7 +150,7 @@ include __DIR__ . '/../app/includes/header.php';
 
     <div class="reviews__cta">
         <a href="https://maps.app.goo.gl/XCqtZLrG558Dqzb76"
-            target="_blank" rel="noopener"
+            target="_blank" rel="noopener noreferrer"
             class="btn btn--small btn--secondary link-dark">
             Ver más reseñas en Google
         </a>

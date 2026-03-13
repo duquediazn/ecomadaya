@@ -61,3 +61,18 @@ Definir criterios de accesibilidad aplicables al proyecto para cumplir buenas pr
 - `iframe` del mapa con atributo `title`
 - Horarios con marcado `time`
 - Indicadores de foco visibles en enlaces del footer
+
+## Estado actual `header.php`
+
+- El menu movil expone `aria-controls` y `aria-expanded`
+- El estado visible/oculto de la navegacion se sincroniza con JS en pantallas pequenas
+- Los iconos del menu se marcan como decorativos
+- Los submenus se pueden abrir tambien con teclado mediante `:focus-within`
+
+## Estado actual `index.php`, `servicios.php` y `galeria.php`
+
+- Enlaces externos abiertos en nueva pestana con `rel="noopener noreferrer"`
+- Botones y enlaces de galeria con indicadores de foco visibles
+- SVG decorativos en CTA marcados con `aria-hidden="true"`
+- `servicios.php` corrige un bloque con clase mal escrita (`section--narrow`)
+- `servicios.php` mejora el titulo del `iframe` de YouTube

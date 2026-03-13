@@ -487,6 +487,36 @@
         });
     };
 
+    /** MENU MOVIL **/
+
+    /**
+     * Sincroniza atributos accesibles del menu movil compartido.
+     * @returns {void}
+     */
+    const initMobileMenu = () => {
+        const toggle = document.getElementById('menu-toggle');
+        const nav = document.getElementById('main-navigation');
+
+        if (!(toggle instanceof HTMLInputElement) || !(nav instanceof HTMLElement)) {
+            return;
+        }
+
+        const syncMenuState = () => {
+            const isExpanded = toggle.checked;
+            toggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+
+            if (window.innerWidth <= 900) {
+                nav.setAttribute('aria-hidden', isExpanded ? 'false' : 'true');
+            } else {
+                nav.removeAttribute('aria-hidden');
+            }
+        };
+
+        toggle.addEventListener('change', syncMenuState);
+        window.addEventListener('resize', syncMenuState);
+        syncMenuState();
+    };
+
     /** PUNTO DE ENTRADA **/
 
     /**
@@ -494,6 +524,7 @@
      * @returns {void}
      */
     const init = () => {
+        initMobileMenu();
         initLoadMoreGallery();
         initLightboxForGalleries();
     };

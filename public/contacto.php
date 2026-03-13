@@ -95,7 +95,7 @@ include __DIR__ . '/../app/includes/header.php';
 				<dt>Sabados</dt>
 				<dd><time datetime="09:00">9:00</time> - <time datetime="12:00">12:00</time></dd>
 				<dt>Tardes</dt>
-				<dd>Bajo cita previa. <a href="<?php echo $whatsAppAppointmentUrl; ?>" target="_blank" rel="noopener noreferrer">Solicita cita por WhatsApp</a></dd>
+				<dd>Bajo cita previa. <a class="link-primary" href="<?php echo $whatsAppAppointmentUrl; ?>" target="_blank" rel="noopener noreferrer">Solicita cita por WhatsApp</a></dd>
 			</dl>
 			<address class="contact-location__address">
 				<strong>Dirección:</strong><br>
