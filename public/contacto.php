@@ -3,9 +3,49 @@ $pageTitle = "Contacto | Tapizados Madaya - Taller en La Laguna, Tenerife";
 $pageDescription = "Contacta con Tapizados Madaya en La Laguna, Tenerife. Taller de tapiceria y restauración de muebles con mas de 40 años de experiencia. 
 Presupuesto sin compromiso por WhatsApp, teléfono o email.";
 
-// Esta pagina usa constantes de contacto antes de incluir el header.
 require_once __DIR__ . '/../app/includes/bootstrap.php';
+require_once __DIR__ . '/../app/includes/contact-form.php';
+
+// URL canónica para SEO
 $canonicalUrl = MADAYA_SITE_URL . '/contacto/';
+
+// Se preparan datos para mostrar el formulario de contacto, 
+// incluyendo mensajes flash, errores de validación y valores antiguos.
+madayaContactEnsureSession(); 
+$contactFormFlash = madayaContactPullFlash(); 
+
+$contactFormDefaultValues = [
+	'nombre' => '',
+	'email' => '',
+	'telefono' => '',
+	'preferencia_contacto' => '',
+	'mensaje' => '',
+	'consentimiento_privacidad' => '',
+];
+
+$contactFormOldValues = $contactFormDefaultValues; 
+if (isset($contactFormFlash['old']) && is_array($contactFormFlash['old'])) {
+	$contactFormOldValues = array_merge($contactFormDefaultValues, $contactFormFlash['old']);
+}
+
+$contactFormErrors = [];
+if (isset($contactFormFlash['errors']) && is_array($contactFormFlash['errors'])) {
+	$contactFormErrors = $contactFormFlash['errors'];
+}
+
+$contactFormStatus = isset($contactFormFlash['status']) ? (string) $contactFormFlash['status'] : '';
+$contactFormMessage = isset($contactFormFlash['message']) ? (string) $contactFormFlash['message'] : '';
+$contactFormFirstErrorField = $contactFormErrors !== [] ? array_key_first($contactFormErrors) : null;
+$contactFormCsrfToken = madayaContactGetOrCreateCsrfToken();
+
+$contactFormStatusIsError = in_array($contactFormStatus, ['validation_error', 'security_error', 'rate_limit_error', 'send_error'], true);
+$contactFormStatusClass = $contactFormStatusIsError ? 'contact-form__status contact-form__status--error' : 'contact-form__status contact-form__status--success';
+$contactFormStatusRole = $contactFormStatusIsError ? 'alert' : 'status';
+
+// Función de escape para evitar XSS en mensajes y valores del formulario.
+$escape = static function (string $value): string {
+	return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+};
 
 // Generar URLs de WhatsApp con mensajes predefinidos para presupuesto y cita previa.
 $whatsAppBaseUrl = "https://wa.me/" . preg_replace('/\D+/', '', MADAYA_PHONE_E164);
@@ -73,6 +113,177 @@ include __DIR__ . '/../app/includes/header.php';
 			<a href="<?php echo MADAYA_MAPS_URL; ?>" target="_blank" rel="noopener noreferrer" class="btn btn--primary link-light">Abrir en Google Maps</a>
 		</article>
 	</div>
+</section>
+
+<!-- El formulario de contacto con validación y mensajes de estado. -->
+<section id="formulario-contacto" class="section--narrow">
+	<h2>Formulario de contacto</h2>
+	<p>Canal complementario para consultas y solicitudes de presupuesto. Si prefieres una respuesta mas rapida, puedes escribirnos por WhatsApp.</p>
+
+	<div class="contact-form__live-region" id="contacto-form-status" aria-live="polite" aria-atomic="true">
+		<?php if ($contactFormStatus !== ''): ?>
+			<div class="<?php echo $contactFormStatusClass; ?>" role="<?php echo $contactFormStatusRole; ?>">
+				<p><?php echo $escape($contactFormMessage); ?></p>
+				<?php if ($contactFormStatus === 'send_error'): ?>
+					<p>Puedes contactarnos ahora por canales directos:</p>
+					<ul>
+						<li><a href="<?php echo $whatsAppBudgetUrl; ?>" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+						<li><a href="tel:<?php echo MADAYA_PHONE_E164; ?>">Telefono: <?php echo MADAYA_PHONE_DISPLAY; ?></a></li>
+						<li><a href="mailto:<?php echo MADAYA_EMAIL; ?>">Email: <?php echo MADAYA_EMAIL; ?></a></li>
+					</ul>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
+	</div>
+
+	<form action="/api/contacto.php" method="post" class="contact-form" data-contact-form>
+		<input type="hidden" name="csrf_token" value="<?php echo $escape($contactFormCsrfToken); ?>">
+
+		<div class="contact-form__honeypot" aria-hidden="true">
+			<label for="contacto-website">No rellenes este campo</label>
+			<input type="text" id="contacto-website" name="website" tabindex="-1" autocomplete="off">
+		</div>
+
+		<?php if ($contactFormErrors !== []): ?>
+			<div class="contact-form__error-summary" id="contacto-form-errors" role="alert" tabindex="-1" data-contact-errors>
+				<h3>Hay errores en el formulario</h3>
+				<p>Revisa los siguientes campos antes de enviar:</p>
+				<ul>
+					<?php foreach ($contactFormErrors as $field => $error): ?>
+						<?php $fieldId = 'contacto-' . str_replace('_', '-', (string) $field); ?>
+						<li><a href="#<?php echo $fieldId; ?>"><?php echo $escape((string) $error); ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php else: ?>
+			<div class="contact-form__error-summary" id="contacto-form-errors" hidden data-contact-errors></div>
+		<?php endif; ?>
+
+		<fieldset>
+			<legend>Cuéntanos tu consulta</legend>
+
+			<div class="contact-form__grid">
+				<div class="contact-form__field">
+					<label for="contacto-nombre">Nombre <span aria-hidden="true">*</span></label>
+					<input
+						type="text"
+						id="contacto-nombre"
+						name="nombre"
+						minlength="2"
+						maxlength="80"
+						required
+						value="<?php echo $escape((string) $contactFormOldValues['nombre']); ?>"
+						aria-invalid="<?php echo isset($contactFormErrors['nombre']) ? 'true' : 'false'; ?>"
+						aria-describedby="contacto-nombre-help<?php echo isset($contactFormErrors['nombre']) ? ' contacto-nombre-error' : ''; ?>"
+						<?php echo $contactFormFirstErrorField === 'nombre' ? 'autofocus' : ''; ?>>
+					<p id="contacto-nombre-help" class="contact-form__help">Entre 2 y 80 caracteres.</p>
+					<?php if (isset($contactFormErrors['nombre'])): ?>
+						<p id="contacto-nombre-error" class="contact-form__error"><?php echo $escape((string) $contactFormErrors['nombre']); ?></p>
+					<?php endif; ?>
+				</div>
+
+				<div class="contact-form__field">
+					<label for="contacto-email">Email <span aria-hidden="true">*</span></label>
+					<input
+						type="email"
+						id="contacto-email"
+						name="email"
+						maxlength="254"
+						required
+						value="<?php echo $escape((string) $contactFormOldValues['email']); ?>"
+						aria-invalid="<?php echo isset($contactFormErrors['email']) ? 'true' : 'false'; ?>"
+						aria-describedby="contacto-email-help<?php echo isset($contactFormErrors['email']) ? ' contacto-email-error' : ''; ?>"
+						<?php echo $contactFormFirstErrorField === 'email' ? 'autofocus' : ''; ?>>
+					<p id="contacto-email-help" class="contact-form__help">Usaremos este email para responderte.</p>
+					<?php if (isset($contactFormErrors['email'])): ?>
+						<p id="contacto-email-error" class="contact-form__error"><?php echo $escape((string) $contactFormErrors['email']); ?></p>
+					<?php endif; ?>
+				</div>
+
+				<div class="contact-form__field">
+					<label for="contacto-telefono">Teléfono (opcional)</label>
+					<input
+						type="tel"
+						id="contacto-telefono"
+						name="telefono"
+						maxlength="25"
+						value="<?php echo $escape((string) $contactFormOldValues['telefono']); ?>"
+						aria-invalid="<?php echo isset($contactFormErrors['telefono']) ? 'true' : 'false'; ?>"
+						aria-describedby="contacto-telefono-help<?php echo isset($contactFormErrors['telefono']) ? ' contacto-telefono-error' : ''; ?>"
+						<?php echo $contactFormFirstErrorField === 'telefono' ? 'autofocus' : ''; ?>>
+					<p id="contacto-telefono-help" class="contact-form__help">Solo números, espacios y +().-</p>
+					<?php if (isset($contactFormErrors['telefono'])): ?>
+						<p id="contacto-telefono-error" class="contact-form__error"><?php echo $escape((string) $contactFormErrors['telefono']); ?></p>
+					<?php endif; ?>
+				</div>
+
+				<div class="contact-form__field">
+					<label for="contacto-preferencia-contacto">Preferencia de contacto <span aria-hidden="true">*</span></label>
+					<select
+						id="contacto-preferencia-contacto"
+						name="preferencia_contacto"
+						required
+						aria-invalid="<?php echo isset($contactFormErrors['preferencia_contacto']) ? 'true' : 'false'; ?>"
+						aria-describedby="contacto-preferencia-help<?php echo isset($contactFormErrors['preferencia_contacto']) ? ' contacto-preferencia-contacto-error' : ''; ?>"
+						<?php echo $contactFormFirstErrorField === 'preferencia_contacto' ? 'autofocus' : ''; ?>>
+						<option value="">Selecciona una opción</option>
+						<option value="email" <?php echo $contactFormOldValues['preferencia_contacto'] === 'email' ? 'selected' : ''; ?>>Email</option>
+						<option value="llamada" <?php echo $contactFormOldValues['preferencia_contacto'] === 'llamada' ? 'selected' : ''; ?>>Llamada</option>
+						<option value="whatsapp" <?php echo $contactFormOldValues['preferencia_contacto'] === 'whatsapp' ? 'selected' : ''; ?>>WhatsApp</option>
+					</select>
+					<p id="contacto-preferencia-help" class="contact-form__help">Elige tu canal preferido para la respuesta.</p>
+					<?php if (isset($contactFormErrors['preferencia_contacto'])): ?>
+						<p id="contacto-preferencia-contacto-error" class="contact-form__error"><?php echo $escape((string) $contactFormErrors['preferencia_contacto']); ?></p>
+					<?php endif; ?>
+				</div>
+			</div>
+
+			<div class="contact-form__field">
+				<label for="contacto-mensaje">Mensaje <span aria-hidden="true">*</span></label>
+				<textarea
+					id="contacto-mensaje"
+					name="mensaje"
+					rows="8"
+					minlength="20"
+					maxlength="2000"
+					required
+					aria-invalid="<?php echo isset($contactFormErrors['mensaje']) ? 'true' : 'false'; ?>"
+					aria-describedby="contacto-mensaje-help<?php echo isset($contactFormErrors['mensaje']) ? ' contacto-mensaje-error' : ''; ?>"
+					<?php echo $contactFormFirstErrorField === 'mensaje' ? 'autofocus' : ''; ?>><?php echo $escape((string) $contactFormOldValues['mensaje']); ?></textarea>
+				<p id="contacto-mensaje-help" class="contact-form__help">Entre 20 y 2000 caracteres.</p>
+				<?php if (isset($contactFormErrors['mensaje'])): ?>
+					<p id="contacto-mensaje-error" class="contact-form__error"><?php echo $escape((string) $contactFormErrors['mensaje']); ?></p>
+				<?php endif; ?>
+			</div>
+
+			<div class="contact-form__field contact-form__consent">
+				<div class="contact-form__checkbox-row">
+					<input
+						type="checkbox"
+						id="contacto-consentimiento-privacidad"
+						name="consentimiento_privacidad"
+						value="1"
+						required
+						<?php echo $contactFormOldValues['consentimiento_privacidad'] === '1' ? 'checked' : ''; ?>
+						aria-invalid="<?php echo isset($contactFormErrors['consentimiento_privacidad']) ? 'true' : 'false'; ?>"
+						aria-describedby="contacto-consentimiento-help<?php echo isset($contactFormErrors['consentimiento_privacidad']) ? ' contacto-consentimiento-privacidad-error' : ''; ?>"
+						<?php echo $contactFormFirstErrorField === 'consentimiento_privacidad' ? 'autofocus' : ''; ?>>
+					<label for="contacto-consentimiento-privacidad">
+						He leído y acepto la <a href="/politica-privacidad.php">Política de privacidad</a> para el tratamiento de mis datos con la finalidad de atender mi consulta o solicitud de presupuesto.
+					</label>
+				</div>
+				<p id="contacto-consentimiento-help" class="contact-form__help">Este consentimiento es obligatorio para poder enviar el formulario.</p>
+				<?php if (isset($contactFormErrors['consentimiento_privacidad'])): ?>
+					<p id="contacto-consentimiento-privacidad-error" class="contact-form__error"><?php echo $escape((string) $contactFormErrors['consentimiento_privacidad']); ?></p>
+				<?php endif; ?>
+			</div>
+
+			<div class="contact-form__actions">
+				<button type="submit" class="btn btn--primary link-light">Enviar consulta</button>
+				<p class="contact-form__meta">Finalidad exclusiva: atencion de consultas y solicitudes de presupuesto. Respuesta manual en menos de 24 horas laborables.</p>
+			</div>
+		</fieldset>
+	</form>
 </section>
 
 <section id="como-llegar">

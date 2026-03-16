@@ -36,7 +36,7 @@ Establecer criterios comunes para mantener coherencia y facilitar el relevo entr
 
 ### Regla de convencion a partir de ahora
 
-- Nuevos estilos de componente: usar prefijo `c-` en bloque (`.c-component`) + elementos (`.c-component__item`) + modificadores (`.c-component--variant`).
+- Nuevos estilos de componente: usar nombres directos de bloque y BEM-like sin prefijo obligatorio (ejemplo: `.component`, `.component__item`, `.component--variant`).
 - Utilidades permitidas para casos globales y atomicos (ejemplo: clases de fondo, texto o espaciado), con prefijo `u-`.
 - Evitar nuevos estilos acoplados a id para presentacion visual. Los ids se reservan para anclas, accesibilidad o JS cuando sea necesario.
 - Reducir selectores excesivamente largos; preferir clases directas en el markup.
@@ -51,6 +51,10 @@ Establecer criterios comunes para mantener coherencia y facilitar el relevo entr
 ## JS (si aplica)
 
 - JS no critico para funcionalidad principal.
+- Enfoque obligatorio: progressive enhancement.
+- Debe existir flujo completo sin JS para funciones de negocio criticas (ejemplo: envio de formulario).
+- Se permite JS para mejorar UX/rendimiento o para comprobaciones previas (validaciones cliente, interceptar envio), nunca como unico mecanismo de validacion.
+- Toda validacion o proteccion en cliente debe repetirse en servidor.
 - Convenciones de modulos/funciones: PENDIENTE
 
 ## Assets

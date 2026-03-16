@@ -1,8 +1,8 @@
 # Pagina de contacto (`contacto.php`)
 
-- Ultima actualizacion: 2026-03-13
+- Ultima actualizacion: 2026-03-16 (formulario v1)
 - Responsable: PENDIENTE
-- Proxima revision: PENDIENTE
+- Proxima revision: tras validar 100% checklist manual en pre-produccion
 
 ## Objetivo de la pagina
 
@@ -53,3 +53,96 @@ Se centralizan constantes en `app/includes/bootstrap.php`:
 
 La seccion FAQ esta enlazada desde contacto, pero el contenido de `preguntas-frecuentes.php` aun esta pendiente.
 Mientras no se publique contenido real, revisar periodicamente esta CTA para evitar frustracion del usuario.
+
+## Formulario de contacto (v1 implementado)
+
+Estado: implementado y activo como canal complementario.
+
+### Objetivo funcional
+
+- El formulario sera un canal complementario para contacto general y solicitud de presupuesto.
+- Los canales principales del negocio se mantienen: email, telefono y WhatsApp.
+- El formulario no sustituye el CTA principal de WhatsApp.
+
+### Ubicacion en la pagina
+
+- Insertar una seccion nueva entre "Canales de contacto" y "Como llegar" en `contacto.php`.
+- Mantener flujo de conversion: canales rapidos -> formulario -> ubicacion/horario -> CTA WhatsApp.
+
+### Dependencias legales ya preparadas
+
+- `public/politica-privacidad.php`: publicada y enlazable desde formulario.
+- `public/politica-cookies.php`: publicada.
+- `public/aviso-legal.php`: actualizado.
+
+### Campos v1
+
+- `nombre` (obligatorio)
+- `email` (obligatorio)
+- `telefono` (opcional)
+- `preferencia_contacto` (obligatorio: email, llamada o WhatsApp)
+- `mensaje` (obligatorio)
+- `consentimiento_privacidad` (obligatorio)
+
+### Fuera de alcance v1
+
+- Selector de tipo de servicio
+- Campo empresa/organismo
+- Adjuntos/fotos
+- Autorespuesta automatica
+
+### Reglas de validacion previstas
+
+- `nombre`: 2 a 80 caracteres
+- `email`: formato valido
+- `telefono`: formato flexible, no obligatorio
+- `mensaje`: 20 a 2000 caracteres
+- `consentimiento_privacidad`: obligatorio para enviar
+
+Regla adicional para implementacion:
+
+- `preferencia_contacto`: limitar a valores permitidos (`email`, `llamada`, `whatsapp`).
+
+### Comportamiento esperado
+
+- Confirmacion de envio correcto en la misma pagina
+- Mensaje de error si hay validaciones fallidas
+- Mensaje de contingencia con canales directos si falla el envio
+- Texto operativo visible: respuesta manual en menos de 24 horas laborales
+
+### Implementacion tecnica aplicada
+
+- Endpoint dedicado POST: `public/api/contacto.php`.
+- Validacion y sanitizacion server-side en helper: `app/includes/contact-form.php`.
+- Protecciones anti-spam minimas: CSRF + honeypot + rate limit basico por sesion.
+- Envio de correo a la cuenta Gmail del negocio definida en `MADAYA_EMAIL`.
+- Trazabilidad operativa incluida en el correo enviado:
+	- fecha/hora local (Atlantic/Canary),
+	- timestamp ISO8601,
+	- IP de origen,
+	- User-Agent.
+- UX accesible en `contacto.php`:
+	- resumen de errores,
+	- errores por campo con `aria-describedby`,
+	- foco al primer error tras validacion fallida,
+	- region `aria-live` para confirmacion o contingencia.
+
+### JavaScript (mejora progresiva)
+
+- Se anade validacion previa no bloqueante en `public/assets/js/main.js`.
+- El flujo sin JavaScript se mantiene funcional y es el flujo base.
+- Toda regla de cliente se replica en servidor.
+
+### Backend esperado (resumen)
+
+- Endpoint dedicado por `POST`
+- Validacion y sanitizacion server-side
+- Protecciones anti-spam: CSRF + honeypot + rate limit basico
+- Entrega del correo a una unica cuenta Gmail del negocio
+
+### Siguiente iteracion sugerida
+
+- Integrar proveedor SMTP autenticado para mejorar entregabilidad (si hosting lo requiere).
+- Anadir selector de tipo de servicio y contexto particular/empresa.
+- Definir politica de retencion operativa para solicitudes recibidas por email.
+

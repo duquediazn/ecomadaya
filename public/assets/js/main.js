@@ -517,6 +517,124 @@
         syncMenuState();
     };
 
+    /** FORMULARIO DE CONTACTO (MEJORA PROGRESIVA) **/
+
+    /**
+     * Limpia y configura feedback accesible de errores para el formulario.
+     * @param {HTMLElement|null} summaryEl
+     * @param {Array<{id: string, message: string}>} errors
+     * @returns {void}
+     */
+    const renderContactErrorSummary = (summaryEl, errors) => {
+        if (!(summaryEl instanceof HTMLElement)) {
+            return;
+        }
+
+        if (!errors.length) {
+            summaryEl.hidden = true;
+            summaryEl.innerHTML = '';
+            return;
+        }
+
+        const items = errors
+            .map((error) => `<li><a href="#${error.id}">${error.message}</a></li>`)
+            .join('');
+
+        summaryEl.hidden = false;
+        summaryEl.innerHTML = `
+            <h3>Hay errores en el formulario</h3>
+            <p>Revisa los siguientes campos antes de enviar:</p>
+            <ul>${items}</ul>
+        `;
+        summaryEl.focus();
+    };
+
+    /**
+     * Construye lista de errores cliente para campos clave del formulario.
+     * @param {HTMLFormElement} form
+     * @returns {Array<{id: string, message: string}>}
+     */
+    const collectContactClientErrors = (form) => {
+        const errors = [];
+        const nombre = form.querySelector('#contacto-nombre');
+        const email = form.querySelector('#contacto-email');
+        const preferencia = form.querySelector('#contacto-preferencia-contacto');
+        const mensaje = form.querySelector('#contacto-mensaje');
+        const consentimiento = form.querySelector('#contacto-consentimiento-privacidad');
+        const honeypot = form.querySelector('#contacto-website');
+
+        if (honeypot instanceof HTMLInputElement && honeypot.value.trim() !== '') {
+            errors.push({
+                id: 'contacto-nombre',
+                message: 'No hemos podido validar el envio. Recarga la pagina e intentalo de nuevo.',
+            });
+            return errors;
+        }
+
+        if (nombre instanceof HTMLInputElement) {
+            const value = nombre.value.trim();
+            if (value.length < 2 || value.length > 80) {
+                errors.push({ id: nombre.id, message: 'El nombre debe tener entre 2 y 80 caracteres.' });
+            }
+        }
+
+        if (email instanceof HTMLInputElement) {
+            const value = email.value.trim();
+            if (!value || !email.checkValidity()) {
+                errors.push({ id: email.id, message: 'Introduce un correo electronico valido.' });
+            }
+        }
+
+        if (preferencia instanceof HTMLSelectElement && !preferencia.value) {
+            errors.push({ id: preferencia.id, message: 'Selecciona una preferencia de contacto valida.' });
+        }
+
+        if (mensaje instanceof HTMLTextAreaElement) {
+            const value = mensaje.value.trim();
+            if (value.length < 20 || value.length > 2000) {
+                errors.push({ id: mensaje.id, message: 'El mensaje debe tener entre 20 y 2000 caracteres.' });
+            }
+        }
+
+        if (consentimiento instanceof HTMLInputElement && !consentimiento.checked) {
+            errors.push({
+                id: consentimiento.id,
+                message: 'Debes aceptar la Politica de privacidad para enviar el formulario.',
+            });
+        }
+
+        return errors;
+    };
+
+    /**
+     * Inicializa validaciones cliente no bloqueantes para formulario de contacto.
+     * @returns {void}
+     */
+    const initContactFormEnhancements = () => {
+        const form = document.querySelector('[data-contact-form]');
+        if (!(form instanceof HTMLFormElement)) {
+            return;
+        }
+
+        const summaryEl = form.querySelector('[data-contact-errors]');
+
+        form.addEventListener('submit', (event) => {
+            const clientErrors = collectContactClientErrors(form);
+            if (!clientErrors.length) {
+                renderContactErrorSummary(summaryEl, []);
+                return;
+            }
+
+            event.preventDefault();
+            renderContactErrorSummary(summaryEl, clientErrors);
+
+            const firstField = document.getElementById(clientErrors[0].id);
+            if (firstField instanceof HTMLElement) {
+                firstField.focus();
+            }
+        });
+    };
+
     /** PUNTO DE ENTRADA **/
 
     /**
@@ -527,6 +645,7 @@
         initMobileMenu();
         initLoadMoreGallery();
         initLightboxForGalleries();
+        initContactFormEnhancements();
     };
 
     document.addEventListener('DOMContentLoaded', init);
