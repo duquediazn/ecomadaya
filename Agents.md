@@ -5,31 +5,32 @@
 **Objetivo principal:** El objetivo principal es terminar de contruir el sitio web con especial énfassis en los prinicpios de accesibilidad, usabilidad y SEO orgánico.
 
 ### Estructura del proyecto
-index.php
-servicios.php
-galeria.php
-contacto.php
-quienes-somos.php
-aviso-legal.php
-politica-privacidad.php
-politica-cookies.php
-condiciones-servicio.php
-preguntas-frecuentes.php
-/assets
-    /css
-    main.css
-    /js
-    main.js
-    /img
-    ...
-    /icons
-    favicon.ico
-.gitignore
-.htaccess
-README.md
-LICENSE
-sitemap.xml
-robots.txt
+- /public (paginas publicas y recursos web)
+    - index.php
+    - servicios.php
+    - galeria.php
+    - contacto.php
+    - quienes-somos.php
+    - aviso-legal.php
+    - politica-privacidad.php
+    - politica-cookies.php
+    - condiciones-servicio.php
+    - preguntas-frecuentes.php
+    - /assets
+        - /css/main.css
+        - /js/main.js
+        - /img
+        - /icons
+    - /api (endpoints actuales de galeria)
+- /app/includes (parciales y bootstrap)
+    - bootstrap.php
+    - header.php
+    - footer.php
+    - gallery-service.php
+- /docs (especificaciones, runbooks y mantenimiento)
+- .gitignore
+- README.md
+- LICENSE
 
 ## 2. Público objetivo
 La web va dirigida al público general y empresas (autónomos, pymes, etc.), así como a organismos públicos.
@@ -60,4 +61,30 @@ El diseño debe estar centrado en accesbilidad, pero debe también resultar suav
 Los estilos principales se encuentran en main.css (aún pendiente de revisiones y nuevas adiciones)
 
 ## 9. Estado actual del proyecto
-Están hechos los parciales header.php y footer.php, así como las páginas index.php, servicios.php y galería.php.
+Estado actualizado (marzo 2026):
+
+- Estructura multipagina consolidada en `/public` con parciales compartidos en `/app/includes`.
+- Paginas principales en produccion de contenido: `index.php`, `servicios.php`, `galeria.php`, `contacto.php`.
+- `contacto.php` redisenada con enfoque de conversion y accesibilidad:
+    - canales de contacto priorizados,
+    - horario + mapa semanticos,
+    - CTA principal de presupuesto por WhatsApp,
+    - seccion de soporte a FAQ.
+- Mejoras de accesibilidad aplicadas en header/footer y paginas principales:
+    - foco visible,
+    - navegacion por teclado mejorada,
+    - enlaces externos con `rel="noopener noreferrer"`,
+    - iframes con `title`,
+    - uso de `time`, `address` y jerarquia semantica.
+- SEO tecnico parcialmente actualizado:
+    - canonical por pagina,
+    - datos Open Graph actualizados,
+    - documentacion SEO ampliada en `/docs/seo.md`.
+- Configuracion centralizada en `bootstrap.php` para datos de negocio y entorno.
+
+Pendientes relevantes:
+
+- Completar contenido de `preguntas-frecuentes.php`.
+- Completar `politica-privacidad.php` y resto legal pendiente.
+- Implementar formulario de contacto (ya especificado en docs, aun no desarrollado).
+- Ejecutar bateria final de pruebas manuales y auditoria automatica de accesibilidad/SEO antes de cierre.

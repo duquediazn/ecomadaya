@@ -1,8 +1,8 @@
 # Accesibilidad
 
-- Ultima actualizacion: PENDIENTE
+- Ultima actualizacion: 2026-03-16
 - Responsable: PENDIENTE
-- Proxima revision: PENDIENTE
+- Proxima revision: tras integrar y validar formulario de contacto
 
 ## Objetivo
 
@@ -76,3 +76,33 @@ Definir criterios de accesibilidad aplicables al proyecto para cumplir buenas pr
 - SVG decorativos en CTA marcados con `aria-hidden="true"`
 - `servicios.php` corrige un bloque con clase mal escrita (`section--narrow`)
 - `servicios.php` mejora el titulo del `iframe` de YouTube
+
+## Requisitos de accesibilidad para formulario (pre-implementacion)
+
+Estado: requisitos listos para ejecutar en implementacion.
+
+### Marcado y semantica
+
+- Usar `form`, `fieldset` y `legend` para agrupar el bloque.
+- Cada campo debe tener `label` visible asociado por `for`/`id`.
+- No usar placeholder como sustituto de etiqueta.
+
+### Errores y ayudas
+
+- Mensajes de error por campo enlazados mediante `aria-describedby`.
+- Resumen de errores al inicio del formulario cuando falle validacion.
+- Mover foco al primer campo con error tras envio fallido.
+- Marcar campos obligatorios de forma visible y programatica (`required` + texto explicito).
+
+### Feedback de estado
+
+- Mostrar confirmacion o error en una region con `aria-live="polite"`.
+- Mantener mensajes breves y orientados a accion.
+- Evitar depender solo de color para transmitir estados de error/exito.
+
+### Teclado y foco
+
+- Orden de tabulacion natural sin saltos.
+- Indicador de foco visible en todos los controles.
+- El formulario debe ser usable completamente sin JavaScript.
+- Si se usa JavaScript para validaciones en cliente, debe mantenerse equivalencia funcional sin JavaScript y sin perdida de accesibilidad.
