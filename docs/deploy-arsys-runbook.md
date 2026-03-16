@@ -1,12 +1,31 @@
 # Runbook de Despliegue en Arsys (Apache)
 
-- Ultima actualizacion: 2026-03-10
+- Ultima actualizacion: 2026-03-16
 - Responsable: PENDIENTE
 - Proxima revision: antes del cutover a produccion
 
 ## Objetivo
 
 Desplegar el sitio en Arsys manteniendo separacion entre contenido publico y codigo interno, con rollback rapido.
+
+## Contexto tecnico actual
+
+- PHP 8.2 disponible en el panel (confirmado).
+- SMTP aparece habilitado en el panel (pendiente confirmar parametros para app PHP).
+- Hay acceso FTP.
+- No se puede editar `.htaccess` por FTP (pendiente alternativa en panel).
+- Se prioriza despliegue por GitHub Actions en lugar de migracion manual por FTP.
+- Se planifica migrar transporte de correo de `mail()` a PHPMailer + SMTP autenticado.
+
+## Mensaje corto recomendado para Arsys
+
+Hola, tengo un hosting WordPress basico con vosotros y quiero sustituir la instalacion WordPress por una web propia en PHP multipagina, sin base de datos, con formulario de contacto, despliegue desde GitHub Actions y envio por SMTP autenticado. ¿Mi plan actual soporta este uso o necesito cambiar a otro? Si debo cambiar, ¿que plan me recomendais?
+
+## Nota sobre Composer y dependencias
+
+- `vendor/` no se sube al repositorio.
+- Composer se ejecuta en CI y el artefacto de despliegue incluye `vendor/`.
+- El hosting no necesita ejecutar Composer si recibe artefacto completo.
 
 ## Escenario A (preferido): el DocumentRoot puede apuntar a `public/`
 
