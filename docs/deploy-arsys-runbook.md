@@ -27,6 +27,14 @@ Hola, tengo un hosting WordPress basico con vosotros y quiero sustituir la insta
 - Composer se ejecuta en CI y el artefacto de despliegue incluye `vendor/`.
 - El hosting no necesita ejecutar Composer si recibe artefacto completo.
 
+## Nota sobre URLs limpias y `.htaccess`
+
+- El sitio local funciona con rutas de archivo (`/servicios.php`, `/contacto.php`, etc.).
+- En produccion se debe mantener la estructura de URLs limpias ya publicada (`/servicios/`, `/contacto/`, etc.).
+- Esta equivalencia se resolvera previsiblemente mediante reglas de reescritura en el `.htaccess` de `html/`.
+- Antes del cutover, verificar que Apache resuelve las rutas limpias hacia los archivos PHP reales sin exponer `.php` en la URL publica.
+- Si no es posible mantener URLs limpias, evaluar impacto SEO antes de publicar.
+
 ## Escenario A (preferido): el DocumentRoot puede apuntar a `public/`
 
 ### Estructura en servidor (recomendada)

@@ -66,6 +66,19 @@
 - Validar redirecciones y equivalencia SEO de URLs antes de produccion.
 - La migracion no debe asumirse viable hasta que Arsys confirme compatibilidad del plan con una app PHP propia y despliegue automatizado.
 
+## URLs publicas objetivo
+
+- En local, las rutas actuales se sirven por archivo (`/servicios.php`, `/contacto.php`, etc.).
+- En produccion, el objetivo es mantener URLs limpias equivalentes al sitio publicado actual.
+- Convencion objetivo en produccion:
+	- `/`
+	- `/servicios/`
+	- `/galeria/`
+	- `/contacto/`
+	- resto de paginas publicas siguiendo el mismo criterio
+- La resolucion de estas rutas limpias probablemente dependera de reglas Apache en `.htaccess`.
+- No se debe publicar en produccion una version que exponga `.php` en las URLs si eso rompe equivalencia con el sitio actual o contradice las canonical ya definidas.
+
 ## Proceso de despliegue
 
 1. Preparar release (branch/tag)
