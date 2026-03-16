@@ -142,7 +142,22 @@ Regla adicional para implementacion:
 
 ### Siguiente iteracion sugerida
 
-- Integrar proveedor SMTP autenticado para mejorar entregabilidad (si hosting lo requiere).
+- Migrar transporte de correo de `mail()` a PHPMailer con SMTP autenticado.
+- Ejecutar Composer en CI/CD y desplegar artefacto con `vendor/` (sin subir `vendor/` al repositorio).
+- Mantener intacto el flujo funcional v1: validacion server-side, CSRF, honeypot, rate limit, PRG y mensajes flash.
+- Confirmar primero con Arsys la compatibilidad del plan para este cambio de uso y despliegue automatizado.
 - Anadir selector de tipo de servicio y contexto particular/empresa.
 - Definir politica de retencion operativa para solicitudes recibidas por email.
+
+### Cambio planificado v1.1 (correo)
+
+- Objetivo: mejorar fiabilidad y entregabilidad del envio de correo en produccion.
+- Alcance tecnico:
+	- Sustituir solo el bloque de envio en `public/api/contacto.php`.
+	- Introducir helper de transporte con PHPMailer (`app/includes/`).
+	- Configurar credenciales SMTP via entorno/panel de hosting.
+- Fuera de alcance v1.1:
+	- Cambios en campos del formulario.
+	- Cambios en UX del formulario.
+	- Cambios de SEO o rutas publicas.
 

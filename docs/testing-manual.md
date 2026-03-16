@@ -64,3 +64,12 @@ Plantilla:
 - [ ] Todos los casos del bloque de formulario en estado OK.
 - [ ] Comprobacion manual de enlace legal junto al checkbox de consentimiento.
 - [ ] Verificacion de mensaje de contingencia con canales directos ante fallo de envio.
+
+## Casos pendientes para migracion a PHPMailer (v1.1)
+
+- [ ] Envio correcto mediante SMTP autenticado (produccion o entorno controlado).
+- [ ] Fallback funcional a mensaje de contingencia cuando SMTP falle.
+- [ ] No se exponen errores tecnicos sensibles en la UI.
+- [ ] Logs tecnicos permiten diagnosticar fallo de autenticacion/timeout SMTP.
+- [ ] Mantener comportamiento PRG (sin reenvio al refrescar).
+- [ ] Mantener validaciones y protecciones actuales (CSRF, honeypot, rate limit).
