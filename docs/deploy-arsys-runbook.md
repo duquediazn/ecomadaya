@@ -26,6 +26,28 @@ Hola, tengo un hosting WordPress basico con vosotros y quiero sustituir la insta
 - `vendor/` no se sube al repositorio.
 - Composer se ejecuta en CI y el artefacto de despliegue incluye `vendor/`.
 - El hosting no necesita ejecutar Composer si recibe artefacto completo.
+- `composer.lock` debe versionarse para garantizar el mismo set de dependencias en todos los entornos.
+
+## Configuracion SMTP requerida (PHPMailer)
+
+Definir en entorno/panel de hosting las variables:
+
+- `MADAYA_SMTP_ENABLED=1`
+- `MADAYA_SMTP_HOST`
+- `MADAYA_SMTP_PORT` (recomendado 587 con STARTTLS)
+- `MADAYA_SMTP_ENCRYPTION` (`tls`, `ssl` o `none`)
+- `MADAYA_SMTP_USERNAME`
+- `MADAYA_SMTP_PASSWORD`
+- `MADAYA_SMTP_FROM_EMAIL`
+- `MADAYA_SMTP_FROM_NAME`
+- `MADAYA_SMTP_TIMEOUT` (opcional, por defecto 15)
+- `MADAYA_SMTP_DEBUG` (solo para local/diagnostico, en produccion mantener `0`)
+
+Notas operativas:
+
+- No exponer credenciales SMTP en repositorio ni en codigo fuente.
+- El `Reply-To` se rellena con el email del cliente validado en formulario.
+- Los errores tecnicos de SMTP se registran en logs de PHP, pero no se muestran al usuario final.
 
 ## Nota sobre URLs limpias y `.htaccess`
 
@@ -113,6 +135,8 @@ Hola, tengo un hosting WordPress basico con vosotros y quiero sustituir la insta
 - [ ] `https://tu-dominio/galeria.php` carga imagenes
 - [ ] Footer muestra enlaces legales y licencia
 - [ ] No hay rutas rotas en menu principal
+- [ ] Formulario de contacto envia por SMTP autenticado
+- [ ] Ante fallo SMTP se muestra mensaje de contingencia (sin detalle tecnico)
 
 ## Hardening minimo para Escenario C
 

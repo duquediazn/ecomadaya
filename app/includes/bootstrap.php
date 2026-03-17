@@ -83,3 +83,91 @@ $isOpenNow =
 
 $openBadgeClass = $isOpenNow ? 'contact-status contact-status--open' : 'contact-status contact-status--closed';
 $openBadgeText = $isOpenNow ? 'Abierto ahora' : 'Ahora cerrado';
+
+/**
+ * Lee una variable de entorno de forma compatible (getenv, $_ENV, $_SERVER).
+ *
+ * @param string $name
+ * @return string
+ */
+function madayaEnv(string $name): string
+{
+    $value = getenv($name);
+    if ($value !== false) {
+        return trim((string) $value);
+    }
+
+    if (isset($_ENV[$name])) {
+        return trim((string) $_ENV[$name]);
+    }
+
+    if (isset($_SERVER[$name])) {
+        return trim((string) $_SERVER[$name]);
+    }
+
+    return '';
+}
+
+if (!defined('MADAYA_SMTP_ENABLED')) {
+    $smtpEnabledRaw = strtolower(madayaEnv('MADAYA_SMTP_ENABLED'));
+    $smtpEnabled = in_array($smtpEnabledRaw, ['1', 'true', 'yes', 'on'], true);
+    define('MADAYA_SMTP_ENABLED', $smtpEnabled);
+}
+
+if (!defined('MADAYA_SMTP_HOST')) {
+    define('MADAYA_SMTP_HOST', madayaEnv('MADAYA_SMTP_HOST'));
+}
+
+if (!defined('MADAYA_SMTP_PORT')) {
+    $smtpPortRaw = madayaEnv('MADAYA_SMTP_PORT');
+    $smtpPort = (int) $smtpPortRaw;
+    define('MADAYA_SMTP_PORT', $smtpPort > 0 ? $smtpPort : 587);
+}
+
+if (!defined('MADAYA_SMTP_ENCRYPTION')) {
+    $smtpEncryption = strtolower(madayaEnv('MADAYA_SMTP_ENCRYPTION'));
+    if (!in_array($smtpEncryption, ['tls', 'ssl', 'none'], true)) {
+        $smtpEncryption = 'tls';
+    }
+    define('MADAYA_SMTP_ENCRYPTION', $smtpEncryption);
+}
+
+if (!defined('MADAYA_SMTP_USERNAME')) {
+    define('MADAYA_SMTP_USERNAME', madayaEnv('MADAYA_SMTP_USERNAME'));
+}
+
+if (!defined('MADAYA_SMTP_PASSWORD')) {
+    define('MADAYA_SMTP_PASSWORD', madayaEnv('MADAYA_SMTP_PASSWORD'));
+}
+
+if (!defined('MADAYA_SMTP_FROM_EMAIL')) {
+    $smtpFromEmail = madayaEnv('MADAYA_SMTP_FROM_EMAIL');
+    define('MADAYA_SMTP_FROM_EMAIL', $smtpFromEmail !== '' ? $smtpFromEmail : MADAYA_EMAIL);
+}
+
+if (!defined('MADAYA_SMTP_FROM_NAME')) {
+    $smtpFromName = madayaEnv('MADAYA_SMTP_FROM_NAME');
+    define('MADAYA_SMTP_FROM_NAME', $smtpFromName !== '' ? $smtpFromName : 'Web Madaya');
+}
+
+if (!defined('MADAYA_SMTP_TIMEOUT')) {
+    $smtpTimeoutRaw = madayaEnv('MADAYA_SMTP_TIMEOUT');
+    $smtpTimeout = (int) $smtpTimeoutRaw;
+    define('MADAYA_SMTP_TIMEOUT', $smtpTimeout > 0 ? $smtpTimeout : 15);
+}
+
+if (!defined('MADAYA_SMTP_DEBUG')) {
+    $smtpDebugRaw = madayaEnv('MADAYA_SMTP_DEBUG');
+    $smtpDebug = (int) $smtpDebugRaw;
+    if ($smtpDebug < 0 || $smtpDebug > 4) {
+        $smtpDebug = 0;
+    }
+    define('MADAYA_SMTP_DEBUG', $smtpDebug);
+}
+
+if (!defined('MADAYA_SMTP_AUTH')) {
+    $smtpAuthRaw = strtolower(madayaEnv('MADAYA_SMTP_AUTH'));
+    // Por defecto true en producción. En local con Mailpit establecer MADAYA_SMTP_AUTH=0.
+    $smtpAuth = !in_array($smtpAuthRaw, ['0', 'false', 'no', 'off'], true);
+    define('MADAYA_SMTP_AUTH', $smtpAuth);
+}

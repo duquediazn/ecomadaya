@@ -18,6 +18,7 @@ Documentacion en modo plantilla. El contenido definitivo se completara al cierre
 - `contenido.md`
 - `mantenimiento.md`
 - `testing-manual.md`
+- `entorno-local-dev.md`
 - `legal-y-cumplimiento.md`
 - `incidencias-comunes.md`
 - `css-mapa-renombrado.md`

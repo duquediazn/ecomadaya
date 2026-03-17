@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../app/includes/bootstrap.php';
 require_once __DIR__ . '/../../app/includes/contact-form.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../app/includes/mail-transport.php';
 
 // Método POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -83,8 +85,6 @@ if ($errors !== []) {
 $submittedAt = madayaContactBuildSubmittedAt();
 $subject = '[Web Madaya] Nueva consulta de contacto - ' . $submittedAt['human'];
 
-$siteHost = parse_url(MADAYA_SITE_URL, PHP_URL_HOST);
-$fromHost = is_string($siteHost) && $siteHost !== '' ? $siteHost : 'localhost';
 $clientIp = isset($_SERVER['REMOTE_ADDR']) ? (string) $_SERVER['REMOTE_ADDR'] : 'desconocida';
 $userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? (string) $_SERVER['HTTP_USER_AGENT'] : 'desconocido';
 
@@ -109,23 +109,16 @@ $mailBody = implode("\n", [
     $data['mensaje'],
 ]);
 
-$encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-$headers = [
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    'From: Web Madaya <no-reply@' . $fromHost . '>',
-    'Reply-To: ' . $data['email'],
-    'X-Mailer: PHP/' . PHP_VERSION,
-];
-
 $sent = false;
-if (APP_ENV === 'production') {
-    $sent = mail(
+if (MADAYA_SMTP_ENABLED) {
+    $smtpResult = madayaSendContactMailSmtp(
         MADAYA_EMAIL,
-        $encodedSubject,
+        $subject,
         $mailBody,
-        implode("\r\n", $headers)
+        $data['email']
     );
+
+    $sent = $smtpResult['ok'];
 }
 
 // Flash + redirect siempre (éxito o error)
