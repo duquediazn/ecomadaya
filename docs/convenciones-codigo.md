@@ -37,7 +37,7 @@ Establecer criterios comunes para mantener coherencia y facilitar el relevo entr
 ### Regla de convencion a partir de ahora
 
 - Nuevos estilos de componente: usar nombres directos de bloque y BEM-like sin prefijo obligatorio (ejemplo: `.component`, `.component__item`, `.component--variant`).
-- Utilidades permitidas para casos globales y atomicos (ejemplo: clases de fondo, texto o espaciado), con prefijo `u-`.
+- Utilidades permitidas para casos globales y atomicos (ejemplo: clases de fondo, texto o espaciado)
 - Evitar nuevos estilos acoplados a id para presentacion visual. Los ids se reservan para anclas, accesibilidad o JS cuando sea necesario.
 - Reducir selectores excesivamente largos; preferir clases directas en el markup.
 - Mantener un mapa de migracion de nombres en `docs/css-mapa-renombrado.md` antes de cualquier cambio masivo.

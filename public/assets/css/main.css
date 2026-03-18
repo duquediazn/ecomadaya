@@ -134,6 +134,7 @@ section {
     justify-content: center;
     align-items: center;
     border-top: 0.2rem solid var(--color-surface);
+    margin-bottom: var(--space-md);
 }
 
 .section--narrow:first-of-type {
@@ -548,11 +549,13 @@ ul {
     height: 200px;
     object-fit: cover;
     border-radius: 12px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .gallery img:hover {
     transform: scale(1.1);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.30);
 }
 
 .gallery a:focus-visible img {
@@ -628,7 +631,8 @@ ul {
     padding: var(--space-sm);
     font-size: var(--fs-sm);
     text-align: center;
-    color: var(--color-text);
+    color: var(--color-text-light);
+    background: rgba(0, 0, 0, 0.75);
 }
 
 .lightbox__nav {
@@ -658,17 +662,17 @@ ul {
 }
 
 .lightbox__nav--prev {
-    left: -3rem;
+    left: 0rem;
 }
 
 .lightbox__nav--next {
-    right: -3rem;
+    right: 0rem;
 }
 
 .lightbox__close {
     position: absolute;
-    top: -1.8rem;
-    right: -1.8rem;
+    top: 0rem;
+    right: 0rem;
     width: 2.6rem;
     height: 2.6rem;
     border: none;
@@ -826,7 +830,12 @@ ul {
 
 .contact-cta__social-proof {
     font-size: var(--fs-xs);
-    margin-top: var(--space-xs);
+    margin-top: var(--space-md);
+}
+
+.contact-cta__social-proof a:hover {
+    color: var(--color-secondary);
+    font-weight: 600;
 }
 
 /* ========================================================= FORMULARIO DE CONTACTO ========================================================= */
@@ -1008,7 +1017,91 @@ ul {
     overflow: hidden;
 }
 
+/* ========================================================= QUIÉNES SOMOS ========================================================= */
 
+.history-grid {
+    max-width: var(--max-width);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.6fr 0.4fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-md);
+
+}
+
+.history-grid--reverse {
+    grid-template-columns: 0.4fr 0.6fr;
+}
+
+.history-grid figure {
+    max-width: var(--max-width);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.history-grid figcaption {
+    font-size: var(--fs-sm);
+    font-style: italic;
+    text-align: center;
+}
+
+.history-grid img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.history-grid img:hover {
+    transform: scale(1.1);
+}
+
+.history-grid a:focus-visible img {
+    outline: 3px solid var(--color-secondary);
+    outline-offset: 4px;
+    transform: scale(1.04);
+}
+
+.values-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+    margin: 0;
+}
+
+.value-item {
+    padding: var(--space-md);
+    border-radius: 12px;
+    background: var(--color-surface);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.value-item:hover {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.30);
+    transform: scale(1.1);
+}
+
+.value-item dt {
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+}
+
+.value-item dd {
+    margin: 0;
+    font-size: var(--fs-sm);
+}
+
+.value-item svg {
+    align-self: center;
+    margin-bottom: var(--space-sm);
+    fill: var(--color-primary);
+}
 
 /* ========================================================= FOOTER ========================================================= */
 .site-footer {
@@ -1132,6 +1225,30 @@ ul {
     margin: var(--space-sm);
 }
 
+/* ========================================================= FAQ ========================================================= */
+
+.section--faq {
+    max-width: var(--narrow-width);
+}
+
+.section--faq__box {
+    width: 100%;
+    align-items: flex-start;
+    border: 0.1rem dashed var(--color-primary);
+    border-radius: 12px;
+    padding: var(--space-lg);
+}
+
+.section--faq__box details {
+    margin-bottom: var(--space-md);
+    text-align: justify;
+}
+
+.section--faq__box details summary {
+    font-weight: 600;
+    font-size: var(--fs-md);
+}
+
 /* ========================================================= RESPONSIVE ========================================================= */
 @media (max-width: 900px) {
 
@@ -1180,6 +1297,10 @@ ul {
     .reviews__grid {
         grid-template-columns: 1fr 1fr;
     }
+
+    .history-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1217,6 +1338,10 @@ ul {
 
     .contact-form__grid {
         grid-template-columns: 1fr;
+    }
+
+    .section--faq__box {
+        width: 100%;
     }
 }
 

@@ -148,13 +148,10 @@ include __DIR__ . '/../app/includes/header.php';
 
     </div>
 
-    <div class="reviews__cta">
-        <a href="https://maps.app.goo.gl/XCqtZLrG558Dqzb76"
-            target="_blank" rel="noopener noreferrer"
-            class="btn btn--small btn--secondary link-dark">
-            Ver más reseñas en Google
-        </a>
-    </div>
+    <p class="contact-cta__social-proof">
+        Valoración en Google: <strong><?php echo MADAYA_REVIEW_RATING; ?>/5</strong> (<?php echo MADAYA_REVIEW_COUNT; ?> reseñas)
+        - <a href="<?php echo MADAYA_GOOGLE_REVIEWS_URL; ?>" target="_blank" rel="noopener noreferrer" class="link-light">Ver opiniones</a>
+    </p>
 </section>
 
 <section class="section--narrow">

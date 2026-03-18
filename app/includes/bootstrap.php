@@ -72,6 +72,15 @@ if (!defined('MADAYA_REVIEW_COUNT')) {
     define('MADAYA_REVIEW_COUNT', '34');
 }
 
+// Generar URLs de WhatsApp con mensajes predefinidos para presupuesto y cita previa.
+$whatsAppBaseUrl = "https://wa.me/" . preg_replace('/\D+/', '', MADAYA_PHONE_E164);
+$whatsAppBudgetMessage = rawurlencode("Hola, me gustaría pedir presupuesto para tapicería/restauración.");
+$whatsAppAppointmentMessage = rawurlencode("Hola, me gustaría concertar una cita.");
+
+$whatsAppBudgetUrl = $whatsAppBaseUrl . "?text=" . $whatsAppBudgetMessage;
+$whatsAppAppointmentUrl = $whatsAppBaseUrl . "?text=" . $whatsAppAppointmentMessage;
+
+
 // Determinar si el taller está abierto ahora para mostrar un badge de estado.
 $tz = new DateTimeZone('Atlantic/Canary');
 $now = new DateTime('now', $tz);
@@ -83,6 +92,9 @@ $isOpenNow =
 
 $openBadgeClass = $isOpenNow ? 'contact-status contact-status--open' : 'contact-status contact-status--closed';
 $openBadgeText = $isOpenNow ? 'Abierto ahora' : 'Ahora cerrado';
+
+// SMTP Configuration: Lee las variables de entorno para configurar el envío de correos electrónicos, 
+// con valores predeterminados seguros.
 
 /**
  * Lee una variable de entorno de forma compatible (getenv, $_ENV, $_SERVER).

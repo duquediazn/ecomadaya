@@ -471,8 +471,9 @@
      */
     const initLightboxForGalleries = () => {
         const lightbox = createLightbox();
+        const lightboxGallerySelector = '.gallery, [data-lightbox-gallery]';
 
-        document.querySelectorAll('.gallery').forEach((gallery) => {
+        document.querySelectorAll(lightboxGallerySelector).forEach((gallery) => {
             gallery.addEventListener('click', (event) => {
                 const link = event.target.closest('a');
                 if (!link || !gallery.contains(link)) return;

@@ -1,8 +1,8 @@
 # Contenido
 
-- Ultima actualizacion: PENDIENTE
+- Ultima actualizacion: 2026-03-18
 - Responsable: PENDIENTE
-- Proxima revision: PENDIENTE
+- Proxima revision: tras validar QA final de contenido + legal
 
 ## Objetivo
 
@@ -35,8 +35,16 @@ Definir estilo editorial y proceso de contenido para mantener coherencia de marc
 
 ## Estado de contenido por pagina
 
-- `index.php`: ACTUALIZADO (consistencia SEO tecnica: canonical por pagina)
+- `index.php`: ACTUALIZADO (bloque de prueba social y enlace a reseñas unificado con datos globales)
 - `servicios.php`: ACTUALIZADO (consistencia SEO tecnica: canonical por pagina)
 - `galeria.php`: ACTUALIZADO (consistencia SEO tecnica: canonical por pagina)
-- `contacto.php`: ACTUALIZADO (estructura de conversion + copy local orientado a presupuesto)
-- Resto: PENDIENTE
+- `contacto.php`: ACTUALIZADO (estructura de conversion + CTA reforzado hacia presupuesto por WhatsApp y FAQ)
+- `quienes-somos.php`: ACTUALIZADO (introduccion, historia real del negocio, relevo generacional y valores)
+- `preguntas-frecuentes.php`: ACTUALIZADO (20 FAQs por categorias, copy orientado a dudas reales de compra)
+- `condiciones-servicio.php`: ACTUALIZADO (contenido base legal/operativo del servicio)
+
+## Cambios editoriales recientes (2026-03-18)
+
+- Se ha consolidado el tono de marca en `quienes-somos.php` y `preguntas-frecuentes.php` con enfoque cercano-profesional.
+- Se han reducido tecnicismos innecesarios y mejorado frases de accion para conversion (WhatsApp/contacto).
+- Se ha conectado FAQ con condiciones del servicio para mayor claridad pre-contractual.

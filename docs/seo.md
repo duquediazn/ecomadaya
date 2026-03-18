@@ -1,8 +1,8 @@
 # SEO
 
-- Ultima actualizacion: PENDIENTE
+- Ultima actualizacion: 2026-03-18
 - Responsable: PENDIENTE
-- Proxima revision: PENDIENTE
+- Proxima revision: tras revisar sitemap y rich results en entorno publico
 
 ## Objetivo
 
@@ -12,7 +12,7 @@ Mantener consistencia SEO on-page y tecnica en todas las paginas del sitio.
 
 - `robots.txt`: presente y actualizado
 - `sitemap.xml`: presente y actualizado
-- Canonical por pagina: PENDIENTE
+- Canonical por pagina: PARCIALMENTE ACTUALIZADO
 - URLs amigables y estables: PENDIENTE
 - Plan de redirecciones desde WordPress previo: PENDIENTE (obligatorio antes de produccion)
 
@@ -62,10 +62,39 @@ Documentar para cada pagina:
 - Enlazado interno: CTA de carga progresiva + navegacion hacia servicios/contacto
 - Canonical: `https://ecomadaya.es/galeria/`
 
+### `quienes-somos.php`
+
+- Titulo SEO: Quienes somos | Taller familiar de tapiceria en Tenerife
+- Meta description: orientada a confianza de marca + historia del taller + enfoque artesanal
+- H1 principal: Quienes somos
+- Intencion de busqueda: marca + confianza + contexto de negocio local
+- Enlazado interno: CTA hacia `contacto.php` y conexion con bloque de prueba social
+- Canonical: `https://ecomadaya.es/quienes-somos/`
+
+### `preguntas-frecuentes.php`
+
+- Titulo SEO: Preguntas frecuentes de tapiceria en Tenerife | Madaya
+- Meta description: orientada a dudas transaccionales (precios, tejidos, plazos, recogida/entrega)
+- H1 principal: Preguntas frecuentes de tapiceria en Tenerife
+- Intencion de busqueda: resolver objeciones antes de pedir presupuesto
+- Enlazado interno: enlace a `contacto.php`, `condiciones-servicio.php` y acciones por WhatsApp
+- Canonical: `https://ecomadaya.es/preguntas-frecuentes/`
+
+### `condiciones-servicio.php`
+
+- Titulo SEO: Condiciones del servicio | Taller familiar de tapiceria en Tenerife
+- Meta description: orientada a transparencia contractual (presupuesto, plazos, ajustes y responsabilidades)
+- H1 principal: Condiciones del servicio
+- Intencion de busqueda: informacion legal-operativa previa a contratacion
+- Enlazado interno: enlazada desde `preguntas-frecuentes.php`
+- Canonical: `https://ecomadaya.es/condiciones-servicio/`
+
 ## Datos estructurados
 
-- Uso de schema.org: PENDIENTE
-- Tipo de schema por pagina: PENDIENTE
+- Uso de schema.org: PARCIALMENTE IMPLEMENTADO
+- Tipo de schema por pagina:
+	- `preguntas-frecuentes.php`: `FAQPage` en JSON-LD con 20 preguntas y respuestas visibles
+	- Resto de paginas: PENDIENTE
 
 ## Rendimiento y CWV
 

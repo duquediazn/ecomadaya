@@ -1,8 +1,8 @@
 # Accesibilidad
 
-- Ultima actualizacion: 2026-03-16
+- Ultima actualizacion: 2026-03-18
 - Responsable: PENDIENTE
-- Proxima revision: tras integrar y validar formulario de contacto
+- Proxima revision: tras auditoria automatica final (Lighthouse/axe) en entorno de produccion
 
 ## Objetivo
 
@@ -76,6 +76,28 @@ Definir criterios de accesibilidad aplicables al proyecto para cumplir buenas pr
 - SVG decorativos en CTA marcados con `aria-hidden="true"`
 - `servicios.php` corrige un bloque con clase mal escrita (`section--narrow`)
 - `servicios.php` mejora el titulo del `iframe` de YouTube
+
+## Estado actual `quienes-somos.php`
+
+- Unico `h1` y jerarquia semantica valida.
+- Secciones principales etiquetadas con `aria-labelledby` para navegacion por regiones.
+- Imagenes informativas con `alt` y `figcaption`.
+- Enlaces de imagen compatibles con teclado, foco visible y fallback sin JavaScript.
+- Valores migrados a `dl/dt/dd` para mejorar semantica de termino/descripcion.
+- Iconos SVG en bloque de valores marcados como decorativos (`aria-hidden="true"`).
+
+## Estado actual `preguntas-frecuentes.php`
+
+- Unico `h1` y estructura de headings por categorias.
+- Uso de `details/summary` para disclosure nativo accesible sin JS.
+- Correccion de marcado HTML invalido en listas para evitar lectura erratica en lector de pantalla.
+- Enlaces de accion (WhatsApp/correo/contacto) con texto descriptivo y navegacion directa.
+- Seccion principal etiquetada con `aria-labelledby`.
+
+## Estado actual `public/assets/js/main.js` (lightbox)
+
+- El lightbox conserva compatibilidad con `.gallery` y acepta tambien `[data-lightbox-gallery]`.
+- Permite activar comportamiento en secciones narrativas sin acoplar semantica visual de galeria.
 
 ## Requisitos de accesibilidad para formulario (pre-implementacion)
 
