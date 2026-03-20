@@ -8,5 +8,8 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "sitemap": "php scripts/generate-sitemap.php"
     }
 }

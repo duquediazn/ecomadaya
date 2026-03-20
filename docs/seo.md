@@ -1,6 +1,6 @@
 # SEO
 
-- Ultima actualizacion: 2026-03-18
+- Ultima actualizacion: 2026-03-20
 - Responsable: PENDIENTE
 - Proxima revision: tras revisar sitemap y rich results en entorno publico
 
@@ -12,6 +12,8 @@ Mantener consistencia SEO on-page y tecnica en todas las paginas del sitio.
 
 - `robots.txt`: presente y actualizado
 - `sitemap.xml`: presente y actualizado
+- Guia de sitemap: ver `docs/sitemap.md`
+- Generacion de sitemap: `php scripts/generate-sitemap.php`
 - Canonical por pagina: PARCIALMENTE ACTUALIZADO
 - URLs amigables y estables: PENDIENTE
 - Plan de redirecciones desde WordPress previo: PENDIENTE (obligatorio antes de produccion)

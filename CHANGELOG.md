@@ -20,6 +20,8 @@ El formato esta inspirado en Keep a Changelog.
 	- `docs/testing-manual.md`
 - Guia de datos estructurados JSON-LD en `docs/schema-json-ld.md`.
 - Configuracion reutilizable de datos de negocio en `app/includes/bootstrap.php`.
+- Script de generacion automatica de sitemap en `scripts/generate-sitemap.php`.
+- Guia de mantenimiento de sitemap en `docs/sitemap.md`.
 
 ### Changed
 
@@ -45,6 +47,9 @@ El formato esta inspirado en Keep a Changelog.
 	- canonical por pagina en `index.php`, `servicios.php`, `galeria.php`, `contacto.php`.
 	- ajustes de Open Graph.
 	- documentacion SEO actualizada en `docs/seo.md`.
+- `composer.json` actualizado con comando corto `composer run sitemap`.
+- `public/robots.txt` actualizado para incluir `Sitemap: https://ecomadaya.es/sitemap.xml`.
+- `public/sitemap.xml` regenerado con URLs canonicas indexables y `lastmod` por pagina.
 - Actualizacion de contexto de proyecto en `agents.md`.
 
 ### Fixed
@@ -54,6 +59,7 @@ El formato esta inspirado en Keep a Changelog.
 - Correccion de enlaces de contacto en footer (`mailto:` y `tel:`).
 - Correccion de atributos faltantes de accesibilidad en iframes e iconos decorativos.
 - Correccion de clases/estilos inconsistentes detectados en revisiones de accesibilidad (por ejemplo `section--narrow` y `link-dark`).
+- Correccion del patron de extraccion de canonical en `scripts/generate-sitemap.php` para evitar advertencias y asegurar deteccion de URLs.
 
 ## [0.1.0] - PENDIENTE
 
