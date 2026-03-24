@@ -1,8 +1,8 @@
 # Pagina de contacto (`contacto.php`)
 
-- Ultima actualizacion: 2026-03-16 (formulario v1)
-- Responsable: PENDIENTE
-- Proxima revision: tras validar 100% checklist manual en pre-produccion
+- Ultima actualizacion: 2026-03-20
+- Responsable: usuario (nazaret)
+- Proxima revision: tras primer despliegue a Arsys y primer envio SMTP real
 
 ## Objetivo de la pagina
 
@@ -51,12 +51,19 @@ Se centralizan constantes en `app/includes/bootstrap.php`:
 
 ## Nota sobre FAQ
 
-La seccion FAQ esta enlazada desde contacto, pero el contenido de `preguntas-frecuentes.php` aun esta pendiente.
-Mientras no se publique contenido real, revisar periodicamente esta CTA para evitar frustracion del usuario.
+✅ **Completado:** El contenido de `preguntas-frecuentes.php` esta publicado y enlazado desde contacto.
+La pagina incluye preguntas sobre tapiceria, materiales, tejidos ecologicos, mantenimiento y plazos.
+La seccion FAQ esta completamente operativa como canal de soporte educativo.
 
-## Formulario de contacto (v1 implementado)
+## Formulario de contacto (v1 implementado y activo)
 
-Estado: implementado y activo como canal complementario.
+Estado: ✅ Completado. Formulario implementado y activo en `contacto.php` como canal complementario.
+
+**Estado actual de envio:**
+- Transporte de correo: PHPMailer + SMTP autenticado (migracion completada desde `mail()`)
+- Validacion: server-side obligatoria (nombre, email, mensaje, consentimiento)
+- Protecciones: CSRF + honeypot + rate limit basico por sesion
+- UX: Accesible (resumen errores, aria-live, foco dirigido, funcional sin JS)
 
 ### Objetivo funcional
 

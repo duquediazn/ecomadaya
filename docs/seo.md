@@ -1,8 +1,8 @@
 # SEO
 
 - Ultima actualizacion: 2026-03-20
-- Responsable: PENDIENTE
-- Proxima revision: tras revisar sitemap y rich results en entorno publico
+- Responsable: usuario (nazaret)
+- Proxima revision: tras despliegue a produccion y analisis de rich results en buscadores
 
 ## Objetivo
 

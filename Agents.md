@@ -1,90 +1,82 @@
-# Web Madaya – Contexto del Proyecto
+# Madaya – PHP Estático | Tapicería Ecológica
 
-## 1. Objetivo del proyecto
-**Contexto:** Madaya es un sitio web estático en contrucción en PHP para un negocio real: tapicería de muebles con enfoque ecológico. 
-**Objetivo principal:** El objetivo principal es terminar de contruir el sitio web con especial énfassis en los prinicpios de accesibilidad, usabilidad y SEO orgánico.
+**Última actualización:** 2026-03-20 | **Responsable:** usuario (nazaret)
 
-### Estructura del proyecto
-- /public (paginas publicas y recursos web)
-    - index.php
-    - servicios.php
-    - galeria.php
-    - contacto.php
-    - quienes-somos.php
-    - aviso-legal.php
-    - politica-privacidad.php
-    - politica-cookies.php
-    - condiciones-servicio.php
-    - preguntas-frecuentes.php
-    - /assets
-        - /css/main.css
-        - /js/main.js
-        - /img
-        - /icons
-    - /api (endpoints actuales de galeria)
-- /app/includes (parciales y bootstrap)
-    - bootstrap.php
-    - header.php
-    - footer.php
-    - gallery-service.php
-- /docs (especificaciones, runbooks y mantenimiento)
-- .gitignore
-- README.md
-- LICENSE
+## Stack Técnico
 
-## 2. Público objetivo
-La web va dirigida al público general y empresas (autónomos, pymes, etc.), así como a organismos públicos.
+- **Lenguaje:** PHP 8+ (actual 8.4.11 en local, 8.2 en Arsys)
+- **Frontend:** HTML5, CSS3, JS (sin dependencias críticas)
+- **Frameworks:** Ninguno | **Librerías:** PHPMailer (Composer, solo vendor)
+- **BD:** No | **Alojar:** Arsys (plan WP Básico confirmado ✅)
+- **CI/CD:** GitHub Actions → SFTP a Arsys
+- **Principios:** Accesibilidad WCAG AA, SEO orgánico, simplicidad
 
-## 3. Propuesta de valor
-Madaya se diferencia como tapicería y restauración de muebles en su enfoque centrado particularmente en el uso de materiales ecológicos siempre que sea posible. También poniendo en valor el carácter ecológico de la profesión en sí misma: reparar antes que comprar nuevo y tirar. Para ello ofrece un catálogo de telas de alta calidad con propiedades diseñadas con tecnologías anti mancha, eco-friendly y protecciones higiénicas (anti ácaros y anti virus)
+## Estructura del Código
 
-## 4. Servicios
-- Tapicería y restauración de muebles habitual para particulares y empresas: sofás, sillas, butacas, cabeceros... cualquier mueble clásico o moderno. Incluyendo muebles de armazón metálico y no de madera.
-- Fabricación a medida para particulares: cabeceros, colchones plegables para furgonetas camperizadas, etc. 
-- Fabricación a medida para empresas y organismos públicos: fabricación de protectores para canchas deportivas, fabricación de módulos de asientos a medida para negocios, cortinaje, toldos, etc.
+```
+/public/                      # DocumentRoot (Apache)
+  *.php (10+ páginas)         # index, servicios, galeria, contacto, legal, etc.
+  /assets (css, js, img, icons)
+  /api                        # Endpoints (galería)
+/app/includes/               # Parciales (fuera de public)
+  bootstrap.php              # Config centralizada
+  header.php, footer.php     # Parciales reutilizables
+  contact-form.php           # Lógica del formulario
+  mail-transport.php         # PHPMailer (SMTP)
+  gallery-service.php        # Lógica de galería
+/docs/                       # Documentación técnica
+  README.md, arquitectura.md, seo.md, accesibilidad.md,
+  despliegue-y-entornos.md, deploy-arsys-runbook.md,
+  contacto.md, testing-manual.md, adr/, etc.
+/scripts/                    # Utilidades (generate-sitemap.php)
+```
 
-## 5. Estrategia de la web
-El sitio está pensado para ser multipágina con la estructura planteada en la sección de este documento "Estructura del proyecto". Pero se plantearán posibles modificaciones según se avance en la construcción del mismo. La idea es convencer a los visitantes de contratar los servicios que la página ofrece explorando las estrategias que mejor se alineen con la filosofía de la empresa y del sitio, citadas en el punto 1, "Objetivo del proyecto".
+## Negocio
 
-## 6. Tono y comunicación
-Preferiblemente un tono cercano pero profesional a clientes particulares, pero más técnico y enfocado en eficiencia y resultados en los apartados dirigidos a empresas y organismos públicos. 
+**Empresa:** Tapicería y restauración de muebles (enfoque ecológico)  
+**Público:** Particulares, pymes, organismos públicos en Tenerife  
+**Propuesta de valor:** Materiales eco-friendly + servicio artesanal + reparación antes que compra nueva  
+**Servicios:** Restauración, tapicería habitual, fabricación a medida (particulares y empresas)  
+**Tono:** Cercano/profesional para particulares; técnico/eficiente para empresas
 
-## 7. Decisiones técnicas
-- Stack: PHP, HTML, CSS y JS opcional pero nada crucial debe depender de JS. 
-- Frameworks: No
-- Librerías: Intentar evitar.
-- SEO orgánico/técnico
-- Accesibilidad aplicada desde cero
+## Estado Actual (Marzo 2026)
 
-## 8. Decisiones de diseño
-El diseño debe estar centrado en accesbilidad, pero debe también resultar suave y elegante para el usuario.
-Los estilos principales se encuentran en main.css (aún pendiente de revisiones y nuevas adiciones)
+✅ **Completado en producción:**
+- Estructura multipágina completa en `/public` (10+ páginas)
+- Paginas principales: index, servicios, galería, contacto, quienes-somos
+- Paginas legales: preguntas-frecuentes, política-privacidad, política-cookies, aviso-legal, condiciones-servicio
+- Parciales reutilizables en `/app/includes` (header, footer, bootstrap)
+- Formulario de contacto v1: validación server-side, CSRF, honeypot, rate limit ✅ ACTIVO
+- Transporte de correo: PHPMailer + SMTP autenticado ✅ MIGRADO
+- Meta tags, canonical, Open Graph, robots.txt, sitemap.xml
+- Accesibilidad: h1 único, navegación por teclado, foco visible, aria-*, labels en formularios
+- Configuración centralizada + bootstrap.php con constantes de entorno
 
-## 9. Estado actual del proyecto
-Estado actualizado (marzo 2026):
+⚠️ **Pendientes antes de producción:**
+- [ ] Configurar GitHub Actions + SFTP a hosting Arsys (requiere tokens/credenciales Arsys)
+- [ ] Configurar variables de entorno SMTP en panel Arsys
+- [ ] Plan de redirecciones 301 desde WordPress anterior
+- [ ] Auditoría final: Lighthouse + axe (accesibilidad/SEO/performance)
+- [ ] Testing manual: checklist de navegación, formularios, assets
 
-- Estructura multipagina consolidada en `/public` con parciales compartidos en `/app/includes`.
-- Paginas principales en produccion de contenido: `index.php`, `servicios.php`, `galeria.php`, `contacto.php`.
-- `contacto.php` redisenada con enfoque de conversion y accesibilidad:
-    - canales de contacto priorizados,
-    - horario + mapa semanticos,
-    - CTA principal de presupuesto por WhatsApp,
-    - seccion de soporte a FAQ.
-- Mejoras de accesibilidad aplicadas en header/footer y paginas principales:
-    - foco visible,
-    - navegacion por teclado mejorada,
-    - enlaces externos con `rel="noopener noreferrer"`,
-    - iframes con `title`,
-    - uso de `time`, `address` y jerarquia semantica.
-- SEO tecnico parcialmente actualizado:
-    - canonical por pagina,
-    - datos Open Graph actualizados,
-    - documentacion SEO ampliada en `/docs/seo.md`.
-- Configuracion centralizada en `bootstrap.php` para datos de negocio y entorno.
+## Confirmaciones de Arsys (2026-03-20)
 
-Pendientes relevantes:
+✅ Plan WP Básico soporta: PHP + SMTP autenticado + acceso SFTP  
+✅ Certificado SSL permanecerá activo (ecomadaya.es)  
+✅ No requiere cambio de plan  
 
-- Completar contenido de `preguntas-frecuentes.php`.
-- Completar `politica-privacidad.php` y resto legal pendiente.
-- Implementar formulario de contacto (ya especificado en docs, aun no desarrollado).
-- Ejecutar bateria final de pruebas manuales y auditoria automatica de accesibilidad/SEO antes de cierre.
+## Seguridad
+
+- `/app/` fuera de DocumentRoot (no accesible vía web)
+- Credenciales SMTP: variables de entorno del panel (nunca en repo)
+- Formulario: validación server-side + CSRF + honeypot + rate limit
+
+## Referencias de Documentación
+
+- **Contexto técnico detallado:** `/memories/repo/proyecto-madaya-contexto-tecnico.md` (para agentes)
+- **Arquitectura:** `/docs/arquitectura.md`
+- **Despliegue:** `/docs/deploy-arsys-runbook.md` + `/docs/despliegue-y-entornos.md`
+- **Accesibilidad:** `/docs/accesibilidad.md` (WCAG AA)
+- **SEO:** `/docs/seo.md` (meta tags, canonical, on-page)
+- **Formulario & contacto:** `/docs/contacto.md` + `/docs/testing-manual.md`
+- **ADRs:** `/docs/adr/` (decisiones registradas)

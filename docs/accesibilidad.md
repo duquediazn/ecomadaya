@@ -1,7 +1,7 @@
 # Accesibilidad
 
-- Ultima actualizacion: 2026-03-18
-- Responsable: PENDIENTE
+- Ultima actualizacion: 2026-03-20
+- Responsable: usuario (nazaret)
 - Proxima revision: tras auditoria automatica final (Lighthouse/axe) en entorno de produccion
 
 ## Objetivo

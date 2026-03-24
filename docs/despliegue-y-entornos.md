@@ -1,8 +1,8 @@
 # Despliegue y Entornos
 
-- Ultima actualizacion: 2026-03-16
-- Responsable: PENDIENTE
-- Proxima revision: tras confirmacion de Arsys sobre compatibilidad del plan y metodo de despliegue
+- Ultima actualizacion: 2026-03-20
+- Responsable: usuario (nazaret)
+- Proxima revision: tras despliegue inicial a Arsys y auditorias finales
 
 ## Entornos
 
@@ -27,13 +27,18 @@
 - El `.htaccess` de la raiz del hosting no es editable por FTP.
 - El `.htaccess` dentro de `html/` si es visible y editable.
 
-## Estado de decisiones (marzo 2026)
+## Estado de decisiones (marzo 2026) - ACTUALIZADO
 
+✅ **Completados:**
 - Formulario v1 implementado con validacion y seguridad server-side.
-- Capa de transporte actual: `mail()` en produccion.
-- Decision de siguiente iteracion: migrar transporte de correo a PHPMailer con SMTP autenticado.
-- Decision de despliegue: priorizar pipeline de GitHub Actions frente a subida manual por FTP.
-- Decision operativa de soporte: consultar primero a Arsys si el plan WordPress basico admite este cambio de uso antes de seguir con la migracion tecnica.
+- Migracion de transporte: `mail()` → PHPMailer + SMTP autenticado (COMPLETADO).
+- Confirmacion de Arsys: Plan WP Basico soporta PHP + SMTP + SFTP (CONFIRMADO 2026-03-20).
+- Paginas legales: preguntas-frecuentes.php, politica-privacidad.php, politica-cookies.php (COMPLETADAS).
+
+**Pendientes:**
+- Decision de despliegue: Implementar pipeline de GitHub Actions → SFTP a Arsys.
+- Configurar variables de entorno SMTP en panel Arsys.
+- Auditorias finales: Lighthouse + axe + pruebas manuales.
 
 ## Estrategia de despliegue recomendada (GitHub Actions)
 
@@ -44,14 +49,17 @@
 - Metodo de despliegue pendiente de confirmar con Arsys: SFTP o SSH.
 - Si no hay SSH, el objetivo minimo aceptable es despliegue automatizado por SFTP desde GitHub Actions.
 
-## Bloqueadores pendientes con Arsys
+## Bloqueadores resueltos con Arsys (2026-03-20) ✅
 
-- Confirmar si el plan WordPress basico permite servir un proyecto PHP propio sin WordPress.
-- Confirmar metodo de despliegue automatizable desde GitHub Actions (SFTP/SSH).
-- Confirmar capacidades SMTP autenticado (host, puerto, TLS, limites).
-- Confirmar si el cambio de uso de WordPress a PHP propio requiere cambio de plan.
-- Confirmar si se pueden definir variables de entorno o alternativa equivalente en panel.
-- Confirmar si existe opcion de entorno de pruebas (subdominio o carpeta separada).
+✅ Plan WP Basico permite: PHP + SMTP autenticado + SFTP
+✅ Metodo de despliegue confirmado: SFTP (GitHub Actions)
+✅ SMTP autenticado soportado en panel
+✅ No requiere cambio de plan
+✅ SSL permanecera activo en ecomadaya.es
+
+**Pendiente de configuracion en panel Arsys:**
+- Variables de entorno SMTP (host, puerto, usuario, password, from, etc.)
+- Acceso SFTP para GitHub Actions (usuario/token dedicado recomendado)
 
 ## Estructura de despliegue
 

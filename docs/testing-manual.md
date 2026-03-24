@@ -1,8 +1,8 @@
 # Testing Manual
 
-- Ultima actualizacion: 2026-03-17
-- Responsable: PENDIENTE
-- Proxima revision: al terminar la primera implementacion del formulario
+- Ultima actualizacion: 2026-03-20
+- Responsable: usuario (nazaret)
+- Proxima revision: tras primer despliegue a Arsys y primer envio SMTP real
 
 ## Objetivo
 
@@ -61,13 +61,18 @@ Plantilla:
 
 ## Criterio de salida para activar envio real del formulario
 
-- [ ] Todos los casos del bloque de formulario en estado OK.
-- [ ] Comprobacion manual de enlace legal junto al checkbox de consentimiento.
-- [ ] Verificacion de mensaje de contingencia con canales directos ante fallo de envio.
+✅ **Todos los criterios completados:**
 
-## Casos para migracion a PHPMailer (v1.1)
+- [x] Todos los casos del bloque de formulario en estado OK.
+- [x] Comprobacion manual de enlace legal junto al checkbox de consentimiento.
+- [x] Verificacion de mensaje de contingencia con canales directos ante fallo de envio.
+- [x] Migracion a PHPMailer + SMTP completada y validada en local.
 
-Ejecutados en local con XAMPP + Mailpit (2026-03-17):
+**Pendiente en producción:** Configurar variables SMTP en panel Arsys para activar envio real.
+
+## Migración a PHPMailer (v1.1) - COMPLETADA ✅
+
+Ejecutados en local con XAMPP + Mailpit (2026-03-17) y en código:
 
 - [x] Envio correcto mediante SMTP autenticado (local con Mailpit).
 - [x] Fallback funcional a mensaje de contingencia cuando SMTP falle (puerto incorrecto).
@@ -76,9 +81,9 @@ Ejecutados en local con XAMPP + Mailpit (2026-03-17):
 - [x] Mantener comportamiento PRG (sin reenvio al refrescar).
 - [x] Mantener validaciones y protecciones actuales (CSRF, honeypot, rate limit).
 
-Pendiente ejecutar en produccion con SMTP real:
+**Pendiente en producción:**
 
-- [ ] Envio correcto con credenciales SMTP del proveedor (Arsys o Gmail).
+- [ ] Envio correcto con credenciales SMTP del proveedor (Arsys SMTP).
 - [ ] Correo recibido en buzon objetivo sin caer en spam.
 - [ ] `MADAYA_SMTP_AUTH` activo (no definir o valor `1`).
 - [ ] `MADAYA_SMTP_DEBUG=0` confirmado en produccion.

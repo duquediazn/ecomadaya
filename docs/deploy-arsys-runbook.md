@@ -1,21 +1,28 @@
 # Runbook de Despliegue en Arsys (Apache)
 
-- Ultima actualizacion: 2026-03-16
-- Responsable: PENDIENTE
-- Proxima revision: antes del cutover a produccion
+- Ultima actualizacion: 2026-03-20
+- Responsable: usuario (nazaret)
+- Proxima revision: tras configurar credenciales SMTP en panel y ejecutar primer test de despliegue
 
 ## Objetivo
 
 Desplegar el sitio en Arsys manteniendo separacion entre contenido publico y codigo interno, con rollback rapido.
 
-## Contexto tecnico actual
+## Contexto tecnico actual (CONFIRMADO con Arsys 2026-03-20)
 
-- PHP 8.2 disponible en el panel (confirmado).
-- SMTP aparece habilitado en el panel (pendiente confirmar parametros para app PHP).
-- Hay acceso FTP.
-- No se puede editar `.htaccess` por FTP (pendiente alternativa en panel).
-- Se prioriza despliegue por GitHub Actions en lugar de migracion manual por FTP.
-- Se planifica migrar transporte de correo de `mail()` a PHPMailer + SMTP autenticado.
+✅ **Confirmado:**
+- PHP 8.2 disponible en el panel.
+- SMTP autenticado soportado en panel.
+- Acceso SFTP disponible.
+- Certificado SSL permanecera activo en ecomadaya.es.
+
+✅ **Decisión de despliegue:**
+- Se utiliza GitHub Actions → SFTP a Arsys (no FTP manual).
+- Se planificó migrar transporte de correo de `mail()` a PHPMailer + SMTP autenticado ✅ **COMPLETADO**.
+
+**Pendiente:**
+- Configurar variables de entorno SMTP en panel Arsys
+- Crear usuario/token SFTP dedicado para GitHub Actions (si Arsys lo ofrece)
 
 ## Mensaje corto recomendado para Arsys
 
