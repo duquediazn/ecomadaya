@@ -1,5 +1,13 @@
 </main>
 
+<?php
+$footerHasExternalMediaConsent = madayaHasExternalMediaConsent();
+$footerExternalMediaReturnTo = isset($_SERVER['REQUEST_URI']) ? (string) $_SERVER['REQUEST_URI'] . '#row-section-legal' : '/index.php#row-section-legal';
+$footerEscape = static function (string $value): string {
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+};
+?>
+
 <footer class="site-footer">
     <section class="row-section-site">
         <div class="footer-col">
@@ -35,7 +43,29 @@
                     <li><a href="<?php echo MADAYA_MAPS_URL; ?>" target="_blank" rel="noopener noreferrer">C/ Obispo Perez Caceres, 97, La Laguna, Tenerife</a></li>
                 </ul>
             </address>
-            <iframe title="Ubicacion de Tapizados Madaya en Google Maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d56111.95146538817!2d-16.308823!3d28.479638000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc41ccf7465c1a57%3A0x4059bd340db92d8f!2sTapizados%20Madaya!5e0!3m2!1ses!2sus!4v1765401424268!5m2!1ses!2sus" width="400" height="225" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div id="footer-map-embed-slot">
+                <?php if ($footerHasExternalMediaConsent): ?>
+                    <iframe title="Ubicacion de Tapizados Madaya en Google Maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d56111.95146538817!2d-16.308823!3d28.479638000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc41ccf7465c1a57%3A0x4059bd340db92d8f!2sTapizados%20Madaya!5e0!3m2!1ses!2sus!4v1765401424268!5m2!1ses!2sus" width="400" height="225" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <?php else: ?>
+                    <p>El mapa está desactivado hasta que aceptes la carga de contenido externo.</p>
+                    <form class="consent-form"
+                        method="post"
+                        action="/api/consentimiento-embeds.php"
+                        data-external-media-consent-form
+                        data-embed-target="footer-map-embed-slot"
+                        data-embed-width="400"
+                        data-embed-height="225"
+                        data-cookie-name="<?php echo $footerEscape(MADAYA_EXTERNAL_MEDIA_CONSENT_COOKIE); ?>"
+                        data-cookie-max-age="<?php echo $footerEscape((string) MADAYA_EXTERNAL_MEDIA_CONSENT_MAX_AGE); ?>">
+                        <input type="hidden" name="decision" value="accept">
+                        <input type="hidden" name="return_to" value="<?php echo $footerEscape($footerExternalMediaReturnTo); ?>">
+                        <input type="hidden" name="embed_src" value="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d56111.95146538817!2d-16.308823!3d28.479638000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc41ccf7465c1a57%3A0x4059bd340db92d8f!2sTapizados%20Madaya!5e0!3m2!1ses!2sus!4v1765401424268!5m2!1ses!2sus">
+                        <input type="hidden" name="embed_title" value="Ubicacion de Tapizados Madaya en Google Maps">
+                        <button type="submit" class="btn btn--small btn--primary">Aceptar y cargar mapa</button>
+                    </form>
+                    <p><a class="link-primary" href="/politica-cookies/">Ver política de cookies</a></p>
+                <?php endif; ?>
+            </div>
         </div>
         <div class="footer-col">
             <h2 class="footer__heading">Horario</h2>
@@ -55,7 +85,7 @@
     
     <section id="row-section-legal">
         <p>
-            Copyright &copy; <?php echo date("Y"); ?>
+            Copyright &copy; <?php echo date("Y"); ?> Tapizados Madaya. Sitio creado por 
             <a href="https://github.com/duquediazn" target="_blank" rel="noopener noreferrer">duquediazn</a>.
         </p>
         <p class="license-summary">

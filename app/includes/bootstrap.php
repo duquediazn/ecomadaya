@@ -72,9 +72,19 @@ if (!defined('MADAYA_REVIEW_COUNT')) {
     define('MADAYA_REVIEW_COUNT', '34');
 }
 
+// Consentimiento para contenido externo embebido (Google Maps / YouTube).
+if (!defined('MADAYA_EXTERNAL_MEDIA_CONSENT_COOKIE')) {
+    define('MADAYA_EXTERNAL_MEDIA_CONSENT_COOKIE', 'madaya_external_media_consent');
+}
+
+if (!defined('MADAYA_EXTERNAL_MEDIA_CONSENT_MAX_AGE')) {
+    // 180 dias.
+    define('MADAYA_EXTERNAL_MEDIA_CONSENT_MAX_AGE', 60 * 60 * 24 * 180);
+}
+
 // Generar URLs de WhatsApp con mensajes predefinidos para presupuesto y cita previa.
 $whatsAppBaseUrl = "https://wa.me/" . preg_replace('/\D+/', '', MADAYA_PHONE_E164);
-$whatsAppBudgetMessage = rawurlencode("Hola, me gustaría pedir presupuesto para tapicería/restauración.");
+$whatsAppBudgetMessage = rawurlencode("Hola, me gustaría pedir presupuesto para un trabajo.");
 $whatsAppAppointmentMessage = rawurlencode("Hola, me gustaría concertar una cita.");
 
 $whatsAppBudgetUrl = $whatsAppBaseUrl . "?text=" . $whatsAppBudgetMessage;
@@ -182,4 +192,37 @@ if (!defined('MADAYA_SMTP_AUTH')) {
     // Por defecto true en producción. En local con Mailpit establecer MADAYA_SMTP_AUTH=0.
     $smtpAuth = !in_array($smtpAuthRaw, ['0', 'false', 'no', 'off'], true);
     define('MADAYA_SMTP_AUTH', $smtpAuth);
+}
+
+/**
+ * Devuelve true si existe consentimiento para cargar embeds externos.
+ *
+ * @return bool
+ */
+function madayaHasExternalMediaConsent(): bool
+{
+    $raw = $_COOKIE[MADAYA_EXTERNAL_MEDIA_CONSENT_COOKIE] ?? '';
+    return $raw === 'accepted';
+}
+
+/**
+ * Guarda la preferencia de consentimiento para embeds externos.
+ *
+ * @param bool $accepted
+ * @return void
+ */
+function madayaSetExternalMediaConsent(bool $accepted): void
+{
+    $value = $accepted ? 'accepted' : 'rejected';
+
+    setcookie(MADAYA_EXTERNAL_MEDIA_CONSENT_COOKIE, $value, [
+        'expires' => time() + MADAYA_EXTERNAL_MEDIA_CONSENT_MAX_AGE,
+        'path' => '/', 
+        'secure' => APP_ENV === 'production', 
+        'httponly' => false, 
+        'samesite' => 'Lax',
+    ]);
+
+    // Sincroniza el valor para la peticion actual.
+    $_COOKIE[MADAYA_EXTERNAL_MEDIA_CONSENT_COOKIE] = $value;
 }

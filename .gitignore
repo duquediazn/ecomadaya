@@ -62,6 +62,7 @@ npm-debug.log
 # ----------------------------------------
 
 # Archivos que puede generar PHP en hosting compartido
+.htaccess
 .htaccess~
 *.bak
 *.swp
@@ -79,3 +80,5 @@ npm-debug.log
 # ----------------------------------------
 # OTROS ARCHIVOS QUE NO DEBERÍAN SUBIRSE
 # ----------------------------------------
+/notas-proyecto
+.github/agents

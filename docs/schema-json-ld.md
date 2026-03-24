@@ -1,7 +1,6 @@
 # Schema.org / JSON-LD (`application/ld+json`)
 
 - Ultima actualizacion: 2026-03-13
-- Responsable: PENDIENTE
 - Proxima revision: Cuando cambie cualquier dato del negocio
 
 ## Qué es y para qué sirve

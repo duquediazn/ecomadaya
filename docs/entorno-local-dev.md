@@ -2,7 +2,10 @@
 
 - Ultima actualizacion: 2026-03-17
 - Aplicable a: Windows (XAMPP) y Linux (Apache nativo)
-- Objetivo: reproducir el entorno de pruebas SMTP local en cualquier maquina
+
+## Objetivo
+
+Definir una guía reproducible para levantar el entorno local del proyecto en Windows y Linux, con servidor web, variables de entorno y un SMTP de pruebas basado en Mailpit, de forma que se puedan validar el formulario de contacto, el transporte SMTP y el comportamiento general del sitio antes de desplegar en Arsys.
 
 ## Requisitos previos
 
@@ -47,41 +50,7 @@ UI accesible en http://127.0.0.1:8025
 
 Dejar esta terminal abierta durante las pruebas. Para cerrar: `Ctrl+C`.
 
-### 4. Configurar VirtualHost en XAMPP
-
-**Opcion recomendada: servir `public/` como raiz web**
-
-Editar `C:\xampp\apache\conf\extra\httpd-vhosts.conf` y anadir:
-
-```apache
-<VirtualHost *:80>
-    ServerName ecomadaya.local
-    DocumentRoot "C:/xampp/htdocs/ecomadaya/public"
-
-    <Directory "C:/xampp/htdocs/ecomadaya/public">
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
-
-    ErrorLog "logs/ecomadaya-error.log"
-    CustomLog "logs/ecomadaya-access.log" common
-</VirtualHost>
-```
-
-Anadir dominio local al archivo `hosts` (como Administrador):
-
-```
-C:\Windows\System32\drivers\etc\hosts
-```
-
-Anadir la linea:
-
-```
-127.0.0.1 ecomadaya.local
-```
-
-### 5. Configurar variables de entorno SMTP en Apache
+### 4. Configurar variables de entorno SMTP en Apache
 
 Anadir al final de `C:\xampp\apache\conf\httpd.conf`:
 
@@ -105,21 +74,21 @@ SetEnv MADAYA_SMTP_DEBUG 0
 Nota importante: `MADAYA_SMTP_AUTH 0` es necesario porque Mailpit no requiere autenticacion.
 En produccion no definir esta variable (el valor por defecto es autenticacion activa).
 
-### 6. Reiniciar Apache
+### 5. Reiniciar Apache
 
 Usar el panel de XAMPP: **Stop** completo y luego **Start**.
 Evitar el boton Restart porque a veces no recarga `SetEnv`.
 
-### 7. Instalar dependencias PHP
+### 6. Instalar dependencias PHP
 
 ```powershell
 cd C:\xampp\htdocs\ecomadaya
 composer install
 ```
 
-### 8. Verificar entorno
+### 7. Verificar entorno
 
-Crear temporalmente `public/debug-env.php`:
+Crear temporalmente `debug-env.php` en la raíz del proyecto:
 
 ```php
 <?php
@@ -130,7 +99,7 @@ echo 'SMTP_AUTH=' . (getenv('MADAYA_SMTP_AUTH') ?: 'NO_DEFINIDO') . "\n";
 echo 'APP_ENV='   . (getenv('APP_ENV') ?: 'NO_DEFINIDO') . "\n";
 ```
 
-Abrir http://ecomadaya.local/debug-env.php y verificar los valores.
+Abrir http://ecomadaya/debug-env.php y verificar los valores.
 **Borrar este archivo inmediatamente despues de verificar.**
 
 ### 9. Ver logs de errores SMTP
@@ -191,9 +160,9 @@ Crear `/etc/apache2/sites-available/ecomadaya.conf`:
 ```apache
 <VirtualHost *:80>
     ServerName ecomadaya.local
-    DocumentRoot /var/www/ecomadaya/public
+    DocumentRoot /var/www/ecomadaya
 
-    <Directory /var/www/ecomadaya/public>
+    <Directory /var/www/ecomadaya>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -256,24 +225,22 @@ tail -f /var/log/apache2/ecomadaya-error.log | grep '\[contacto\]'
 
 ## Bateria de pruebas a ejecutar tras montar el entorno
 
-Ver seccion completa en `docs/testing-manual.md`.
-
-Resumen minimo:
+Resumen mínimo:
 
 | # | Prueba | Esperado |
 |---|--------|----------|
-| 1 | Envio formulario valido | Exito en web + correo en Mailpit |
-| 2 | Email invalido | Error de validacion, sin correo |
-| 3 | Sin consentimiento | Error de validacion, sin correo |
-| 4 | Refrescar tras exito (F5) | Sin duplicado en Mailpit (PRG) |
+| 1 | Envio formulario válido | Éxito en web + correo en Mailpit |
+| 2 | Email inválido | Error de validación, sin correo |
+| 3 | Sin consentimiento | Error de validación, sin correo |
+| 4 | Refrescar tras éxito (F5) | Sin duplicado en Mailpit (PRG) |
 | 5 | Puerto SMTP incorrecto | Mensaje de contingencia, sin correo |
-| 6 | Restaurar puerto y reenviar | Exito confirmado |
+| 6 | Restaurar puerto y reenviar | Éxito confirmado |
 
 ---
 
 ## Notas de seguridad
 
-- `MADAYA_SMTP_AUTH 0` solo para Mailpit local. Nunca en produccion.
-- Borrar `debug-env.php` inmediatamente despues de usarlo.
+- `MADAYA_SMTP_AUTH 0` solo para Mailpit local. Nunca en producción.
+- Borrar `debug-env.php` inmediatamente después de usarlo.
 - No subir al repositorio archivos con credenciales reales.
 - `vendor/` no se sube al repositorio (esta en `.gitignore`).

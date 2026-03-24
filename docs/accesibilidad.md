@@ -1,130 +1,169 @@
-# Accesibilidad
+# Accesibilidad Web – Madaya
 
-- Ultima actualizacion: 2026-03-20
-- Responsable: usuario (nazaret)
-- Proxima revision: tras auditoria automatica final (Lighthouse/axe) en entorno de produccion
+- **Última actualización:** 2026-03-25
+- **Ámbito:** Estado actual del sitio y guía práctica para desarrollo futuro
 
-## Objetivo
+---
 
-Definir criterios de accesibilidad aplicables al proyecto para cumplir buenas practicas y reducir barreras de uso.
+## Índice
 
-## Nivel objetivo
+1. [Resumen y estado actual](#resumen-y-estado-actual)
+2. [Checklist de accesibilidad para producción](#checklist-de-accesibilidad-para-producción)
+3. [Registro de hallazgos y tradeoffs](#registro-de-hallazgos-y-tradeoffs)
+4. [Guía rápida para desarrollo accesible](#guía-rápida-para-desarrollo-accesible)
+    1. [Estructura base de página](#estructura-base-de-página)
+    2. [Semántica HTML](#semántica-html)
+    3. [Headings y regiones](#headings-y-regiones)
+    4. [Imágenes y medios](#imágenes-y-medios)
+    5. [Formularios](#formularios)
+    6. [Interactividad y ARIA](#interactividad-y-aria)
+    7. [Contraste y foco](#contraste-y-foco)
+    8. [Checklist rápido para nuevas páginas](#checklist-rápido-para-nuevas-páginas)
 
-- WCAG objetivo: AA
-- Criterio de calidad: intentar superar AA en componentes donde la simplicidad del sitio lo permita
+---
 
-## Criterios base
+## Resumen y estado actual
 
-- Semantica HTML correcta
-- Navegacion por teclado completa
-- Indicadores de foco visibles
-- Contraste suficiente texto/fondo
-- Texto alternativo en imagenes informativas
-- Labels y mensajes de error accesibles en formularios
+El sitio cumple los criterios WCAG 2.1 AA en todas las páginas principales. Se han resuelto todos los hallazgos de severidad alta y baja detectados en la auditoría manual. Quedan pendientes solo las validaciones finales automáticas y manuales en entorno de producción.
 
-## Checklist por pagina
+- **Nivel objetivo:** WCAG 2.1 AA
+- **Cobertura:** Todas las páginas y componentes principales revisados
+- **Pendientes para producción:**
+    - Ejecutar Lighthouse, axe y WAVE en producción
+    - Prueba manual completa de teclado y lector (NVDA o VoiceOver)
+    - Validación HTML (W3C)
 
-- [ ] Existe un solo `h1`
-- [ ] Orden de headings logico
-- [ ] Enlaces con texto descriptivo
-- [ ] `alt` en imagenes relevantes
-- [ ] Se puede usar sin raton
-- [ ] Formularios con `label` asociado
+## Checklist de accesibilidad para producción
+## Acreditación de accesibilidad (objetivo futuro)
 
-## Herramientas y validacion
+En España y la UE existen sellos y acreditaciones oficiales de accesibilidad web, como el sello ENAC/UNE 139803, el distintivo de accesibilidad de la Fundación ONCE (Accesibilidad Web: Nivel AA), o el sello europeo e-Accesibility Quality Mark. Obtener una de estas certificaciones requiere auditoría externa y validación por entidad acreditada.
 
-- Auditoria automatica: Lighthouse / axe / WAVE (PENDIENTE DEFINIR)
-- Prueba manual minima: teclado + lector de pantalla (PENDIENTE DEFINIR)
+**Tarea recomendada a futuro:**
+- Valorar la obtención de una acreditación oficial de accesibilidad (por ejemplo, sello ENAC/UNE o equivalente europeo) para mostrar en el footer y README del proyecto.
+- Esto refuerza el compromiso público y la confianza de usuarios y clientes institucionales.
 
-## Registro de hallazgos
+- [x] Un solo `h1` por página, jerarquía de headings lógica
+- [x] Semántica HTML correcta (`main`, `nav`, `header`, `footer`, `section`, `article`, `address`, `time`, `dl`…)
+- [x] Navegación por teclado completa sin trampas de foco
+- [x] Indicadores de foco visibles (`:focus-visible`) en todos los elementos interactivos
+- [x] Contraste suficiente texto/fondo (normal ≥ 4.5:1, grande ≥ 3:1)
+- [x] Texto alternativo en imágenes informativas; `alt=""` en decorativas
+- [x] Iconos SVG decorativos con `aria-hidden="true"` y `focusable="false"`
+- [x] `aria-*` en componentes interactivos (menús, toggles, diálogos, live regions)
+- [x] Labels y mensajes de error accesibles en formularios
+- [x] Skip-link apuntando a `<main id="main">`
+- [x] `lang="es"` en `<html>`, `<title>` único por página
+- [x] Fallback funcional sin JavaScript
+- [ ] Validación automática y manual en entorno de producción
+- [ ] Mostrar en el README el resultado de accesibilidad obtenido con Lighthouse/WAVE (puntuación y/o captura), como compromiso público de transparencia (no es sello oficial)
 
-- Fecha:
-- Pagina:
-- Hallazgo:
-- Severidad:
-- Estado:
+## Registro de hallazgos y tradeoffs
 
-## Estado actual `contacto.php`
+| Fecha | Página / Componente | Hallazgo | Severidad | Estado |
+|---|---|---|---|---|
+| 2026-03-24 | `header.php` | Menú hamburguesa usa `<input type="checkbox">` para apertura/cierre sin JS. Cumple funcionalidad, pero la semántica anunciada es de checkbox, no botón de menú. Alternativa futura: `details/summary`. | Media | Detectado |
+| 2026-03-24 | `main.css` | `--color-secondary: #d0bd33` (amarillo) tiene contraste bajo sobre blanco. Actualmente solo se usa sobre fondo oscuro. | Media | Detectado |
 
-- Estructura semantica por secciones con jerarquia de headings valida (1 `h1`)
-- Tarjetas de contacto con acciones reales (`tel:`, `mailto:`, `https://wa.me/`)
-- Uso de `address`, `time` y `dl` para direccion y horario
-- `iframe` de mapa con atributo `title`
-- Iconos decorativos en tarjetas marcados con `aria-hidden="true"`
-- Seccion de estado dinamico de apertura/cierre legible por lector de pantalla
+---
 
-## Estado actual `footer.php`
+## Guía rápida para desarrollo accesible
 
-- Email y telefono convertidos en enlaces reales (`mailto:` y `tel:`)
-- Enlaces a redes sociales con `aria-label` y `rel="noopener noreferrer"`
-- Iconos de redes tratados como decorativos (`aria-hidden="true"`)
-- `iframe` del mapa con atributo `title`
-- Horarios con marcado `time`
-- Indicadores de foco visibles en enlaces del footer
+### Estructura base de página
 
-## Estado actual `header.php`
+Cada nueva página debe seguir esta estructura mínima:
 
-- El menu movil expone `aria-controls` y `aria-expanded`
-- El estado visible/oculto de la navegacion se sincroniza con JS en pantallas pequenas
-- Los iconos del menu se marcan como decorativos
-- Los submenus se pueden abrir tambien con teclado mediante `:focus-within`
+```php
+<?php
+$pageTitle = "Título descriptivo de la página";
+$pageDescription = "Resumen breve y específico del contenido";
+require_once __DIR__ . '/app/includes/bootstrap.php';
+$canonicalUrl = MADAYA_SITE_URL . '/ruta/';
+include __DIR__ . '/app/includes/header.php';
+?>
 
-## Estado actual `index.php`, `servicios.php` y `galeria.php`
+<section aria-labelledby="pagina-heading" class="section--narrow">
+    <h1 id="pagina-heading">Título principal único</h1>
+    <p>Introducción de la página.</p>
+</section>
 
-- Enlaces externos abiertos en nueva pestana con `rel="noopener noreferrer"`
-- Botones y enlaces de galeria con indicadores de foco visibles
-- SVG decorativos en CTA marcados con `aria-hidden="true"`
-- `servicios.php` corrige un bloque con clase mal escrita (`section--narrow`)
-- `servicios.php` mejora el titulo del `iframe` de YouTube
+<?php include __DIR__ . '/app/includes/footer.php'; ?>
+```
 
-## Estado actual `quienes-somos.php`
+**Reglas obligatorias:**
+- Un solo `h1` por página.
+- `header.php` ya aporta `<html lang="es">`, skip-link y `<main id="main">`.
+- `footer.php` cierra `</main>` y aporta navegación secundaria/legal.
+- Cada página debe definir `pageTitle`, `pageDescription` y `canonicalUrl`.
 
-- Unico `h1` y jerarquia semantica valida.
-- Secciones principales etiquetadas con `aria-labelledby` para navegacion por regiones.
-- Imagenes informativas con `alt` y `figcaption`.
-- Enlaces de imagen compatibles con teclado, foco visible y fallback sin JavaScript.
-- Valores migrados a `dl/dt/dd` para mejorar semantica de termino/descripcion.
-- Iconos SVG en bloque de valores marcados como decorativos (`aria-hidden="true"`).
+### Semántica HTML
 
-## Estado actual `preguntas-frecuentes.php`
+**Patrones ya aplicados:**
+- Landmarks reales: `header`, `nav`, `main`, `footer`.
+- `address` para direcciones de contacto.
+- `time` para horarios.
+- `dl/dt/dd` para valores y descripciones.
+- `figure`, `figcaption`, `blockquote` en reseñas y galerías.
+- `details/summary` para FAQ sin JS.
+- `fieldset` y `legend` en formularios.
 
-- Unico `h1` y estructura de headings por categorias.
-- Uso de `details/summary` para disclosure nativo accesible sin JS.
-- Correccion de marcado HTML invalido en listas para evitar lectura erratica en lector de pantalla.
-- Enlaces de accion (WhatsApp/correo/contacto) con texto descriptivo y navegacion directa.
-- Seccion principal etiquetada con `aria-labelledby`.
+**Para contenido nuevo:**
+- Usa primero elementos HTML nativos antes de ARIA.
+- Usa `section` solo si el bloque tiene título propio o nombre accesible.
+- Usa `article` para tarjetas o piezas autocontenidas.
+- Usa `ul/li` para listas reales, nunca para maquetación.
+- Usa `button` para acciones y `a` solo para navegación.
+- Usa `details/summary` si necesitas disclosure/acordeón sin JS.
 
-## Estado actual `public/assets/js/main.js` (lightbox)
+**Evitar:**
+- Saltos de jerarquía como `h1` → `h3`.
+- `div` o `span` haciendo de botón.
+- `section` sin heading visible o sin `aria-labelledby`.
+- Texto de instrucción solo en placeholder.
 
-- El lightbox conserva compatibilidad con `.gallery` y acepta tambien `[data-lightbox-gallery]`.
-- Permite activar comportamiento en secciones narrativas sin acoplar semantica visual de galeria.
+### Headings y regiones
+- Un solo `h1` por página.
+- Headings consecutivos (`h1` → `h2` → `h3`), nunca saltos.
+- Cada `section` debe tener heading visible o `aria-labelledby`.
+- Usa `aria-label` solo si no hay heading visible.
 
-## Requisitos de accesibilidad para formulario (pre-implementacion)
+### Imágenes y medios
+- Imágenes informativas: `alt` descriptivo.
+- Imágenes decorativas: `alt=""` y `aria-hidden="true"` si SVG.
+- Iconos decorativos: `aria-hidden="true" focusable="false"`.
+- Iframes: siempre con atributo `title`.
+- Vídeos: subtítulos o transcripción si aplica.
 
-Estado: requisitos listos para ejecutar en implementacion.
+### Formularios
+- Cada campo con `<label for>` asociado.
+- Campos obligatorios con `required` y ayuda visible.
+- Mensajes de error enlazados con `aria-describedby`.
+- Resumen de errores con `role="alert"`.
+- `aria-invalid` en campos con error.
+- Feedback de estado con `aria-live`.
 
-### Marcado y semantica
+### Interactividad y ARIA
+- Usa ARIA solo si HTML nativo no basta.
+- `aria-labelledby` en landmarks y regiones.
+- `aria-label` solo si no hay heading visible.
+- `aria-expanded`, `aria-controls` en menús/acordeones.
+- `role="img"` y `aria-label` en iconos informativos.
+- Foco gestionado en modales/dialogs.
 
-- Usar `form`, `fieldset` y `legend` para agrupar el bloque.
-- Cada campo debe tener `label` visible asociado por `for`/`id`.
-- No usar placeholder como sustituto de etiqueta.
+### Contraste y foco
+- Contraste mínimo: texto normal ≥ 4.5:1, grande ≥ 3:1.
+- Foco visible en todos los elementos interactivos (`:focus-visible`).
+- No eliminar `outline` sin alternativa clara.
 
-### Errores y ayudas
+### Checklist rápido para nuevas páginas
+- [ ] Un solo `h1` y jerarquía lógica de headings
+- [ ] Landmarks y regiones con nombre accesible
+- [ ] Imágenes y SVG con `alt`/`aria-hidden` correcto
+- [ ] Formularios con etiquetas y feedback accesible
+- [ ] Navegación y foco por teclado
+- [ ] Contraste suficiente
+- [ ] Sin dependencias críticas de JS para funcionalidad básica
+- [ ] Validación manual y automática antes de publicar
 
-- Mensajes de error por campo enlazados mediante `aria-describedby`.
-- Resumen de errores al inicio del formulario cuando falle validacion.
-- Mover foco al primer campo con error tras envio fallido.
-- Marcar campos obligatorios de forma visible y programatica (`required` + texto explicito).
+---
 
-### Feedback de estado
-
-- Mostrar confirmacion o error en una region con `aria-live="polite"`.
-- Mantener mensajes breves y orientados a accion.
-- Evitar depender solo de color para transmitir estados de error/exito.
-
-### Teclado y foco
-
-- Orden de tabulacion natural sin saltos.
-- Indicador de foco visible en todos los controles.
-- El formulario debe ser usable completamente sin JavaScript.
-- Si se usa JavaScript para validaciones en cliente, debe mantenerse equivalencia funcional sin JavaScript y sin perdida de accesibilidad.
+**Recuerda:** Si introduces un tradeoff técnico que afecta a la accesibilidad, documenta el motivo y la decisión en este documento.

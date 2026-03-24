@@ -205,16 +205,20 @@ function madayaContactValidate(array $rawData): array
     }
 
     if ($email === '' || filter_var($email, FILTER_VALIDATE_EMAIL) === false || madayaContactStrLen($email) > 254) {
-        $errors['email'] = 'Introduce un correo electronico valido.';
+        $errors['email'] = 'Introduce un correo electrónico válido.';
     }
 
     if ($telefono !== '' && !preg_match('/^[0-9+() .-]{6,25}$/', $telefono)) {
-        $errors['telefono'] = 'El telefono solo puede contener numeros, espacios y +().-';
+        $errors['telefono'] = 'El teléfono solo puede contener números, espacios y +().-';
     }
 
     $allowedPreferences = ['email', 'llamada', 'whatsapp'];
     if (!in_array($preferencia, $allowedPreferences, true)) {
-        $errors['preferencia_contacto'] = 'Selecciona una preferencia de contacto valida.';
+        $errors['preferencia_contacto'] = 'Selecciona una preferencia de contacto válida.';
+    }
+
+    if (in_array($preferencia, $allowedPreferences, true) && $preferencia !== 'email' && $telefono === '') {
+        $errors['telefono'] = 'El teléfono es obligatorio si tu preferencia de contacto no es email.';
     }
 
     $messageLen = madayaContactStrLen($mensaje);
@@ -223,7 +227,7 @@ function madayaContactValidate(array $rawData): array
     }
 
     if ($consentimiento !== '1') {
-        $errors['consentimiento_privacidad'] = 'Debes aceptar la Politica de privacidad para enviar el formulario.';
+        $errors['consentimiento_privacidad'] = 'Debes aceptar la Política de privacidad para enviar el formulario.';
     }
 
     return [
@@ -266,9 +270,9 @@ function madayaContactBuildSubmittedAt(): array
 /**
  * Redirige a la página de contacto preservando ancla del formulario.
  *
- * @return never
+ * @return void
  */
-function madayaContactRedirectToPage(): never
+function madayaContactRedirectToPage(): void
 {
     header('Location: /contacto.php#formulario-contacto', true, 303);
     exit;

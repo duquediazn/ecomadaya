@@ -1,97 +1,87 @@
 # Legal y Cumplimiento
 
-- Ultima actualizacion: 2026-03-16
-- Responsable: PENDIENTE
-- Proxima revision: antes de activar envio real del formulario
+- Última actualización: 2026-03-25
+- Estado global: resumen de estado actual legal-técnico
+- Próxima revisión: después de la primera prueba de despliegue manual en Arsys
 
-## Objetivo
+## Objetivo de este documento
 
-Controlar el estado de las paginas y requisitos legales antes de publicar.
+Ofrecer una vista resumida y operativa del estado legal del sitio según lo implementado en el código y en los textos publicados.
 
-## Paginas legales del proyecto
+Importante:
+
+- Este documento no certifica cumplimiento legal absoluto.
+- Identifica coherencia técnica, riesgos residuales y pendientes de validación externa.
+
+## Estado actual por documento legal
+
+### Aviso legal (`aviso-legal.php`)
+
+- Estado: publicado y alineado con la estructura actual del proyecto.
+- Coherencia técnica: alta.
+- Observación: mantiene referencias correctas a licencia y activos propietarios (`/LICENSE` y `/NOTICE`).
+- Riesgo residual: bajo.
+
+### Politica de privacidad (`politica-privacidad.php`)
+
+- Estado: publicada y actualizada al estado técnico real.
+- Coherencia técnica: alta.
+- Refleja:
+  - formulario con datos de contacto y metadatos técnicos (fecha/hora, IP, User-Agent),
+  - Gmail como canal operativo de gestión,
+  - Arsys Correo como infraestructura SMTP técnica de envio del formulario,
+  - terceros de contenido externo (Google Maps/YouTube) y contacto por WhatsApp.
+- Riesgo residual: bajo. La política refleja el estado técnico real: datos del formulario, metadatos técnicos, terceros implicados (Arsys Correo como SMTP, Google Maps/YouTube con bloqueo previo, WhatsApp como enlace iniciado por el usuario).
+
+### Politica de cookies (`politica-cookies.php`)
+
+- Estado: publicada y coherente con la implementación.
+- Coherencia técnica: alta.
+- Refleja:
+  - ausencia de cookies propias de analítica/publicidad,
+  - cookie técnica `madaya_external_media_consent`,
+  - bloqueo previo de Google Maps y YouTube hasta accion expresa.
+- Riesgo residual: bajo. El mecanismo click-to-play empleado (ningún embed de tercero se carga sin acción expresa) es coherente con el art. 5.3 de la Directiva ePrivacy, el art. 22.2 LSSI-CE y el concepto de consentimiento del RGPD (art. 4.11). La cookie de preferencia tiene función estrictamente técnica y no elabora perfiles. Cada bloque de consentimiento incluye enlace a la política de cookies para evidenciar información previa suficiente en el punto de aceptación.
+
+### Condiciones del servicio (`condiciones-servicio.php`)
+
+- Estado: publicado y revisado con redacción mas prudente.
+- Coherencia con FAQ y mensajes comerciales: media-alta.
+- Riesgo residual: medio (requiere validación jurídica externa en materias de consumo: devoluciones, garantía, limitaciones y arbitraje).
+
+## Estado de areas críticas
+
+### Formulario de contacto
+
+- Implementación actual:
+  - consentimiento de privacidad obligatorio,
+  - validación server-side,
+  - CSRF, honeypot y rate limit,
+  - trazabilidad técnica mínima en el correo generado.
+- Estado legal-técnico: alineado.
+- Pendiente operativo: validar extremo a extremo en producción tras primer despliegue manual.
+
+### Cookies, embeds y terceros
+
+- Estado actual:
+  - Google Fonts servida en local,
+  - Google Maps y YouTube bloqueados hasta aceptación,
+  - no analítica propia detectada.
+- Estado legal-técnico: alineado con políticas publicadas.
+
+## Pendientes para cierre del bloque legal
+
+- [ ] Revisión final de condiciones del servicio y FAQ (devoluciones, garantia, limitaciones y arbitraje).
+- [ ] Prueba en producción del flujo de formulario (SMTP Arsys + recepción operativa en Gmail) y registro del resultado.
+
+## Decisiones vigentes
+
+- Se prioriza prueba manual de despliegue antes de implementar GitHub Actions.
+- Gmail permanece como canal operativo de gestión de consultas.
+- Arsys Correo se usa como infraestructura SMTP técnica del formulario.
+- Las comprobaciones finales de SMTP/DKIM se ejecutarán durante la prueba de despliegue.
 
 - `aviso-legal.php`
 - `politica-privacidad.php`
 - `politica-cookies.php`
 - `condiciones-servicio.php`
-
-## Checklist de cumplimiento
-
-- [ ] Textos legales validados por responsable legal/negocio
-- [x] Fecha de ultima revision visible en paginas legales publicadas
-- [x] Politica de cookies publicada con estado actual del sitio
-- [x] Formularios alineados con politica de privacidad
-
-## Estado legal actual (marzo 2026)
-
-- `public/aviso-legal.php`: actualizado y alineado con privacidad/cookies.
-- `public/politica-privacidad.php`: redactada y publicada.
-- `public/politica-cookies.php`: redactada y publicada.
-- `public/condiciones-servicio.php`: pendiente de revision final de contenido.
-
-## Estado cookies y analitica
-
-- Estado actual: no hay cookies propias de analitica/publicidad implementadas.
-- Contexto actual: hay recursos de terceros (Google Maps, YouTube nocookie, Google Fonts) que pueden tratar datos de conexion y/o aplicar cookies propias.
-- Riesgo de cambio: si se incorpora analitica (por ejemplo Google Analytics), implementar banner/consentimiento previo y actualizar textos legales.
-
-## Responsable y aprobacion
-
-- Responsable legal/negocio: PENDIENTE
-- Responsable tecnico: PENDIENTE
-- Fecha de aprobacion pre-produccion: PENDIENTE
-
-## Formulario de contacto (pre-implementacion)
-
-### Estado legal actual del formulario
-
-- [x] `politica-privacidad.php` completada.
-- [x] Checkbox obligatorio de consentimiento enlazado a politica de privacidad.
-- [x] Texto legal de consentimiento con finalidad explicita de consulta/presupuesto.
-- [x] Bloqueo de envio en backend si no existe consentimiento.
-- [x] Trazabilidad de fecha/hora de envio incluida en backend.
-- [x] Mensaje de contingencia visible con canales directos ante fallo de envio.
-
-### Minimos legales a reflejar en politica de privacidad
-
-- Responsable del tratamiento
-- Finalidad (atender contactos y solicitudes de presupuesto)
-- Base juridica (consentimiento)
-- Conservacion de datos
-- Derechos de las personas usuarias y canal para ejercerlos
-- Cesiones o terceros (si aplica por infraestructura de correo)
-
-Estado: cubiertos en la version publicada de `public/politica-privacidad.php`.
-
-### Decision operativa acordada
-
-- Gestion de solicitudes desde una unica cuenta de Gmail
-- Sin autorespuesta automatica
-- Respuesta manual en menos de 24 horas laborales
-
-## Handoff para agente de implementacion del formulario
-
-### Requisitos legales obligatorios en UI (cumplido)
-
-- Checkbox obligatorio no preseleccionado para consentimiento.
-- Enlace visible a `/politica-privacidad.php` junto al checkbox.
-- Si falta consentimiento, bloqueo de envio y mensaje de error accesible.
-
-Texto legal recomendado para el checkbox (v1):
-
-"He leido y acepto la Politica de privacidad para el tratamiento de mis datos con la finalidad de atender mi consulta o solicitud de presupuesto."
-
-### Requisitos legales obligatorios en backend (cumplido)
-
-- No procesar envio si `consentimiento_privacidad` no esta marcado.
-- Registrar fecha/hora del envio para trazabilidad operativa.
-- No usar los datos para finalidades distintas a atencion de consultas/presupuestos.
-- En caso de error de envio, no perder el contexto legal del formulario (mantener checkbox y enlace en respuesta).
-
-### Condicion de activacion en produccion
-
-- No activar el envio real del formulario hasta completar:
-	- validaciones server-side,
-	- protecciones anti-spam minimas,
-	- pruebas manuales de accesibilidad,
-	- checklist de pruebas de `docs/testing-manual.md` para formulario.

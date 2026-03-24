@@ -1,118 +1,78 @@
-# SEO
+# SEO – Estado actual y guía de referencia (2026-03-25)
 
-- Ultima actualizacion: 2026-03-20
-- Responsable: usuario (nazaret)
-- Proxima revision: tras despliegue a produccion y analisis de rich results en buscadores
+**Última revisión SEO:** 2026-03-25
 
-## Objetivo
+## Resumen ejecutivo
 
-Mantener consistencia SEO on-page y tecnica en todas las paginas del sitio.
+El sitio Madaya implementa SEO técnico y on-page alineado con buenas prácticas para sitios multipágina estáticos en PHP. Todas las páginas indexables cuentan con metadatos únicos, canonical coherente y enlazado interno estratégico. El sitemap y robots.txt están actualizados y alineados con la estructura real del sitio.
 
-## SEO tecnico
+## Estado actual (marzo 2026)
 
-- `robots.txt`: presente y actualizado
-- `sitemap.xml`: presente y actualizado
-- Guia de sitemap: ver `docs/sitemap.md`
-- Generacion de sitemap: `php scripts/generate-sitemap.php`
-- Canonical por pagina: PARCIALMENTE ACTUALIZADO
-- URLs amigables y estables: PENDIENTE
-- Plan de redirecciones desde WordPress previo: PENDIENTE (obligatorio antes de produccion)
+- **Metadatos:** Todas las páginas indexables (`index`, `servicios`, `galeria`, `contacto`, `quienes-somos`, `preguntas-frecuentes`, `aviso-legal`, `politica-privacidad`, `politica-cookies`, `condiciones-servicio`) tienen `<title>`, `meta description` y `<h1>` únicos y orientados a intención de búsqueda.
+- **Canonical:** Definido por página, consistente con la URL pública y el sitemap.
+- **Sitemap:** `sitemap.xml` incluye solo URLs reales y vigentes. Ver detalles en `docs/sitemap.md`.
+- **robots.txt:** Permite indexación global y referencia el sitemap público.
+- **Enlazado interno:** Flujo estratégico entre home, servicios, galería, contacto y soporte legal. Sin enlaces rotos.
+- **JSON-LD:**
+  - Global: `FurnitureRepair` (`LocalBusiness`) en todas las páginas vía `header.php`.
+  - FAQ: `FAQPage` en `preguntas-frecuentes.php` (20 Q&A visibles).
+- **Rendimiento:** Imágenes optimizadas, carga de CSS/JS controlada. Métricas CWV a revisar tras despliegue.
+- **Redirecciones:** Pendiente plan 301 desde WordPress previo (imprescindible antes de cierre de migración).
+- **Keywords estratégicas:** Todas las páginas principales integran de forma natural las palabras clave prioritarias del sector (tapicería, restauración, muebles, Tenerife, ecológica, artesanal, etc.) y variantes semánticas relevantes. El wording está optimizado para SEO local y conversión, evitando sobreoptimización. Revisar siempre la presencia y naturalidad de keywords en títulos, descripciones y encabezados al crear o modificar contenido.
+- **Analítica:** No implementada aún. Si se añade, coordinar con legal.
 
-## SEO on-page por plantilla/pagina
+## Guía rápida para futuras adiciones
 
-Documentar para cada pagina:
+1. **Nuevas páginas:**
+	- Definir `$pageTitle`, `$pageDescription`, `$canonicalUrl` y `<h1>` únicos.
+	- Añadir la URL al sitemap si es indexable.
+	- Revisar enlazado interno desde y hacia la nueva página.
+2. **Datos estructurados:**
+	- Usar `FurnitureRepair` como base en JSON-LD global.
+	- Añadir tipos específicos (`FAQPage`, `Product`, etc.) solo si el contenido lo justifica y es visible.
+3. **Revisión periódica:**
+	- Validar canonical vs sitemap tras cada despliegue.
+	- Revisar `aggregateRating` en schema si cambian reseñas.
+	- Mantener actualizado el plan de redirecciones.
+4. **Referencias:**
+	- [docs/sitemap.md](sitemap.md) para reglas de inclusión y generación.
+	- [docs/schema-json-ld.md](schema-json-ld.md) para detalles de marcado estructurado.
 
-- Titulo SEO
-- Meta description
-- H1 principal
-- Intencion de busqueda
-- Enlazado interno
 
-### `contacto.php`
+## Plan de redirecciones 301 (WordPress → PHP)
 
-- Titulo SEO: Contacto | Tapizados Madaya - Taller en La Laguna, Tenerife
-- Meta description: orientada a intencion transaccional local (contactar/pedir presupuesto)
-- H1 principal: Contacta con Tapizados Madaya
-- Intencion de busqueda: contacto local + conversion (llamada/WhatsApp/email)
-- Enlazado interno: CTA a `preguntas-frecuentes.php` + enlace a reseñas en Google
-- Canonical: `https://ecomadaya.es/contacto/`
+Para preservar el SEO y evitar errores 404 tras la migración, se implementa un plan de redirecciones 301 desde las URLs antiguas de WordPress a las nuevas rutas PHP. 
 
-### `index.php`
+### Mapeo de URLs
 
-- Titulo SEO: Tapicería ecológica de muebles en Tenerife
-- Meta description: orientada a descubrimiento de servicios + solicitud de presupuesto
-- H1 principal: Tapicería ecológica en Tenerife
-- Intencion de busqueda: servicio principal local + branding
-- Enlazado interno: CTA a `contacto.php` y `servicios.php`
-- Canonical: `https://ecomadaya.es/`
+| URL antigua (WordPress)         | Nueva URL (PHP)                | Observaciones                |
+|---------------------------------|--------------------------------|------------------------------|
+| /acerca-de/                     | /quienes-somos.php             | Cambia el slug               |
+| /contacto/                      | /contacto.php                  | Igual                        |
+| /aviso-legal/                   | /aviso-legal.php               | Igual                        |
+| /politica-de-cookies-2/         | /politica-cookies.php          | Cambia el slug               |
+| /politica-de-privacidad/        | /politica-privacidad.php       | Cambia el slug               |
+| /servicios/                     | /servicios.php                 | Igual                        |
+| /galeria/                       | /galeria.php                   | Igual                        |
+| /condiciones-servicio/          | /condiciones-servicio.php      | Igual                        |
+| /faq/                           | /preguntas-frecuentes.php      | Cambia el slug               |
 
-### `servicios.php`
+### Plantilla de reglas .htaccess
 
-- Titulo SEO: Servicios de tapicería en Tenerife
-- Meta description: orientada a portfolio de servicios (hogar, profesionales, fabricacion)
-- H1 principal: Servicios de Tapicería y Restauración
-- Intencion de busqueda: comparacion y evaluacion de servicios
-- Enlazado interno: CTA a `galeria.php`, `contacto.php` y secciones internas
-- Canonical: `https://ecomadaya.es/servicios/`
+```apache
+# Redirecciones 301 de URLs antiguas de WordPress a nuevas rutas PHP
+Redirect 301 /acerca-de/ /quienes-somos.php
+Redirect 301 /contacto/ /contacto.php
+Redirect 301 /aviso-legal/ /aviso-legal.php
+Redirect 301 /politica-de-cookies-2/ /politica-cookies.php
+Redirect 301 /politica-de-privacidad/ /politica-privacidad.php
+Redirect 301 /servicios/ /servicios.php
+Redirect 301 /galeria/ /galeria.php
+Redirect 301 /condiciones-servicio/ /condiciones-servicio.php
+Redirect 301 /faq/ /preguntas-frecuentes.php
+```
 
-### `galeria.php`
+**Notas:**
+- Documentar cualquier cambio adicional en este plan.
 
-- Titulo SEO: Galería de trabajos realizados
-- Meta description: orientada a evidencia visual de trabajos finalizados en Tenerife
-- H1 principal: Galería de Trabajos Realizados
-- Intencion de busqueda: validacion visual antes de contacto
-- Enlazado interno: CTA de carga progresiva + navegacion hacia servicios/contacto
-- Canonical: `https://ecomadaya.es/galeria/`
 
-### `quienes-somos.php`
-
-- Titulo SEO: Quienes somos | Taller familiar de tapiceria en Tenerife
-- Meta description: orientada a confianza de marca + historia del taller + enfoque artesanal
-- H1 principal: Quienes somos
-- Intencion de busqueda: marca + confianza + contexto de negocio local
-- Enlazado interno: CTA hacia `contacto.php` y conexion con bloque de prueba social
-- Canonical: `https://ecomadaya.es/quienes-somos/`
-
-### `preguntas-frecuentes.php`
-
-- Titulo SEO: Preguntas frecuentes de tapiceria en Tenerife | Madaya
-- Meta description: orientada a dudas transaccionales (precios, tejidos, plazos, recogida/entrega)
-- H1 principal: Preguntas frecuentes de tapiceria en Tenerife
-- Intencion de busqueda: resolver objeciones antes de pedir presupuesto
-- Enlazado interno: enlace a `contacto.php`, `condiciones-servicio.php` y acciones por WhatsApp
-- Canonical: `https://ecomadaya.es/preguntas-frecuentes/`
-
-### `condiciones-servicio.php`
-
-- Titulo SEO: Condiciones del servicio | Taller familiar de tapiceria en Tenerife
-- Meta description: orientada a transparencia contractual (presupuesto, plazos, ajustes y responsabilidades)
-- H1 principal: Condiciones del servicio
-- Intencion de busqueda: informacion legal-operativa previa a contratacion
-- Enlazado interno: enlazada desde `preguntas-frecuentes.php`
-- Canonical: `https://ecomadaya.es/condiciones-servicio/`
-
-## Datos estructurados
-
-- Uso de schema.org: PARCIALMENTE IMPLEMENTADO
-- Tipo de schema por pagina:
-	- `preguntas-frecuentes.php`: `FAQPage` en JSON-LD con 20 preguntas y respuestas visibles
-	- Resto de paginas: PENDIENTE
-
-## Rendimiento y CWV
-
-- Peso de imagenes optimizado
-- Carga de CSS/JS controlada
-- Metricas objetivo (LCP/CLS/INP): PENDIENTE
-
-## Checklist pre-produccion
-
-- [ ] Todas las paginas indexables con metadatos definidos
-- [ ] No hay contenido duplicado sin canonical
-- [ ] Sitemap refleja URLs reales
-- [ ] Enlaces internos sin errores
-- [ ] Redirecciones legacy de WordPress verificadas (sin perdida de trafico)
-
-## Analitica y medicion
-
-- Herramienta de analitica: PENDIENTE DE DECIDIR
-- Si hay analitica con cookies, coordinar implementacion con `legal-y-cumplimiento.md`
