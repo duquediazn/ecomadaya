@@ -1,0 +1,90 @@
+name: Deploy Arsys SFTP (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to Arsys via SFTP
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+      - name: Generate sitemap
+        run: composer sitemap
+
+      - name: Build deploy directory
+        run: |
+          mkdir -p deploy
+          rsync -av \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'docs/' \
+            --exclude 'scripts/' \
+            --exclude 'README.md' \
+            --exclude '.gitignore' \
+            ./ deploy/
+
+      - name: Install SFTP client
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Upload to Arsys (non-destructive)
+        env:
+          SFTP_HOST: ${{ secrets.ARSYS_SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.ARSYS_SFTP_PORT }}
+          SFTP_USER: ${{ secrets.ARSYS_SFTP_USER }}
+          SFTP_PASS: ${{ secrets.ARSYS_SFTP_PASSWORD }}
+          REMOTE_PATH: ${{ secrets.ARSYS_REMOTE_PATH }}
+        run: |
+          lftp -u "$SFTP_USER","$SFTP_PASS" sftp://"$SFTP_HOST":"$SFTP_PORT" <<'EOF'
+          set sftp:auto-confirm yes
+          set ssl:verify-certificate no
+          set net:timeout 20
+          set net:max-retries 2
+          set net:reconnect-interval-base 5
+          mirror -R --verbose --only-newer --parallel=4 --no-perms --no-umask deploy "$REMOTE_PATH"
+          bye
+          EOF
+
+      - name: Smoke checks
+        env:
+          BASE_URL: ${{ secrets.SITE_BASE_URL }}
+        run: |
+          urls=(
+            "/"
+            "/quienes-somos/"
+            "/servicios/"
+            "/galeria/"
+            "/contacto/"
+            "/assets/css/main.css"
+            "/assets/js/main.js"
+            "/robots.txt"
+            "/sitemap.xml"
+            "/aviso-legal/"
+            "/politica-privacidad/"
+            "/politica-cookies/"
+            "/condiciones-servicio/"
+          )
+
+          for url in "${urls[@]}"; do
+            code=$(curl -sS -L -o /dev/null -w "%{http_code}" "$BASE_URL$url")
+            echo "$url -> $code"
+            if [ "$code" -lt 200 ] || [ "$code" -ge 400 ]; then
+              echo "Smoke check failed on $url"
+              exit 1
+            fi
+          done
