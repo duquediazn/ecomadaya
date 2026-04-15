@@ -1,0 +1,132 @@
+name: Deploy Arsys SFTP (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      full_deploy:
+        description: 'Subir todo el sitio (true) o solo cambios del ultimo commit (false)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to Arsys via SFTP
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+      - name: Generate sitemap
+        run: composer sitemap
+
+      - name: Build deploy directory
+        env:
+          FULL_DEPLOY: ${{ inputs.full_deploy }}
+        run: |
+          mkdir -p deploy
+
+          if [ "$FULL_DEPLOY" = "true" ] || ! git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+            echo "Full deploy activado."
+            rsync -av \
+              --exclude '.git/' \
+              --exclude '.github/' \
+              --exclude 'deploy/' \
+              --exclude 'docs/' \
+              --exclude 'scripts/' \
+              --exclude 'README.md' \
+              --exclude '.gitignore' \
+              --exclude '.htaccess' \
+              ./ deploy/
+          else
+            echo "Deploy incremental por cambios del ultimo commit."
+
+            git diff --name-only --diff-filter=ACMRT HEAD^ HEAD > .changed-files
+
+            grep -E '(^[^/]+\.php$)|(^api/)|(^app/)|(^assets/)|(^robots\.txt$)|(^sitemap\.xml$)|(^LICENSE$)|(^NOTICE$)' .changed-files > .deploy-files || true
+
+            # sitemap.xml se regenera en el job y debe publicarse aunque no aparezca en el diff
+            echo "sitemap.xml" >> .deploy-files
+
+            sort -u .deploy-files -o .deploy-files
+
+            if [ -s .deploy-files ]; then
+              echo "Archivos/rutas a desplegar:"
+              cat .deploy-files
+              rsync -av --files-from=.deploy-files ./ deploy/
+            else
+              echo "No hay cambios de despliegue en este commit."
+            fi
+
+            if grep -Eq '^(composer\.json|composer\.lock)$' .changed-files; then
+              echo "composer.* cambio: incluyendo vendor/ completo."
+              rsync -av vendor/ deploy/vendor/
+            fi
+          fi
+
+      - name: Install SFTP client
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Upload to Arsys (non-destructive)
+        env:
+          SFTP_HOST: ${{ secrets.ARSYS_SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.ARSYS_SFTP_PORT }}
+          SFTP_USER: ${{ secrets.ARSYS_SFTP_USER }}
+          SFTP_PASS: ${{ secrets.ARSYS_SFTP_PASSWORD }}
+          REMOTE_PATH: ${{ secrets.ARSYS_REMOTE_PATH }}
+        run: |
+          lftp -u "$SFTP_USER","$SFTP_PASS" sftp://"$SFTP_HOST":"$SFTP_PORT" <<EOF
+          set sftp:auto-confirm yes
+          set ssl:verify-certificate no
+          set net:timeout 30
+          set net:max-retries 8
+          set net:reconnect-interval-base 5
+          set net:reconnect-interval-max 30
+          set cmd:fail-exit yes
+          cd "$REMOTE_PATH"
+          mirror -R --verbose --only-newer --parallel=1 --no-perms --no-umask deploy/ .
+          bye
+          EOF
+
+      - name: Smoke checks
+        env:
+          BASE_URL: ${{ secrets.SITE_BASE_URL }}
+        run: |
+          urls=(
+            "/"
+            "/quienes-somos/"
+            "/servicios/"
+            "/galeria/"
+            "/contacto/"
+            "/assets/css/main.css"
+            "/assets/js/main.js"
+            "/robots.txt"
+            "/sitemap.xml"
+            "/aviso-legal/"
+            "/politica-privacidad/"
+            "/politica-cookies/"
+            "/condiciones-servicio/"
+          )
+
+          for url in "${urls[@]}"; do
+            code=$(curl -sS -L -o /dev/null -w "%{http_code}" "$BASE_URL$url")
+            echo "$url -> $code"
+            if [ "$code" -lt 200 ] || [ "$code" -ge 400 ]; then
+              echo "Smoke check failed on $url"
+              exit 1
+            fi
+          done

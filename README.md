@@ -8,7 +8,7 @@ Sitio en producción: https://ecomadaya.es
 
 - Sitio operativo en producción.
 - Flujo principal de desarrollo en rama dev.
-- Despliegue objetivo: CI/CD con GitHub Actions y publicación automática por SFTP al hacer push en main.
+- Despliegue actual: GitHub Actions manual + publicación por SFTP.
 
 ## Stack técnico
 
@@ -124,14 +124,19 @@ composer sitemap
 
 ## CI/CD y despliegue
 
-Objetivo operativo:
+Flujo operativo actual:
 
-1. Los cambios se integran en dev.
-2. Se hace squash/merge hacia main.
-3. Un workflow de GitHub Actions en main construye artefacto y despliega por SFTP a Arsys.
-4. Se ejecutan smoke checks al finalizar.
+1. Los cambios se integran y validan en `dev`.
+2. Se hace merge `dev -> main` para publicar la version aprobada.
+3. El despliegue se lanza manualmente desde GitHub Actions seleccionando rama `main`.
+4. El workflow admite modo incremental o `full_deploy`.
+5. Se ejecutan smoke checks al finalizar.
+
+> Nota: si el workflow cambia en `dev`, debe llegar a `main` para que GitHub Actions muestre esa version en la UI.
 
 Credenciales y valores sensibles se guardan en GitHub Actions Environment production.
+
+Guia breve de despliegue: [docs/despliegue.md](docs/despliegue.md).
 
 ## Documentación técnica
 
@@ -140,6 +145,7 @@ Credenciales y valores sensibles se guardan en GitHub Actions Environment produc
 - [docs/seo.md](docs/seo.md)
 - [docs/convenciones-codigo.md](docs/convenciones-codigo.md)
 - [docs/legal-y-cumplimiento.md](docs/legal-y-cumplimiento.md)
+- [docs/despliegue.md](docs/despliegue.md)
 
 ## Licencia
 
