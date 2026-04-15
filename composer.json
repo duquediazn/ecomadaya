@@ -1,0 +1,15 @@
+{
+    "name": "madaya/ecomadaya",
+    "description": "Sitio web multipagina en PHP para Madaya",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "sitemap": "php scripts/generate-sitemap.php"
+    }
+}
