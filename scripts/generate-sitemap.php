@@ -3,20 +3,21 @@
 declare(strict_types=1);
 
 $repoRoot = dirname(__DIR__);
-$publicDir = $repoRoot . DIRECTORY_SEPARATOR . 'public';
-$outputFile = $publicDir . DIRECTORY_SEPARATOR . 'sitemap.xml';
+$publicCandidate = $repoRoot . DIRECTORY_SEPARATOR . 'public';
+$webRoot = is_dir($publicCandidate) ? $publicCandidate : $repoRoot;
+$outputFile = $webRoot . DIRECTORY_SEPARATOR . 'sitemap.xml';
 $baseUrl = 'https://ecomadaya.es';
 
-// Verificamos que el directorio public existe.
-if (!is_dir($publicDir)) {
-    fwrite(STDERR, "Error: no se encontro el directorio public.\n"); 
+// Verificamos que el directorio web existe.
+if (!is_dir($webRoot)) {
+    fwrite(STDERR, "Error: no se encontro el directorio web para generar el sitemap.\n");
     exit(1);
 }
 
 $entries = [];
 
-// Recorremos los archivos PHP en el directorio public para extraer las URLs canonicas.
-$iterator = new DirectoryIterator($publicDir);
+// Recorremos los archivos PHP del directorio web para extraer las URLs canonicas.
+$iterator = new DirectoryIterator($webRoot);
 foreach ($iterator as $fileInfo) {
     if (!$fileInfo->isFile()) {
         continue;
@@ -97,4 +98,5 @@ if ($result === false) {
     exit(1);
 }
 
-fwrite(STDOUT, "Sitemap generado en public/sitemap.xml con " . count($entries) . " URLs.\n");
+$relativeOutput = str_replace($repoRoot . DIRECTORY_SEPARATOR, '', $outputFile);
+fwrite(STDOUT, "Sitemap generado en {$relativeOutput} con " . count($entries) . " URLs.\n");
