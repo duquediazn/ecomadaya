@@ -21,7 +21,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "FurnitureRepair",
+            "@type": "LocalBusiness",
+            "additionalType": "https://schema.org/FurnitureRepair",
             "@id": "https://ecomadaya.es/#madaya",
             "name": "Tapizados Madaya",
             "image": "https://ecomadaya.es/assets/img/hero-1600.webp",
@@ -70,8 +71,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
             ],
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.1",
-                "reviewCount": "34"
+                "ratingValue": 4.1,
+                "reviewCount": 34
             }
         }
     </script>
