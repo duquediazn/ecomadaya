@@ -179,7 +179,7 @@ Importante:
 
 ## 6) Datos estructurados
 
-- Global: JSON-LD tipo `FurnitureRepair` en `header.php` (incluye dirección, horario, `aggregateRating`, etc.).
+- Global: JSON-LD tipo `LocalBusiness` en `header.php` con `additionalType` = `FurnitureRepair` (incluye dirección, horario, `aggregateRating`, etc.).
 - Específico: `preguntas-frecuentes.php` añade JSON-LD `FAQPage`.
 
 ## Configuración y entorno

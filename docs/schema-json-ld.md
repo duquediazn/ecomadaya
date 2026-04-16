@@ -29,8 +29,7 @@ A diferencia del canonical, og:url o og:image, las URLs del JSON-LD **no se gene
 
 ## Tipo de entidad usado
 
-`FurnitureRepair` — subtipo de `LocalBusiness` en Schema.org.  
-Es el tipo más específico y correcto disponible para una tapicería y restauración de muebles.
+`LocalBusiness` como tipo principal para compatibilidad con validadores de rich results de Google, y `additionalType` con `https://schema.org/FurnitureRepair` para mantener la especificidad semántica del negocio.
 
 ## Campos presentes y qué representan
 
@@ -67,8 +66,8 @@ Este campo es **manual** y no se conecta a la API de Google Maps para evitar com
 ```json
 "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "X.X",
-    "reviewCount": "XX"
+  "ratingValue": X.X,
+  "reviewCount": XX
 }
 ```
 
