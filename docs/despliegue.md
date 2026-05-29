@@ -1,15 +1,15 @@
 # Despliegue (Resumen)
 
-- Ultima actualizacion: 2026-04-15
-- Entorno: produccion en Arsys
-- Metodo actual: GitHub Actions manual + SFTP
+- Última actualización: 2026-05-29
+- Entorno: producción en Arsys
+- Método actual: GitHub Actions manual + SFTP
 
 ## Flujo actual
 
 1. `dev` se usa para integrar y validar cambios de trabajo.
-2. `main` representa la version candidata a produccion (o ya publicada).
-3. Si cambia el workflow en `dev`, se hace merge a `main` para que GitHub Actions muestre la version actual del workflow.
-4. Para publicar cambios del sitio, se hace merge `dev -> main` y se lanza el workflow manual seleccionando rama `main`.
+2. `main` representa la versión candidata a producción (o ya publicada).
+3. Si cambia el workflow en `dev`, se abre un Pull Request a `main` y, tras la aprobación requerida, se hace merge para que GitHub Actions muestre la versión actual del workflow.
+4. Para publicar cambios del sitio, se abre un Pull Request `dev -> main` y, tras la aprobación requerida, se hace merge y se lanza el workflow manual seleccionando rama `main`.
 5. Se publican archivos por SFTP y se ejecutan smoke checks HTTP.
 
 ## Alcance del despliegue
@@ -36,21 +36,21 @@ No se despliegan:
 - Las credenciales se gestionan en GitHub Actions Environment `production`.
 - El archivo `.htaccess` se mantiene manualmente en hosting (no se sobreescribe desde CI en esta fase).
 
-## Ejecucion del workflow
+## Ejecución del workflow
 
 Workflow: `.github/workflows/deploy-arsys-manual.yml`
 
 Notas importantes sobre ramas:
 
 - GitHub Actions muestra workflows manuales tomando como referencia la rama por defecto (`main`).
-- Si el workflow no existe o no esta actualizado en `main`, puede no aparecer en la UI de Actions.
+- Si el workflow no existe o no está actualizado en `main`, puede no aparecer en la UI de Actions.
 - Una vez visible, al pulsar `Run workflow` puedes elegir la rama sobre la que correrlo (`dev` o `main`).
-- Aunque puedas elegir `dev`, para despliegue final de produccion se recomienda lanzar desde `main`.
+- Aunque puedas elegir `dev`, para despliegue final de producción se recomienda lanzar desde `main`.
 
 - `full_deploy=true`: despliegue completo.
 - `full_deploy=false`: despliegue incremental de cambios.
 
-## Verificacion post-despliegue
+## Verificación post-despliegue
 
 Comprobar:
 
