@@ -2,7 +2,7 @@
 
 - Última actualización: 2026-03-25
 - Estado global: resumen de estado actual legal-técnico
-- Próxima revisión: después de la primera prueba de despliegue manual en Arsys
+- Próxima revisión: tras cambios en el formulario, cookies, embeds o condiciones del servicio
 
 ## Objetivo de este documento
 
@@ -68,20 +68,3 @@ Importante:
   - Google Maps y YouTube bloqueados hasta aceptación,
   - no analítica propia detectada.
 - Estado legal-técnico: alineado con políticas publicadas.
-
-## Pendientes para cierre del bloque legal
-
-- [ ] Revisión final de condiciones del servicio y FAQ (devoluciones, garantia, limitaciones y arbitraje).
-- [ ] Prueba en producción del flujo de formulario (SMTP Arsys + recepción operativa en Gmail) y registro del resultado.
-
-## Decisiones vigentes
-
-- Se prioriza prueba manual de despliegue antes de implementar GitHub Actions.
-- Gmail permanece como canal operativo de gestión de consultas.
-- Arsys Correo se usa como infraestructura SMTP técnica del formulario.
-- Las comprobaciones finales de SMTP/DKIM se ejecutarán durante la prueba de despliegue.
-
-- `aviso-legal.php`
-- `politica-privacidad.php`
-- `politica-cookies.php`
-- `condiciones-servicio.php`

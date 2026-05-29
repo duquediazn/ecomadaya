@@ -1,6 +1,7 @@
 # Accesibilidad Web – Madaya
 
-- **Última actualización:** 2026-03-25
+- **Última actualización:** 2026-05-29
+- **Próxima revisión:** tras cambios significativos en UI o contenido
 - **Ámbito:** Estado actual del sitio y guía práctica para desarrollo futuro
 
 ---
@@ -11,36 +12,29 @@
 2. [Checklist de accesibilidad para producción](#checklist-de-accesibilidad-para-producción)
 3. [Registro de hallazgos y tradeoffs](#registro-de-hallazgos-y-tradeoffs)
 4. [Guía rápida para desarrollo accesible](#guía-rápida-para-desarrollo-accesible)
-    1. [Estructura base de página](#estructura-base-de-página)
-    2. [Semántica HTML](#semántica-html)
-    3. [Headings y regiones](#headings-y-regiones)
-    4. [Imágenes y medios](#imágenes-y-medios)
-    5. [Formularios](#formularios)
-    6. [Interactividad y ARIA](#interactividad-y-aria)
-    7. [Contraste y foco](#contraste-y-foco)
-    8. [Checklist rápido para nuevas páginas](#checklist-rápido-para-nuevas-páginas)
+   1. [Estructura base de página](#estructura-base-de-página)
+   2. [Semántica HTML](#semántica-html)
+   3. [Headings y regiones](#headings-y-regiones)
+   4. [Imágenes y medios](#imágenes-y-medios)
+   5. [Formularios](#formularios)
+   6. [Interactividad y ARIA](#interactividad-y-aria)
+   7. [Contraste y foco](#contraste-y-foco)
+   8. [Checklist rápido para nuevas páginas](#checklist-rápido-para-nuevas-páginas)
 
 ---
 
 ## Resumen y estado actual
 
-El sitio cumple los criterios WCAG 2.1 AA en todas las páginas principales. Se han resuelto todos los hallazgos de severidad alta y baja detectados en la auditoría manual. Quedan pendientes solo las validaciones finales automáticas y manuales en entorno de producción.
+El sitio cumple los criterios WCAG 2.1 AA en todas las páginas principales.
 
 - **Nivel objetivo:** WCAG 2.1 AA
 - **Cobertura:** Todas las páginas y componentes principales revisados
 - **Pendientes para producción:**
-    - Ejecutar Lighthouse, axe y WAVE en producción
-    - Prueba manual completa de teclado y lector (NVDA o VoiceOver)
-    - Validación HTML (W3C)
+  - Ejecutar Lighthouse, axe y WAVE en producción
+  - Prueba manual completa de teclado y lector (NVDA o VoiceOver)
+  - Validación HTML (W3C)
 
 ## Checklist de accesibilidad para producción
-## Acreditación de accesibilidad (objetivo futuro)
-
-En España y la UE existen sellos y acreditaciones oficiales de accesibilidad web, como el sello ENAC/UNE 139803, el distintivo de accesibilidad de la Fundación ONCE (Accesibilidad Web: Nivel AA), o el sello europeo e-Accesibility Quality Mark. Obtener una de estas certificaciones requiere auditoría externa y validación por entidad acreditada.
-
-**Tarea recomendada a futuro:**
-- Valorar la obtención de una acreditación oficial de accesibilidad (por ejemplo, sello ENAC/UNE o equivalente europeo) para mostrar en el footer y README del proyecto.
-- Esto refuerza el compromiso público y la confianza de usuarios y clientes institucionales.
 
 - [x] Un solo `h1` por página, jerarquía de headings lógica
 - [x] Semántica HTML correcta (`main`, `nav`, `header`, `footer`, `section`, `article`, `address`, `time`, `dl`…)
@@ -59,10 +53,10 @@ En España y la UE existen sellos y acreditaciones oficiales de accesibilidad we
 
 ## Registro de hallazgos y tradeoffs
 
-| Fecha | Página / Componente | Hallazgo | Severidad | Estado |
-|---|---|---|---|---|
-| 2026-03-24 | `header.php` | Menú hamburguesa usa `<input type="checkbox">` para apertura/cierre sin JS. Cumple funcionalidad, pero la semántica anunciada es de checkbox, no botón de menú. Alternativa futura: `details/summary`. | Media | Detectado |
-| 2026-03-24 | `main.css` | `--color-secondary: #d0bd33` (amarillo) tiene contraste bajo sobre blanco. Actualmente solo se usa sobre fondo oscuro. | Media | Detectado |
+| Fecha      | Página / Componente | Hallazgo                                                                                                                                                                                               | Severidad | Estado    |
+| ---------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | --------- |
+| 2026-03-24 | `header.php`        | Menú hamburguesa usa `<input type="checkbox">` para apertura/cierre sin JS. Cumple funcionalidad, pero la semántica anunciada es de checkbox, no botón de menú. Alternativa futura: `details/summary`. | Media     | Detectado |
+| 2026-03-24 | `main.css`          | `--color-secondary: #d0bd33` (amarillo) tiene contraste bajo sobre blanco. Actualmente solo se usa sobre fondo oscuro.                                                                                 | Media     | Detectado |
 
 ---
 
@@ -90,6 +84,7 @@ include __DIR__ . '/app/includes/header.php';
 ```
 
 **Reglas obligatorias:**
+
 - Un solo `h1` por página.
 - `header.php` ya aporta `<html lang="es">`, skip-link y `<main id="main">`.
 - `footer.php` cierra `</main>` y aporta navegación secundaria/legal.
@@ -98,6 +93,7 @@ include __DIR__ . '/app/includes/header.php';
 ### Semántica HTML
 
 **Patrones ya aplicados:**
+
 - Landmarks reales: `header`, `nav`, `main`, `footer`.
 - `address` para direcciones de contacto.
 - `time` para horarios.
@@ -107,6 +103,7 @@ include __DIR__ . '/app/includes/header.php';
 - `fieldset` y `legend` en formularios.
 
 **Para contenido nuevo:**
+
 - Usa primero elementos HTML nativos antes de ARIA.
 - Usa `section` solo si el bloque tiene título propio o nombre accesible.
 - Usa `article` para tarjetas o piezas autocontenidas.
@@ -115,18 +112,21 @@ include __DIR__ . '/app/includes/header.php';
 - Usa `details/summary` si necesitas disclosure/acordeón sin JS.
 
 **Evitar:**
+
 - Saltos de jerarquía como `h1` → `h3`.
 - `div` o `span` haciendo de botón.
 - `section` sin heading visible o sin `aria-labelledby`.
 - Texto de instrucción solo en placeholder.
 
 ### Headings y regiones
+
 - Un solo `h1` por página.
 - Headings consecutivos (`h1` → `h2` → `h3`), nunca saltos.
 - Cada `section` debe tener heading visible o `aria-labelledby`.
 - Usa `aria-label` solo si no hay heading visible.
 
 ### Imágenes y medios
+
 - Imágenes informativas: `alt` descriptivo.
 - Imágenes decorativas: `alt=""` y `aria-hidden="true"` si SVG.
 - Iconos decorativos: `aria-hidden="true" focusable="false"`.
@@ -134,6 +134,7 @@ include __DIR__ . '/app/includes/header.php';
 - Vídeos: subtítulos o transcripción si aplica.
 
 ### Formularios
+
 - Cada campo con `<label for>` asociado.
 - Campos obligatorios con `required` y ayuda visible.
 - Mensajes de error enlazados con `aria-describedby`.
@@ -142,6 +143,7 @@ include __DIR__ . '/app/includes/header.php';
 - Feedback de estado con `aria-live`.
 
 ### Interactividad y ARIA
+
 - Usa ARIA solo si HTML nativo no basta.
 - `aria-labelledby` en landmarks y regiones.
 - `aria-label` solo si no hay heading visible.
@@ -150,11 +152,13 @@ include __DIR__ . '/app/includes/header.php';
 - Foco gestionado en modales/dialogs.
 
 ### Contraste y foco
+
 - Contraste mínimo: texto normal ≥ 4.5:1, grande ≥ 3:1.
 - Foco visible en todos los elementos interactivos (`:focus-visible`).
 - No eliminar `outline` sin alternativa clara.
 
 ### Checklist rápido para nuevas páginas
+
 - [ ] Un solo `h1` y jerarquía lógica de headings
 - [ ] Landmarks y regiones con nombre accesible
 - [ ] Imágenes y SVG con `alt`/`aria-hidden` correcto

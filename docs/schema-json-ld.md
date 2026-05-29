@@ -1,7 +1,7 @@
 # Schema.org / JSON-LD (`application/ld+json`)
 
-- Ultima actualizacion: 2026-03-13
-- Proxima revision: Cuando cambie cualquier dato del negocio
+- Última actualización: 2026-05-29
+- Próxima revisión: Cuando cambie cualquier dato del negocio
 
 ## Qué es y para qué sirve
 
@@ -33,18 +33,23 @@ A diferencia del canonical, og:url o og:image, las URLs del JSON-LD **no se gene
 
 ## Campos presentes y qué representan
 
-| Campo | Valor actual | Notas |
-|---|---|---|
-| `@id` | `https://ecomadaya.es/#madaya` | Identificador único estable. No cambiar salvo cambio de dominio. |
-| `name` | `Tapizados Madaya` | Nombre comercial exacto. |
-| `url` | `https://ecomadaya.es/` | URL principal del sitio. |
-| `image` | `hero-1600.webp` | Imagen representativa del negocio. Actualizar si cambia la imagen principal. |
-| `telephone` | `+34922033303` | Formato E.164. Debe coincidir con `MADAYA_PHONE_E164` en `bootstrap.php`. |
-| `priceRange` | `€€` | Indicativo relativo. Actualizar si cambia el posicionamiento de precio. |
-| `address` | C/ Obispo Pérez Cáceres, 97, La Laguna | Dirección física completa. |
-| `geo` | lat/lon del taller | Coordenadas. Verificar en Google Maps si cambia la ubicación. |
-| `openingHoursSpecification` | L-V 8-15, S 9-12 | **Campo crítico.** Debe actualizarse si cambia el horario. |
-| `aggregateRating` | 4.1 / 34 reseñas | **Campo manual.** Ver sección de mantenimiento más abajo. |
+| Campo                       | Valor actual                                      | Notas                                                                                 |
+| --------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `@context`                  | `https://schema.org`                              | Contexto de Schema.org. Mantener estable.                                              |
+| `@type`                     | `LocalBusiness`                                   | Tipo principal para validadores de rich results.                                       |
+| `additionalType`            | `https://schema.org/FurnitureRepair`              | Especificidad semántica adicional del negocio.                                         |
+| `@id`                       | `https://ecomadaya.es/#madaya`                    | Identificador único estable. No cambiar salvo cambio de dominio.                      |
+| `name`                      | `Tapizados Madaya`                                | Nombre comercial exacto.                                                               |
+| `image`                     | `https://ecomadaya.es/assets/img/hero-1600.webp` | Imagen representativa del negocio en URL absoluta.                                     |
+| `url`                       | `https://ecomadaya.es/`                           | URL principal del sitio.                                                               |
+| `telephone`                 | `+34922033303`                                    | Formato E.164. Debe coincidir con `MADAYA_PHONE_E164` en `bootstrap.php`.             |
+| `priceRange`                | `€€`                                              | Indicativo relativo. Actualizar si cambia el posicionamiento de precio.               |
+| `address`                   | Calle Obispo Pérez Cáceres, 97, La Laguna         | Dirección física completa (`streetAddress`, `addressLocality`, `addressRegion`, etc.). |
+| `geo`                       | lat/lon del taller                                | Coordenadas. Verificar en Google Maps si cambia la ubicación.                         |
+| `areaServed`                | Tenerife                                          | Área principal de servicio declarada como `AdministrativeArea`.                        |
+| `openingHoursSpecification` | L-V 8-15, S 9-12                                  | **Campo crítico.** Debe actualizarse si cambia el horario.                            |
+| `sameAs`                    | `https://www.instagram.com/madaya1` + `https://maps.app.goo.gl/xzP563w1RDe3MWdK9` | Perfiles/fuentes externas oficiales del negocio.                                       |
+| `aggregateRating`           | 4.1 / 35 reseñas                                  | **Campo manual.** Ver sección de mantenimiento más abajo.                             |
 
 ## Mantenimiento
 
@@ -77,6 +82,7 @@ Fuente: [Google Maps del negocio](https://maps.app.goo.gl/XCqtZLrG558Dqzb76).
 ### Cambio de dominio
 
 Si el dominio cambiara, actualizar en `header.php`:
+
 - `@id`
 - `image`
 - `url`

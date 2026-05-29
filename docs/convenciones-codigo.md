@@ -32,14 +32,14 @@ Regla:
 
 ## PHP
 
-## Archivos y nombres
+### Archivos y nombres
 
 - Las páginas públicas usan nombres descriptivos en minúsculas con guiones: `quienes-somos.php`, `preguntas-frecuentes.php`, `condiciones-servicio.php`.
 - Los includes compartidos pueden usar guion cuando representan un módulo funcional: `contact-form.php`, `mail-transport.php`, `gallery-service.php`.
 - Evitar camelCase en nombres de archivo PHP nuevos.
 - Mantener el criterio actual: nombres orientados a contenido o responsabilidad, no a implementación interna.
 
-## Includes y rutas
+### Includes y rutas
 
 - Usar siempre rutas absolutas basadas en `__DIR__`.
 - Preferir `require_once` para dependencias obligatorias.
@@ -53,7 +53,7 @@ include __DIR__ . '/app/includes/header.php';
 <?php include __DIR__ . '/app/includes/footer.php'; ?>
 ```
 
-## Tipado y firma de funciones
+### Tipado y firma de funciones
 
 - En módulos funcionales y endpoints, usar `declare(strict_types=1);`.
 - Tipar parámetros y retornos siempre que sea razonable.
@@ -67,30 +67,30 @@ function madayaEnv(string $name): string
 function madayaContactRedirectToPage(): never
 ```
 
-## Nombres de funciones, constantes y variables
+### Nombres de funciones, constantes y variables
 
 - Helpers y funciones globales del proyecto: prefijo `madaya` + contexto funcional.
-	- Ejemplos: `madayaEnv`, `madayaContactValidate`, `madayaSendContactMailSmtp`
+  - Ejemplos: `madayaEnv`, `madayaContactValidate`, `madayaSendContactMailSmtp`
 - Constantes globales del proyecto: prefijo `MADAYA_` en mayúsculas.
-	- Ejemplos: `MADAYA_SITE_URL`, `MADAYA_SMTP_HOST`, `MADAYA_CONTACT_CSRF_KEY`
+  - Ejemplos: `MADAYA_SITE_URL`, `MADAYA_SMTP_HOST`, `MADAYA_CONTACT_CSRF_KEY`
 - Variables locales: camelCase descriptivo.
-	- Ejemplos: `$contactFormFlash`, `$smtpTimeoutRaw`, `$whatsAppBudgetUrl`
+  - Ejemplos: `$contactFormFlash`, `$smtpTimeoutRaw`, `$whatsAppBudgetUrl`
 - Evitar abreviaturas ambiguas salvo convenciones técnicas comunes (`$tz`, `$now`, `$dir`).
 
-## Estilo y formato
+### Estilo y formato
 
 - Mantener llaves en línea separada para funciones y bloques PHP, como en el código actual.
 - Respetar el estilo existente del archivo: algunos archivos usan tabs en bloques de vista, otros espacios en módulos de lógica.
 - No mezclar estilos arbitrariamente dentro del mismo bloque editado.
 - Mantener arrays multilínea cuando mejoren legibilidad.
 
-## Comentarios y PHPDoc
+### Comentarios y PHPDoc
 
 - Los comentarios deben explicar intención, reglas de negocio o decisiones técnicas, no repetir lo obvio.
 - En funciones reutilizables, incluir PHPDoc con parámetros y retorno.
 - Se acepta documentación en español, como ya ocurre en el proyecto.
 
-## Errores, logging y seguridad
+### Errores, logging y seguridad
 
 - No mostrar errores técnicos sensibles al usuario final.
 - Usar `error_log()` solo para diagnóstico técnico y preferiblemente condicionado por entorno cuando aplique.
@@ -102,7 +102,7 @@ Patrones actuales:
 - `logIfDevelopment()` para logs solo en desarrollo.
 - Mensajes de UI neutros y no técnicos en el formulario.
 
-## Organizacion de paginas PHP
+### Organización de páginas PHP
 
 Patrón base por página pública:
 
@@ -131,20 +131,20 @@ include __DIR__ . '/app/includes/header.php';
 
 ## HTML
 
-## Semántica estructural
+### Semántica estructural
 
 - Mantener landmarks reales: `header`, `nav`, `main`, `footer`.
 - Usar `section` para bloques temáticos y `article` para piezas autocontenidas.
 - Usar `figure` y `figcaption` en galerías y reseñas cuando la imagen o cita necesite leyenda.
 - Usar `address`, `time`, `dl/dt/dd`, `details/summary` cuando aporten semántica real.
 
-## Headings
+### Headings
 
 - Cada página debe tener un único `h1`.
 - Mantener jerarquía lógica `h1 -> h2 -> h3` sin saltos arbitrarios.
 - Los headings deben describir contenido real y apoyar SEO y accesibilidad.
 
-## Accesibilidad y atributos
+### Accesibilidad y atributos
 
 - Seguir como referencia principal `docs/accesibilidad.md`.
 - Iconos SVG decorativos: `aria-hidden="true" focusable="false"`.
@@ -152,7 +152,7 @@ include __DIR__ . '/app/includes/header.php';
 - Formularios con `label`, `required`, `aria-invalid`, `aria-describedby`, y región `aria-live` si hay feedback dinámico.
 - Evitar `aria-label` redundantes o inconsistentes con el texto visible.
 
-## Enlaces y CTAs
+### Enlaces y CTAs
 
 - El texto visible del enlace debe describir la acción o destino.
 - En enlaces externos con nueva pestaña usar `rel="noopener noreferrer"`.
@@ -164,20 +164,20 @@ include __DIR__ . '/app/includes/header.php';
 - Mantener bloques CSS por zona funcional: variables, reset/base, layout, tipografía, header/nav, componentes, footer, responsive.
 - Centralizar tokens de diseño en `:root`.
 
-## Nomenclatura CSS
+### Nomenclatura CSS
 
 - Preferir clases tipo bloque/elemento/modificador:
-	- `.contact-card`
-	- `.contact-card__title`
-	- `.contact-status--open`
+  - `.contact-card`
+  - `.contact-card__title`
+  - `.contact-status--open`
 - Se permiten utilidades globales ya existentes:
-	- `.bg-primary`
-	- `.link-light`
-	- `.section--narrow`
+  - `.bg-primary`
+  - `.link-light`
+  - `.section--narrow`
 - Evitar introducir nuevos ids para estilo visual.
 - Evitar selectores excesivamente profundos si puede resolverse con una clase directa.
 
-## Evolucion de CSS
+### Evolución de CSS
 
 - No renombrar en masa clases existentes que ya funcionan sin una necesidad real.
 - En cada cambio funcional, normalizar solo el componente tocado.
@@ -185,12 +185,12 @@ include __DIR__ . '/app/includes/header.php';
 
 ## JS
 
-## Principio base
+### Principio base
 
 - El JavaScript es mejora progresiva, no dependencia crítica.
 - Toda funcionalidad esencial debe tener fallback sin JS.
 
-## Organizacion y estilo
+### Organización y estilo
 
 - Mantener encapsulación con IIFE para evitar contaminar el scope global.
 - Nombrar funciones en camelCase descriptivo.
@@ -204,7 +204,7 @@ Patrones actuales válidos:
 - `updateLoadMoreStatus`
 - `initContactFormEnhancements`
 
-## Interactividad y backend
+### Interactividad y backend
 
 - La validación cliente nunca sustituye a la validación server-side.
 - Si JS intercepta una acción, debe existir degradación limpia al flujo HTML nativo.
@@ -212,7 +212,7 @@ Patrones actuales válidos:
 
 ## Assets
 
-## Imagenes
+### Imágenes
 
 - Mantener nombres descriptivos y estables.
 - En galerías con variantes, respetar el patrón `_small` / `_large` porque forma parte de la lógica del backend.
@@ -224,12 +224,12 @@ Patrones actuales válidos:
 - Mantener `jpg/jpeg/png` solo cuando haya necesidad real o legado existente.
 - Iconos SVG inline deben tratarse como decorativos salvo que transmitan información por sí mismos.
 
-## Documentacion del proyecto
+## Documentación del proyecto
 
 - Los documentos en `docs/` deben tener:
-	- Ultima actualizacion
-	- Responsable
-	- Proxima revision
+  - Ultima actualizacion
+  - Responsable
+  - Proxima revision
 - Evitar documentos plantilla indefinidos cuando ya exista una convención real en el código.
 - Si un documento deja de ser fuente de verdad, o se elimina o se reduce a un alias explícito.
 
