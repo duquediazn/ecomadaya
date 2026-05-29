@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Determina si la aplicación está ejecutándose en entorno de desarrollo. *
  * @return bool `true` si el entorno es de desarrollo; `false` en cualquier otro caso.
  */
-function isDevelopmentEnvironment(): bool {
+function isDevelopmentEnvironment(): bool
+{
     $appEnv = defined('APP_ENV') ? strtolower(trim((string) APP_ENV)) : 'production';
     return in_array($appEnv, ['dev', 'development', 'local', 'test', 'testing'], true);
 }
@@ -13,7 +15,8 @@ function isDevelopmentEnvironment(): bool {
  * @param string $message
  * @return void
  */
-function logIfDevelopment(string $message): void {
+function logIfDevelopment(string $message): void
+{
     if (isDevelopmentEnvironment()) {
         error_log($message);
     }
@@ -25,7 +28,8 @@ function logIfDevelopment(string $message): void {
  * @param array $allowedExtensions Lista de extensiones de archivo permitidas (ej. ['jpg', 'jpeg', 'png', 'webp'])
  * @return string[] Lista de nombres de imagen ya filtrada y ordenada (mas reciente primero)
  */
-function galleryImagesList(string $dir, array $allowedExtensions): array {
+function galleryImagesList(string $dir, array $allowedExtensions): array
+{
     if (!is_dir($dir) || !is_readable($dir)) {
         logIfDevelopment("Error: No se pudo acceder al directorio de imagenes en $dir");
         return [];
@@ -42,20 +46,24 @@ function galleryImagesList(string $dir, array $allowedExtensions): array {
         return in_array($ext, $allowedExtensions, true) && is_file($dir . '/' . $file);
     });
 
-    usort($fileNames, function ($a, $b) use ($dir) {
-        $mtimeA = filemtime($dir . '/' . $a);
-        $mtimeB = filemtime($dir . '/' . $b);
+    // Ordenar por fecha de modificación (más reciente primero), luego por nombre para estabilidad.
+    // usort($fileNames, function ($a, $b) use ($dir) {
+    //     $mtimeA = filemtime($dir . '/' . $a);
+    //     $mtimeB = filemtime($dir . '/' . $b);
 
-        $mtimeA = ($mtimeA === false) ? 0 : $mtimeA;
-        $mtimeB = ($mtimeB === false) ? 0 : $mtimeB;
+    //     $mtimeA = ($mtimeA === false) ? 0 : $mtimeA;
+    //     $mtimeB = ($mtimeB === false) ? 0 : $mtimeB;
 
-        $dateComparison = $mtimeB <=> $mtimeA;
-        if ($dateComparison !== 0) {
-            return $dateComparison;
-        }
+    //     $dateComparison = $mtimeB <=> $mtimeA;
+    //     if ($dateComparison !== 0) {
+    //         return $dateComparison;
+    //     }
 
-        return strcmp($a, $b);
-    });
+    //     return strcmp($a, $b);
+    // });
+
+    // Orden pseudoaleatorio.
+    shuffle($fileNames);
 
     return array_values($fileNames);
 }
@@ -66,7 +74,8 @@ function galleryImagesList(string $dir, array $allowedExtensions): array {
  * @param string $jsonPath Ruta al archivo JSON de descripciones
  * @return array<string, string>
  */
-function loadImageDescriptions(string $jsonPath): array {
+function loadImageDescriptions(string $jsonPath): array
+{
     if (!is_file($jsonPath) || !is_readable($jsonPath)) {
         return [];
     }
@@ -100,7 +109,8 @@ function loadImageDescriptions(string $jsonPath): array {
  * @param array $descriptionsMap
  * @return string
  */
-function getImageDescription(string $fileName, array $descriptionsMap): string {
+function getImageDescription(string $fileName, array $descriptionsMap): string
+{
     if (isset($descriptionsMap[$fileName]) && $descriptionsMap[$fileName] !== '') {
         return $descriptionsMap[$fileName];
     }
@@ -148,7 +158,7 @@ function buildGalleryItems(
     if ($invalidMapCount > 0 || $missingLargeCount > 0) {
         logIfDevelopment(
             "Aviso gallery-service.php: items omitidos en galeria-hogar " .
-            "(sin mapeo _small/_large: $invalidMapCount, sin archivo large: $missingLargeCount)"
+                "(sin mapeo _small/_large: $invalidMapCount, sin archivo large: $missingLargeCount)"
         );
     }
 
