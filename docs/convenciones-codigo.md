@@ -22,13 +22,15 @@ Separación por responsabilidad:
 - `*.php`: páginas públicas principales en la raíz
 - `api/`: endpoints PHP públicos (AJAX, formularios, etc.)
 - `assets/`: archivos estáticos (CSS, JS, imágenes, iconos)
-- `app/includes/`: lógica compartida y parciales PHP
+- `app/config/`: configuración transversal y constantes
+- `app/services/`: lógica compartida de aplicación
+- `app/views/`: layout y secciones reutilizables de presentación
 - `scripts/`: automatizaciones locales/mantenimiento
 - `docs/`: documentación técnica y operativa
 
 Regla:
 
-- No introducir lógica de negocio compleja dentro de `header.php` o `footer.php`; esa lógica debe vivir en includes específicos o en `bootstrap.php` si es transversal.
+- No introducir lógica de negocio compleja dentro de `app/views/layout/header.php` o `app/views/layout/footer.php`; esa lógica debe vivir en `app/services/` o en `app/config/bootstrap.php` si es transversal.
 
 ## PHP
 
@@ -48,9 +50,9 @@ Regla:
 Patrones actuales válidos:
 
 ```php
-require_once __DIR__ . '/app/includes/bootstrap.php';
-include __DIR__ . '/app/includes/header.php';
-<?php include __DIR__ . '/app/includes/footer.php'; ?>
+require_once __DIR__ . '/app/config/bootstrap.php';
+include __DIR__ . '/app/views/layout/header.php';
+<?php include __DIR__ . '/app/views/layout/footer.php'; ?>
 ```
 
 ### Tipado y firma de funciones
@@ -119,14 +121,14 @@ Ejemplo de estructura objetivo:
 <?php
 $pageTitle = "Título de página";
 $pageDescription = "Descripción SEO";
-require_once __DIR__ . '/app/includes/bootstrap.php';
+require_once __DIR__ . '/app/config/bootstrap.php';
 $canonicalUrl = MADAYA_SITE_URL . '/ruta/';
-include __DIR__ . '/app/includes/header.php';
+include __DIR__ . '/app/views/layout/header.php';
 ?>
 
 <!-- contenido -->
 
-<?php include __DIR__ . '/app/includes/footer.php'; ?>
+<?php include __DIR__ . '/app/views/layout/footer.php'; ?>
 ```
 
 ## HTML

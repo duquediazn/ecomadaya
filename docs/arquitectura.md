@@ -22,15 +22,15 @@ Documentar la arquitectura real actual del proyecto (estado de código en reposi
 - Páginas de negocio/legales: `index.php`, `servicios.php`, `galeria.php`, `contacto.php`, `quienes-somos.php`, `preguntas-frecuentes.php`, `aviso-legal.php`, `politica-privacidad.php`, `politica-cookies.php`, `condiciones-servicio.php`
 - Patrón común: cada página define `pageTitle`, `pageDescription`, `canonicalUrl`, carga `bootstrap.php`, y renderiza `header.php` + contenido + `footer.php`
 
-### 2) Capa de lógica compartida
+### 2) Capa interna compartida (`app/`)
 
-- Ubicación: `app/includes/` (archivos PHP incluidos por páginas o endpoints)
-- `bootstrap.php`: entorno (`APP_ENV`), constantes de negocio, utilidades de entorno (`madayaEnv`), URLs WhatsApp, estado abierto/cerrado del taller, configuración SMTP
-- `header.php`: metadatos, canonical, Open Graph, JSON-LD de negocio, navegación principal, apertura de `main`
-- `footer.php`: navegación secundaria/legal, contacto, horarios, cierre de `main`
-- `contact-form.php`: sesión/flash, CSRF, normalización, validación, rate limit, PRG redirect helper
-- `mail-transport.php`: transporte SMTP con PHPMailer
-- `gallery-service.php`: lectura, validación y armado de items de galería
+- `app/config/bootstrap.php`: entorno (`APP_ENV`), constantes de negocio, utilidades de entorno (`madayaEnv`), URLs WhatsApp, estado abierto/cerrado del taller, configuración SMTP
+- `app/services/contact-form.php`: sesión/flash, CSRF, normalización, validación, rate limit, PRG redirect helper
+- `app/services/mail-transport.php`: transporte SMTP con PHPMailer
+- `app/services/gallery-service.php`: lectura, validación y armado de items de galería
+- `app/views/layout/header.php`: metadatos, canonical, Open Graph, JSON-LD de negocio, navegación principal, apertura de `main`
+- `app/views/layout/footer.php`: navegación secundaria/legal, contacto, horarios, cierre de `main`
+- `app/views/sections/*.php`: bloques reutilizables de contenido (CTA, reseñas, FAQ/contacto)
 
 - Ubicación: `api/` (Endpoints públicos)
 - `contacto.php`: procesa `POST`, aplica controles de seguridad, envía (si SMTP activo), guarda flash y redirige 303 a `contacto.php#formulario-contacto`
@@ -76,13 +76,21 @@ Documentar la arquitectura real actual del proyecto (estado de código en reposi
   sitemap.xml
   .htaccess
   app/
-    includes/
+    config/
       bootstrap.php
-      header.php
-      footer.php
+    services/
       contact-form.php
       mail-transport.php
       gallery-service.php
+    views/
+      layout/
+        header.php
+        footer.php
+      sections/
+        contacto-faq.php
+        pide-presupuesto.php
+        resuelve-dudas.php
+        reviews.php
   docs/
   scripts/
   vendor/
@@ -192,7 +200,7 @@ Variables soportadas:
 - Protecciones anti-abuso en contacto: CSRF + honeypot + rate limit por sesión.
 - Escape de salida en valores y mensajes del formulario (`htmlspecialchars`).
 - Credenciales SMTP fuera del repo (variables de entorno).
-- Separación de código interno (`app/includes`) respecto al código público.
+- Separación de código interno (`app/config`, `app/services`, `app/views`) respecto al código público.
 
 ## Riesgos y deuda técnica
 

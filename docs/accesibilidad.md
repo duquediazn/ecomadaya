@@ -70,9 +70,9 @@ Cada nueva página debe seguir esta estructura mínima:
 <?php
 $pageTitle = "Título descriptivo de la página";
 $pageDescription = "Resumen breve y específico del contenido";
-require_once __DIR__ . '/app/includes/bootstrap.php';
+require_once __DIR__ . '/app/config/bootstrap.php';
 $canonicalUrl = MADAYA_SITE_URL . '/ruta/';
-include __DIR__ . '/app/includes/header.php';
+include __DIR__ . '/app/views/layout/header.php';
 ?>
 
 <section aria-labelledby="pagina-heading" class="section--narrow">
@@ -80,7 +80,7 @@ include __DIR__ . '/app/includes/header.php';
     <p>Introducción de la página.</p>
 </section>
 
-<?php include __DIR__ . '/app/includes/footer.php'; ?>
+<?php include __DIR__ . '/app/views/layout/footer.php'; ?>
 ```
 
 **Reglas obligatorias:**

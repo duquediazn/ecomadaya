@@ -1,9 +1,9 @@
 <?php
 $pageTitle = "Condiciones del servicio | Taller familiar de tapicería en Tenerife";
 $pageDescription = "Consulta las condiciones del servicio de Madaya, un taller familiar de tapicería en Tenerife con tradición artesanal, relevo generacional y compromiso con la restauración de muebles.";
-require_once __DIR__ . '/app/includes/bootstrap.php';
+require_once __DIR__ . '/app/config/bootstrap.php';
 $canonicalUrl = MADAYA_SITE_URL . '/condiciones-servicio/';
-include __DIR__ . '/app/includes/header.php';
+include __DIR__ . '/app/views/layout/header.php';
 ?>
 
 <section class="section--narrow" aria-labelledby="condiciones-heading">
@@ -15,7 +15,7 @@ include __DIR__ . '/app/includes/header.php';
 
     <h2 id="aceptacion-heading">2. Aceptación del presupuesto y señal inicial</h2>
     <p>Para iniciar los trabajos es necesario confirmar el presupuesto y abonar un <strong>50% del total</strong> en concepto de señal.
-    El importe restante se abonará al finalizar el trabajo y antes de la entrega del mueble.</p>
+        El importe restante se abonará al finalizar el trabajo y antes de la entrega del mueble.</p>
 
     <h2 id="ajustes-heading">3. Ajustes del presupuesto por condiciones internas del mueble</h2>
     <p>En la revisión inicial del mueble <strong>no siempre es posible conocer el estado interno</strong> (espumas, cinchas, estructura, elementos ocultos…).</p>
@@ -67,11 +67,11 @@ include __DIR__ . '/app/includes/header.php';
 
     <h2 id="recogida-heading">9. Recogida y entrega a domicilio</h2>
     <p>Este servicio puede estar incluido o no en el presupuesto, según el caso. Se informará previamente al cliente.
-    La recogida y entrega deben realizarse en condiciones adecuadas de accesibilidad.</p>
+        La recogida y entrega deben realizarse en condiciones adecuadas de accesibilidad.</p>
 
     <h2 id="custodia-heading">10. Custodia de muebles en el taller</h2>
     <p>Los muebles terminados deberán recogerse en un plazo razonable.
-    En caso de retrasos prolongados no justificados, podrían aplicarse gastos razonables de almacenaje, previa información al cliente.</p>
+        En caso de retrasos prolongados no justificados, podrían aplicarse gastos razonables de almacenaje, previa información al cliente.</p>
 </section>
 
-<?php include __DIR__ . '/app/includes/footer.php'; ?>
+<?php include __DIR__ . '/app/views/layout/footer.php'; ?>
