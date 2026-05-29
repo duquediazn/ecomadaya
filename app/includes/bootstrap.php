@@ -20,15 +20,15 @@ if (!defined('APP_ENV')) {
 
         $parts = parse_url('http://' . $rawHost);
         $hostname = strtolower((string) ($parts['host'] ?? ''));
-        
-        $isLocal = $hostname === '' 
-            || $hostname === 'localhost' 
-            || $hostname === '127.0.0.1' 
-            || $hostname === '::1'  
-            || str_ends_with($hostname, '.local') 
+
+        $isLocal = $hostname === ''
+            || $hostname === 'localhost'
+            || $hostname === '127.0.0.1'
+            || $hostname === '::1'
+            || str_ends_with($hostname, '.local')
             || str_ends_with($hostname, '.test');
-        
-        $appEnv = $isLocal ? 'development': 'production';
+
+        $appEnv = $isLocal ? 'development' : 'production';
     }
 
     define('APP_ENV', $appEnv);
@@ -69,7 +69,7 @@ if (!defined('MADAYA_REVIEW_RATING')) {
 }
 
 if (!defined('MADAYA_REVIEW_COUNT')) {
-    define('MADAYA_REVIEW_COUNT', '34');
+    define('MADAYA_REVIEW_COUNT', '35');
 }
 
 // Consentimiento para contenido externo embebido (Google Maps / YouTube).
@@ -97,8 +97,8 @@ $now = new DateTime('now', $tz);
 $day = (int) $now->format('N');
 $minutes = ((int) $now->format('G') * 60) + (int) $now->format('i');
 $isOpenNow =
-	(($day >= 1 && $day <= 5) && ($minutes >= 480 && $minutes < 900))
-	|| ($day === 6 && ($minutes >= 540 && $minutes < 720));
+    (($day >= 1 && $day <= 5) && ($minutes >= 480 && $minutes < 900))
+    || ($day === 6 && ($minutes >= 540 && $minutes < 720));
 
 $openBadgeClass = $isOpenNow ? 'contact-status contact-status--open' : 'contact-status contact-status--closed';
 $openBadgeText = $isOpenNow ? 'Abierto ahora' : 'Ahora cerrado';
@@ -217,9 +217,9 @@ function madayaSetExternalMediaConsent(bool $accepted): void
 
     setcookie(MADAYA_EXTERNAL_MEDIA_CONSENT_COOKIE, $value, [
         'expires' => time() + MADAYA_EXTERNAL_MEDIA_CONSENT_MAX_AGE,
-        'path' => '/', 
-        'secure' => APP_ENV === 'production', 
-        'httponly' => false, 
+        'path' => '/',
+        'secure' => APP_ENV === 'production',
+        'httponly' => false,
         'samesite' => 'Lax',
     ]);
 
