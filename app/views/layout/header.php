@@ -137,15 +137,16 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </header>
 
     <main id="main" class="site-main">
+        <!-- Botón fijo para volver al inicio -->
         <a href="#header" class="btn-fixed btn-fixed--back-to-top" title="Volver al inicio">
             <svg xmlns="http://www.w3.org/2000/svg"
                 width="44"
                 height="44"
                 fill="currentColor"
-                viewBox="0 0 16 16"
                 aria-hidden="true"
-                focusable="false">
-                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z" />
+                focusable="false"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
             </svg>
         </a>
         <!-- Botón de WhatsApp para presupuesto -->

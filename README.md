@@ -23,7 +23,9 @@ Sitio en producción: https://ecomadaya.es
 *.php                         # Páginas públicas (raíz del sitio)
 api/                          # Endpoints públicos
 assets/                       # CSS, JS, imágenes, iconos, fuentes
-app/includes/                 # Lógica interna y parciales
+app/config/                   # Configuración transversal (entorno, constantes)
+app/services/                 # Lógica compartida (formulario, galería, mail)
+app/views/                    # Layout y secciones reutilizables
 scripts/                      # Utilidades locales (ej. sitemap)
 docs/                         # Documentación técnica
 vendor/                       # Dependencias Composer
