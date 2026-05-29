@@ -23,7 +23,9 @@ Sitio en producción: https://ecomadaya.es
 *.php                         # Páginas públicas (raíz del sitio)
 api/                          # Endpoints públicos
 assets/                       # CSS, JS, imágenes, iconos, fuentes
-app/includes/                 # Lógica interna y parciales
+app/config/                   # Configuración transversal (entorno, constantes)
+app/services/                 # Lógica compartida (formulario, galería, mail)
+app/views/                    # Layout y secciones reutilizables
 scripts/                      # Utilidades locales (ej. sitemap)
 docs/                         # Documentación técnica
 vendor/                       # Dependencias Composer
@@ -89,20 +91,20 @@ Más detalle en [docs/entorno-local-dev.md](docs/entorno-local-dev.md).
 
 Las credenciales nunca se versionan. Se configuran en entorno seguro (hosting y/o GitHub Secrets).
 
-| Variable | Descripción |
-|---|---|
-| APP_ENV | development o production |
-| MADAYA_SMTP_ENABLED | Activa envío SMTP (1/true/yes/on) |
-| MADAYA_SMTP_HOST | Host SMTP |
-| MADAYA_SMTP_PORT | Puerto SMTP |
-| MADAYA_SMTP_ENCRYPTION | tls, ssl o none |
-| MADAYA_SMTP_AUTH | Activa autenticacion SMTP |
-| MADAYA_SMTP_USERNAME | Usuario SMTP |
-| MADAYA_SMTP_PASSWORD | Password SMTP |
-| MADAYA_SMTP_FROM_EMAIL | Remitente |
-| MADAYA_SMTP_FROM_NAME | Nombre remitente |
-| MADAYA_SMTP_TIMEOUT | Timeout SMTP |
-| MADAYA_SMTP_DEBUG | Nivel debug PHPMailer |
+| Variable               | Descripción                       |
+| ---------------------- | --------------------------------- |
+| APP_ENV                | development o production          |
+| MADAYA_SMTP_ENABLED    | Activa envío SMTP (1/true/yes/on) |
+| MADAYA_SMTP_HOST       | Host SMTP                         |
+| MADAYA_SMTP_PORT       | Puerto SMTP                       |
+| MADAYA_SMTP_ENCRYPTION | tls, ssl o none                   |
+| MADAYA_SMTP_AUTH       | Activa autenticacion SMTP         |
+| MADAYA_SMTP_USERNAME   | Usuario SMTP                      |
+| MADAYA_SMTP_PASSWORD   | Password SMTP                     |
+| MADAYA_SMTP_FROM_EMAIL | Remitente                         |
+| MADAYA_SMTP_FROM_NAME  | Nombre remitente                  |
+| MADAYA_SMTP_TIMEOUT    | Timeout SMTP                      |
+| MADAYA_SMTP_DEBUG      | Nivel debug PHPMailer             |
 
 ## Scripts Composer útiles
 
@@ -115,7 +117,6 @@ composer sitemap
 - Validación server-side en formulario de contacto.
 - Protecciones CSRF + honeypot + rate limit.
 - app/ y vendor/ protegidos en hosting mediante reglas de servidor.
-- Sin secretos en repositorio.
 
 ## Accesibilidad y SEO
 
@@ -127,7 +128,7 @@ composer sitemap
 Flujo operativo actual:
 
 1. Los cambios se integran y validan en `dev`.
-2. Se hace merge `dev -> main` para publicar la version aprobada.
+2. Se abre un Pull Request `dev -> main` y, tras la aprobacion requerida, se hace merge para publicar la version aprobada.
 3. El despliegue se lanza manualmente desde GitHub Actions seleccionando rama `main`.
 4. El workflow admite modo incremental o `full_deploy`.
 5. Se ejecutan smoke checks al finalizar.

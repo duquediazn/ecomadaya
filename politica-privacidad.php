@@ -2,10 +2,10 @@
 $pageTitle = "Politica de privacidad | Madaya";
 $pageDescription = "Politica de privacidad de Tapizados Madaya: responsable, finalidades, base juridica, conservacion, derechos y terceros.";
 
-require_once __DIR__ . '/app/includes/bootstrap.php';
+require_once __DIR__ . '/app/config/bootstrap.php';
 $canonicalUrl = MADAYA_SITE_URL . '/politica-privacidad/';
 
-include __DIR__ . '/app/includes/header.php';
+include __DIR__ . '/app/views/layout/header.php';
 ?>
 
 <section class="section--narrow" aria-labelledby="privacidad-heading">
@@ -169,4 +169,4 @@ include __DIR__ . '/app/includes/header.php';
 	</p>
 </section>
 
-<?php include __DIR__ . '/app/includes/footer.php'; ?>
+<?php include __DIR__ . '/app/views/layout/footer.php'; ?>

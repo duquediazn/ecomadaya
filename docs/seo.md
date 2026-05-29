@@ -6,7 +6,7 @@
 
 El sitio Madaya implementa SEO técnico y on-page alineado con buenas prácticas para sitios multipágina estáticos en PHP. Todas las páginas indexables cuentan con metadatos únicos, canonical coherente y enlazado interno estratégico. El sitemap y robots.txt están actualizados y alineados con la estructura real del sitio.
 
-## Estado actual (marzo 2026)
+## Estado actual
 
 - **Metadatos:** Todas las páginas indexables (`index`, `servicios`, `galeria`, `contacto`, `quienes-somos`, `preguntas-frecuentes`, `aviso-legal`, `politica-privacidad`, `politica-cookies`, `condiciones-servicio`) tienen `<title>`, `meta description` y `<h1>` únicos y orientados a intención de búsqueda.
 - **Canonical:** Definido por página, consistente con la URL pública y el sitemap.
@@ -24,38 +24,32 @@ El sitio Madaya implementa SEO técnico y on-page alineado con buenas prácticas
 ## Guía rápida para futuras adiciones
 
 1. **Nuevas páginas:**
-	- Definir `$pageTitle`, `$pageDescription`, `$canonicalUrl` y `<h1>` únicos.
-	- Añadir la URL al sitemap si es indexable.
-	- Revisar enlazado interno desde y hacia la nueva página.
+   - Definir `$pageTitle`, `$pageDescription`, `$canonicalUrl` y `<h1>` únicos.
+   - Añadir la URL al sitemap si es indexable.
+   - Revisar enlazado interno desde y hacia la nueva página.
 2. **Datos estructurados:**
-	- Usar `FurnitureRepair` como base en JSON-LD global.
-	- Añadir tipos específicos (`FAQPage`, `Product`, etc.) solo si el contenido lo justifica y es visible.
+   - Usar `FurnitureRepair` como base en JSON-LD global.
+   - Añadir tipos específicos (`FAQPage`, `Product`, etc.) solo si el contenido lo justifica y es visible.
 3. **Revisión periódica:**
-	- Validar canonical vs sitemap tras cada despliegue.
-	- Revisar `aggregateRating` en schema si cambian reseñas.
-	- Mantener actualizado el plan de redirecciones.
+   - Validar canonical vs sitemap tras cada despliegue.
+   - Revisar `aggregateRating` en schema si cambian reseñas.
+   - Mantener actualizado el plan de redirecciones.
 4. **Referencias:**
-	- [docs/sitemap.md](sitemap.md) para reglas de inclusión y generación.
-	- [docs/schema-json-ld.md](schema-json-ld.md) para detalles de marcado estructurado.
-
+   - [docs/sitemap.md](sitemap.md) para reglas de inclusión y generación.
+   - [docs/schema-json-ld.md](schema-json-ld.md) para detalles de marcado estructurado.
 
 ## Plan de redirecciones 301 (WordPress → PHP)
 
-Para preservar el SEO y evitar errores 404 tras la migración, se implementa un plan de redirecciones 301 desde las URLs antiguas de WordPress a las nuevas rutas PHP. 
+Para preservar el SEO y evitar errores 404 tras la migración, se implementa un plan de redirecciones 301 desde las URLs antiguas de WordPress a las nuevas rutas PHP.
 
 ### Mapeo de URLs
 
-| URL antigua (WordPress)         | Nueva URL (PHP)                | Observaciones                |
-|---------------------------------|--------------------------------|------------------------------|
-| /acerca-de/                     | /quienes-somos.php             | Cambia el slug               |
-| /contacto/                      | /contacto.php                  | Igual                        |
-| /aviso-legal/                   | /aviso-legal.php               | Igual                        |
-| /politica-de-cookies-2/         | /politica-cookies.php          | Cambia el slug               |
-| /politica-de-privacidad/        | /politica-privacidad.php       | Cambia el slug               |
-| /servicios/                     | /servicios.php                 | Igual                        |
-| /galeria/                       | /galeria.php                   | Igual                        |
-| /condiciones-servicio/          | /condiciones-servicio.php      | Igual                        |
-| /faq/                           | /preguntas-frecuentes.php      | Cambia el slug               |
+| URL antigua (WordPress)  | Nueva URL (PHP)           | Observaciones  |
+| ------------------------ | ------------------------- | -------------- |
+| /acerca-de/              | /quienes-somos.php        | Cambia el slug |
+| /politica-de-cookies-2/  | /politica-cookies.php     | Cambia el slug |
+| /politica-de-privacidad/ | /politica-privacidad.php  | Cambia el slug |
+| /faq/                    | /preguntas-frecuentes.php | Cambia el slug |
 
 ### Plantilla de reglas .htaccess
 
@@ -73,6 +67,5 @@ Redirect 301 /faq/ /preguntas-frecuentes.php
 ```
 
 **Notas:**
+
 - Documentar cualquier cambio adicional en este plan.
-
-

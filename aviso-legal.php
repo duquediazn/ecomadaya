@@ -2,10 +2,10 @@
 $pageTitle = "Aviso legal | Madaya";
 $pageDescription = "Aviso legal de Tapizados Madaya: titularidad, condiciones de uso, propiedad intelectual y responsabilidad.";
 
-require_once __DIR__ . '/app/includes/bootstrap.php';
+require_once __DIR__ . '/app/config/bootstrap.php';
 $canonicalUrl = MADAYA_SITE_URL . '/aviso-legal/';
 
-include __DIR__ . '/app/includes/header.php';
+include __DIR__ . '/app/views/layout/header.php';
 ?>
 
 <section class="section--narrow" aria-labelledby="aviso-heading">
@@ -185,4 +185,4 @@ include __DIR__ . '/app/includes/header.php';
 	</p>
 </section>
 
-<?php include __DIR__ . '/app/includes/footer.php'; ?>
+<?php include __DIR__ . '/app/views/layout/footer.php'; ?>

@@ -10,7 +10,7 @@ Definir una guía reproducible para levantar el entorno local del proyecto en Wi
 ## Requisitos previos
 
 - PHP 8.0 o superior
-- Apache con mod_env activo
+- Apache con `mod_env` activo
 - Composer
 - Mailpit (capturador SMTP local)
 
@@ -24,15 +24,15 @@ Descargar desde https://www.apachefriends.org e instalar en `C:\xampp`.
 
 ### 2. Instalar Mailpit
 
-Mailpit no requiere instalacion como servicio; basta con tener el binario.
+Mailpit no requiere instalación como servicio; basta con tener el binario.
 
-**Opcion A: descarga directa (recomendada)**
+**Opción A: descarga directa (recomendada)**
 
 1. Ir a https://github.com/axllent/mailpit/releases
 2. Descargar `mailpit-windows-amd64.zip`
 3. Descomprimir en `C:\tools\mailpit\`
 
-**Opcion B: instalar con Go (si tienes Go >= 1.25)**
+**Opción B: instalar con Go (si tienes Go >= 1.25)**
 
 ```powershell
 $env:GOTOOLCHAIN = 'auto'
@@ -223,18 +223,18 @@ tail -f /var/log/apache2/ecomadaya-error.log | grep '\[contacto\]'
 
 ---
 
-## Bateria de pruebas a ejecutar tras montar el entorno
+## Batería de pruebas a ejecutar tras montar el entorno
 
 Resumen mínimo:
 
-| # | Prueba | Esperado |
-|---|--------|----------|
-| 1 | Envio formulario válido | Éxito en web + correo en Mailpit |
-| 2 | Email inválido | Error de validación, sin correo |
-| 3 | Sin consentimiento | Error de validación, sin correo |
-| 4 | Refrescar tras éxito (F5) | Sin duplicado en Mailpit (PRG) |
-| 5 | Puerto SMTP incorrecto | Mensaje de contingencia, sin correo |
-| 6 | Restaurar puerto y reenviar | Éxito confirmado |
+| #   | Prueba                      | Esperado                            |
+| --- | --------------------------- | ----------------------------------- |
+| 1   | Envio formulario válido     | Éxito en web + correo en Mailpit    |
+| 2   | Email inválido              | Error de validación, sin correo     |
+| 3   | Sin consentimiento          | Error de validación, sin correo     |
+| 4   | Refrescar tras éxito (F5)   | Sin duplicado en Mailpit (PRG)      |
+| 5   | Puerto SMTP incorrecto      | Mensaje de contingencia, sin correo |
+| 6   | Restaurar puerto y reenviar | Éxito confirmado                    |
 
 ---
 
