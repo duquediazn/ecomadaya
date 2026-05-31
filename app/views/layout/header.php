@@ -23,8 +23,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "additionalType": "https://schema.org/FurnitureRepair",
-            "@type": "LocalBusiness",
-            "additionalType": "https://schema.org/FurnitureRepair",
             "@id": "https://ecomadaya.es/#madaya",
             "name": "Tapizados Madaya",
             "image": "https://ecomadaya.es/assets/img/hero-1600.webp",
