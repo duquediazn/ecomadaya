@@ -1,6 +1,6 @@
 <section id="pide-presupuesto" class="bg-primary">
     <div class="narrow-container contact-cta">
-        <h2>¿Quieres darle una nueva vida a tues muebles?</h2>
+        <h2>¿Quieres darle una nueva vida a tus muebles?</h2>
         <p>Escríbenos por WhatsApp y te orientamos en menos de 24 horas. Presupuesto sin compromiso.</p>
         <a href="<?php echo $whatsAppBudgetUrl; ?>" target="_blank" rel="noopener noreferrer" class="btn btn--secondary link-dark">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
