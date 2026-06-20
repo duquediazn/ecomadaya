@@ -71,7 +71,8 @@ $footerEscape = static function (string $value): string {
             <h2 class="footer__heading">Horario</h2>
             <h3 class="footer__heading">Mañana:</h3>
             <ul>
-                <li>Lunes a viernes de <time datetime="08:00">8:00</time> a <time datetime="15:00">15:00</time></li>
+                <?php if ($isSummer) { echo '<li> Horario de verano: </li>'; } ?>
+                <li>Lunes a viernes de <time datetime="08:00">8:00</time> a <time datetime="<?php echo $isSummer ? '14:00' : '15:00'; ?>"><?php echo $isSummer ? '14:00' : '15:00'; ?></time></li>
                 <li>Sabados de <time datetime="09:00">9:00</time> a <time datetime="12:00">12:00</time></li>
              </ul>
             <h3 class="footer__heading">Tarde:</h3>
@@ -80,7 +81,6 @@ $footerEscape = static function (string $value): string {
             </ul>
 	        <p class="contact-intro__status"><span class="<?php echo $openBadgeClass; ?>"><?php echo $openBadgeText; ?></span></p>
         </div>
-
     </section>
     
     <section id="row-section-legal">

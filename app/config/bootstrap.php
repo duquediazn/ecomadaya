@@ -96,8 +96,15 @@ $tz = new DateTimeZone('Atlantic/Canary');
 $now = new DateTime('now', $tz);
 $day = (int) $now->format('N');
 $minutes = ((int) $now->format('G') * 60) + (int) $now->format('i');
-$isOpenNow =
-    (($day >= 1 && $day <= 5) && ($minutes >= 480 && $minutes < 900))
+//define dos constantes para el horario de apertura y cierre (cierre verano a las 14:00 y cierrre de invierno a las 15:00)
+define('MADAYA_OPENING_HOURS_SUMMER', 840); // 14:00
+define('MADAYA_OPENING_HOURS_WINTER', 900); // 15:00
+// comprobar si es verano o invierno para determinar la hora de cierre
+// el verano horario de verano empieza el 20 de junio y termina el 1 de septiembre
+$isSummer = ($now->format('n') === '6' && $now->format('j') >= 20 && $now->format('n') <= 9);
+$closingHour = $isSummer ? MADAYA_OPENING_HOURS_SUMMER : MADAYA_OPENING_HOURS_WINTER;
+$isOpenNow =    
+    (($day >= 1 && $day <= 5) && ($minutes >= 480 && $minutes < $closingHour))
     || ($day === 6 && ($minutes >= 540 && $minutes < 720));
 
 $openBadgeClass = $isOpenNow ? 'contact-status contact-status--open' : 'contact-status contact-status--closed';
