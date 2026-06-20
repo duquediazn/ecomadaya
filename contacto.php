@@ -285,10 +285,10 @@ include __DIR__ . '/app/views/layout/header.php';
 <section id="como-llegar">
 	<div class="contact-location">
 		<section class="contact-location__schedule" aria-labelledby="horario-titulo">
-			<h2 id="horario-titulo">Horario del taller</h2>
+			<h2 id="horario-titulo">Horario <?php if ($isSummer) { echo 'de verano'; } ?></h2>
 			<dl class="schedule-list">
 				<dt>Lunes a viernes</dt>
-				<dd><time datetime="08:00">8:00</time> - <time datetime="15:00">15:00</time></dd>
+				<dd><time datetime="08:00">8:00</time> - <time datetime="<?php echo $isSummer ? '14:00' : '15:00'; ?>"><?php echo $isSummer ? '14:00' : '15:00'; ?></time></dd>
 				<dt>Sabados</dt>
 				<dd><time datetime="09:00">9:00</time> - <time datetime="12:00">12:00</time></dd>
 				<dt>Tardes</dt>
