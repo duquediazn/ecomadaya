@@ -54,7 +54,7 @@ include __DIR__ . '/app/views/layout/header.php';
         <details>
             <summary>9. ¿Cuánto cuesta tapizar un sofá o una silla?</summary>
             El precio depende del tamaño del mueble, del tipo de tejido y del estado de la pieza.
-            A <strong>modo orientativo</strong>:
+            <!-- A <strong>modo orientativo</strong>:
 
             <ul>
                 <li><strong>Sillón o butaca:</strong> desde 250–350 €</li>
@@ -64,7 +64,7 @@ include __DIR__ . '/app/views/layout/header.php';
                 <li><strong>Chaise longue:</strong> desde 1.100–1.600 €</li>
                 <li><strong>Conjuntos 3+2:</strong> desde 1.300–1.900 €</li>
             </ul>
-            Estos rangos están basados en <strong>trabajos recientes (2025)</strong> realizados en nuestro taller.
+            Estos rangos están basados en <strong>trabajos recientes (2025)</strong> realizados en nuestro taller. -->
             Para darte un precio exacto, solo necesitamos que nos envíes unas fotos; puedes hacerlo por <a href="<?php echo $whatsAppBudgetUrl; ?>" class="link-primary">WhatsApp</a>.
         </details>
         <details>
